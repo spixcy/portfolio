@@ -52,22 +52,22 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
       {/* Split Work View: Left Project List (35%) + Right Detail Box (65%) */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-5 flex-1 items-stretch min-h-0">
         {/* Left Column: Numbered Project Index List (Reference Image 1) */}
-        <div className="md:col-span-5 flex flex-col justify-between gap-1 font-mono select-none py-1">
+        <div className="md:col-span-5 flex flex-col justify-start gap-2.5 sm:gap-3.5 lg:gap-4.5 font-mono select-none py-1">
           {projects.map((project, idx) => {
             const isSelected = idx === selectedIndex;
             return (
               <button
                 key={project.id}
                 onClick={() => handleItemClick(idx)}
-                className={`w-full text-left px-3.5 py-2 transition-all duration-100 flex items-center font-bold tracking-wider text-base sm:text-lg md:text-[19px] lg:text-[20px] rounded-xs cursor-pointer ${
+                className={`w-full text-left px-3.5 py-2.5 sm:py-3 transition-all duration-100 flex items-center font-bold tracking-wider text-base sm:text-lg md:text-[19px] lg:text-[20px] rounded-xs cursor-pointer ${
                   isSelected
-                    ? 'bg-[#ff9100] text-black shadow-[0_0_14px_rgba(255,145,0,0.6)]'
-                    : 'text-[#ff9100]/80 hover:text-[#ffaa22] hover:bg-[#ff9100]/10'
+                    ? 'bg-[#ff9100] text-black shadow-[0_0_14px_rgba(255,145,0,0.6)] font-extrabold'
+                    : 'text-[#ff9100]/90 hover:text-[#ffaa22] hover:bg-[#ff9100]/10 ph-glow-text'
                 }`}
               >
                 <span
                   className={`w-10 shrink-0 font-bold ${
-                    isSelected ? 'text-black' : 'text-[#ff9100]/70'
+                    isSelected ? 'text-black font-extrabold' : 'text-[#ff9100]/80'
                   }`}
                 >
                   {project.number}
@@ -79,19 +79,19 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
         </div>
 
         {/* Right Column: Detailed Card Preview Box (Reference Image 1) */}
-        <div className="md:col-span-7 flex flex-col justify-between border-[1.5px] border-[#ff9100] bg-black/40 p-4 sm:p-5 shadow-[0_0_18px_rgba(255,145,0,0.18)] min-h-0">
+        <div className="md:col-span-7 flex flex-col justify-between border-[1.5px] border-[#ff9100] bg-black/30 p-4 sm:p-5 shadow-[0_0_18px_rgba(255,145,0,0.15)] min-h-0">
           {/* Card Box Header: Selected Title + Index with Amber Divider */}
-          <div className="flex items-center justify-between pb-2 mb-2 border-b-[1.5px] border-[#ff9100] font-mono">
+          <div className="flex items-center justify-between pb-2 mb-1 border-b-[1.5px] border-[#ff9100] font-mono">
             <span className="text-base sm:text-lg md:text-[20px] lg:text-[22px] font-bold tracking-wider text-[#ff9100] uppercase truncate ph-glow-text">
               {activeProject.title}
             </span>
-            <span className="text-sm sm:text-base md:text-[18px] text-[#ffbe6b]/80 font-bold tracking-widest shrink-0 ml-2">
+            <span className="text-sm sm:text-base md:text-[18px] text-[#ffbe6b]/90 font-bold tracking-widest shrink-0 ml-2">
               {String(selectedIndex + 1).padStart(2, '0')}/{String(projects.length).padStart(2, '0')}
             </span>
           </div>
 
-          {/* Centered Image Preview Box */}
-          <div className="w-full flex-1 min-h-[180px] max-h-[260px] rounded-xs overflow-hidden border border-[#ff9100]/40 bg-black/50 my-2 flex items-center justify-center p-1.5 shadow-inner">
+          {/* Centered Image Preview Box — Clean floating card matching Reference Image 1 */}
+          <div className="w-full flex-1 min-h-[180px] max-h-[260px] my-1 flex items-center justify-center overflow-hidden">
             <OptimizedImage
               src={activeProject.thumbnail}
               alt={activeProject.title}
@@ -101,11 +101,11 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
           </div>
 
           {/* Metadata & Tag Pills */}
-          <div className="flex flex-wrap gap-2 pt-2.5">
+          <div className="flex flex-wrap gap-2 pt-2">
             {activeProject.tags.map((tag, tIdx) => (
               <span
                 key={tIdx}
-                className="text-xs sm:text-[13px] font-mono px-2.5 py-0.5 border border-[#ff9100] bg-[#1a0f05]/60 text-[#ffbe6b] font-medium"
+                className="text-xs sm:text-[13px] font-mono px-3 py-0.5 border border-[#ff9100]/80 bg-[#1a0f05]/40 text-[#ffbe6b] font-medium tracking-wide"
               >
                 {tag}
               </span>
@@ -113,14 +113,14 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
           </div>
 
           {/* Description Text */}
-          <p className="text-xs sm:text-sm md:text-[15px] lg:text-[16px] font-mono text-[#faebda] leading-relaxed pt-2 pb-3">
+          <p className="text-xs sm:text-sm md:text-[15px] lg:text-[16px] font-mono text-[#faebda] leading-relaxed pt-2 pb-2.5">
             {activeProject.tagline}
           </p>
 
           {/* Open Case Study Action Button */}
           <button
             onClick={handleOpenStudy}
-            className="self-start px-5 py-1.5 font-mono text-xs sm:text-sm font-bold tracking-wider bg-[#ff9100] hover:bg-[#ffaa22] active:bg-[#e68200] text-black shadow-[0_0_14px_rgba(255,145,0,0.5)] transition-all flex items-center gap-2 cursor-pointer uppercase rounded-xs"
+            className="self-start px-6 py-2 font-mono text-xs sm:text-sm font-extrabold tracking-wider bg-[#ff9100] hover:bg-[#ffaa22] active:bg-[#e68200] text-black shadow-[0_0_16px_rgba(255,145,0,0.55)] transition-all flex items-center gap-2 cursor-pointer uppercase rounded-xs"
           >
             <span>▶ OPEN CASE STUDY</span>
           </button>
