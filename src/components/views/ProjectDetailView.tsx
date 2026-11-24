@@ -109,44 +109,44 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
       <div className="py-4 space-y-5 flex-1 font-mono">
         {/* Title & Tagline */}
         <div>
-          <div className="text-[10px] text-[#ff9100]/70 uppercase tracking-widest">
+          <div className="text-xs text-[#ff9100]/80 uppercase tracking-widest font-bold">
             CATEGORY // {project.categoryLabel.toUpperCase()}
           </div>
-          <h1 className="text-xl sm:text-3xl font-bold text-[#ff9100] phosphor-glow-sm tracking-tight mt-1 uppercase">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#ff9100] ph-glow-hero tracking-tight mt-1 uppercase">
             {project.title}
           </h1>
-          <p className="mt-1 text-xs sm:text-sm text-[#ffdfb8]/90 leading-relaxed">
+          <p className="mt-1 text-sm sm:text-base text-[#ffdfb8] leading-relaxed">
             {project.tagline}
           </p>
         </div>
 
         {/* Hero Artwork / Screenshot */}
-        <div className="w-full aspect-video max-h-[260px] sm:max-h-[300px] rounded-lg overflow-hidden border border-[#ff9100]/40 bg-black/70 shadow-lg">
+        <div className="w-full aspect-video max-h-[260px] sm:max-h-[300px] rounded-xs overflow-hidden border border-[#ff9100]/50 bg-black/70 shadow-lg p-1">
           <OptimizedImage
             src={project.heroImage || project.thumbnail}
             alt={project.title}
             aspectRatio="16/9"
-            fit="cover"
+            fit="contain"
             priority={true}
           />
         </div>
 
         {/* Overview & Problem / Solution Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="border border-[#ff9100]/25 rounded p-3 bg-[#130f0a]/60">
-            <h3 className="text-xs font-bold text-[#ff9100] tracking-wider uppercase mb-1.5 flex items-center gap-1.5">
+          <div className="border border-[#ff9100]/40 rounded-xs p-3.5 bg-[#130f0a]/80">
+            <h3 className="text-xs sm:text-sm font-bold text-[#ff9100] tracking-wider uppercase mb-1.5 flex items-center gap-1.5 ph-glow-text">
               <span>●</span> OVERVIEW
             </h3>
-            <p className="text-xs text-[#ffbe6b]/90 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#faebda] leading-relaxed">
               {project.details.overview}
             </p>
           </div>
 
-          <div className="border border-[#ff9100]/25 rounded p-3 bg-[#130f0a]/60">
-            <h3 className="text-xs font-bold text-[#ff9100] tracking-wider uppercase mb-1.5 flex items-center gap-1.5">
+          <div className="border border-[#ff9100]/40 rounded-xs p-3.5 bg-[#130f0a]/80">
+            <h3 className="text-xs sm:text-sm font-bold text-[#ff9100] tracking-wider uppercase mb-1.5 flex items-center gap-1.5 ph-glow-text">
               <span>●</span> MOTIVATION & PROBLEM
             </h3>
-            <p className="text-xs text-[#ffbe6b]/90 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#faebda] leading-relaxed">
               {project.details.problem || 'Addressing performance friction and interactive aesthetics in production.'}
             </p>
           </div>
@@ -154,22 +154,22 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
 
         {/* Solution */}
         {project.details.solution && (
-          <div className="border border-[#ff9100]/25 rounded p-3 bg-[#130f0a]/60">
-            <h3 className="text-xs font-bold text-[#ff9100] tracking-wider uppercase mb-1.5 flex items-center gap-1.5">
+          <div className="border border-[#ff9100]/40 rounded-xs p-3.5 bg-[#130f0a]/80">
+            <h3 className="text-xs sm:text-sm font-bold text-[#ff9100] tracking-wider uppercase mb-1.5 flex items-center gap-1.5 ph-glow-text">
               <span>●</span> ARCHITECTURAL SOLUTION
             </h3>
-            <p className="text-xs text-[#ffbe6b]/90 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#faebda] leading-relaxed">
               {project.details.solution}
             </p>
           </div>
         )}
 
         {/* Key Features */}
-        <div className="border border-[#ff9100]/25 rounded p-3 bg-[#130f0a]/60">
-          <h3 className="text-xs font-bold text-[#ff9100] tracking-wider uppercase mb-2">
+        <div className="border border-[#ff9100]/40 rounded-xs p-3.5 bg-[#130f0a]/80">
+          <h3 className="text-xs sm:text-sm font-bold text-[#ff9100] tracking-wider uppercase mb-2 ph-glow-text">
             KEY CAPABILITIES & FEATURES
           </h3>
-          <ul className="space-y-1.5 text-xs text-[#ffdfb8]/90">
+          <ul className="space-y-2 text-xs sm:text-sm text-[#faebda]">
             {project.details.features.map((feature, fIdx) => (
               <li key={fIdx} className="flex items-start gap-2">
                 <span className="text-[#ff9100] mt-0.5">►</span>
@@ -181,14 +181,14 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
 
         {/* Tech Stack Pills */}
         <div>
-          <h4 className="text-[11px] font-bold text-[#ff9100]/70 tracking-widest uppercase mb-1.5">
+          <h4 className="text-xs font-bold text-[#ff9100]/90 tracking-widest uppercase mb-2">
             TECHNOLOGY STACK
           </h4>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-2">
             {project.details.techStack.map((tech, tIdx) => (
               <span
                 key={tIdx}
-                className="text-[11px] px-2.5 py-0.5 rounded border border-[#ff9100]/30 bg-[#ff9100]/10 text-[#ffbe6b]"
+                className="text-xs sm:text-[13px] px-3 py-1 border border-[#ff9100] bg-[#ff9100]/10 text-[#ffbe6b] font-medium rounded-xs"
               >
                 {tech}
               </span>

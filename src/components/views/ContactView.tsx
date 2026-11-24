@@ -47,45 +47,45 @@ export const ContactView: React.FC<ContactViewProps> = ({
         {/* Main Heading & Subhead */}
         <div>
           <div className="flex items-baseline gap-3">
-            <h1 className="text-3xl sm:text-5xl font-bold text-[#ff9100] phosphor-glow-lg tracking-tight">
+            <h1 className="text-3xl sm:text-5xl font-bold text-[#ff9100] ph-glow-hero tracking-tight">
               {contactData.heading}
             </h1>
           </div>
-          <div className="text-[10px] sm:text-xs text-[#ff9100]/80 tracking-widest uppercase mt-1">
+          <div className="text-xs sm:text-sm text-[#ff9100]/90 tracking-widest uppercase mt-1 font-bold">
             {identity.location} • {identity.timezone} • {identity.responseWindow}
           </div>
-          <p className="mt-3 text-xs sm:text-sm text-[#ffdfb8]/90 leading-relaxed">
+          <p className="mt-3 text-sm sm:text-base text-[#faebda] leading-relaxed">
             {contactData.subheading}
           </p>
         </div>
 
         {/* 4 Large Rounded Channel Rows */}
-        <div className="space-y-2.5 pt-2">
+        <div className="space-y-3 pt-2">
           {contactData.links.map((link) => (
             <div
               key={link.channel}
               onClick={() => handleCopyOrOpen(link.channel, link.handle, link.url)}
-              className="group cursor-pointer rounded-lg border border-[#ff9100]/40 hover:border-[#ff9100] bg-[#120e0a]/80 hover:bg-[#1a140d] px-4 py-3 flex items-center justify-between gap-4 transition-all duration-150 hover:phosphor-box-glow"
+              className="group cursor-pointer rounded-xs border border-[#ff9100]/50 hover:border-[#ff9100] bg-[#120e0a]/80 hover:bg-[#1a140d] px-4 py-3 flex items-center justify-between gap-4 transition-all duration-150 hover:shadow-[0_0_14px_rgba(255,145,0,0.3)]"
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') handleCopyOrOpen(link.channel, link.handle, link.url);
               }}
             >
-              <div className="flex items-center gap-2">
-                <span className="text-xs sm:text-sm font-bold text-[#ff9100] uppercase tracking-wider">
+              <div className="flex items-center gap-3">
+                <span className="text-sm sm:text-base font-bold text-[#ff9100] uppercase tracking-wider ph-glow-text">
                   {link.channel}
                 </span>
                 {copiedChannel === link.channel && (
-                  <span className="text-[10px] text-green-400 bg-green-950/80 px-2 py-0.5 rounded border border-green-800">
+                  <span className="text-xs text-green-400 bg-green-950/80 px-2 py-0.5 rounded border border-green-800 font-bold">
                     COPIED TO CLIPBOARD
                   </span>
                 )}
               </div>
 
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-[#ffbe6b] group-hover:text-white font-mono truncate">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-[#faebda] group-hover:text-white font-mono truncate">
                 <span className="truncate">{link.handle}</span>
-                <span className="text-[11px] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-transform">
+                <span className="text-xs opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-transform">
                   ↗
                 </span>
               </div>

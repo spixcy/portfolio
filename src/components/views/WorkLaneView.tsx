@@ -45,28 +45,28 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
   }
 
   return (
-    <div className="flex flex-col flex-1 justify-between pt-2">
-      {/* Split Work View: Left List + Right Detail Preview */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-6 flex-1 items-stretch my-auto">
-        {/* Left Column: Numbered Project Index List */}
-        <div className="md:col-span-5 flex flex-col justify-start gap-1 font-mono text-xs sm:text-sm select-none">
-          <div className="text-[10px] text-[#ff9100]/60 uppercase tracking-widest mb-1 pb-1 border-b border-[#ff9100]/20">
-            LANE: {categoryTitle} ({projects.length} ENTRIES)
-          </div>
-
+    <div className="flex flex-col flex-1 justify-between pt-1 h-full min-h-0">
+      {/* Split Work View: Left Project List (35%) + Right Detail Box (65%) */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-7 flex-1 items-stretch my-auto min-h-0">
+        {/* Left Column: Numbered Project Index List (Reference Image 1) */}
+        <div className="md:col-span-5 flex flex-col justify-start gap-2.5 sm:gap-3.5 font-mono select-none pt-1">
           {projects.map((project, idx) => {
             const isSelected = idx === selectedIndex;
             return (
               <button
                 key={project.id}
                 onClick={() => handleItemClick(idx)}
-                className={`w-full text-left px-2.5 py-1.5 rounded transition-all duration-100 flex items-center gap-2.5 font-bold tracking-wider ${
+                className={`w-full text-left px-3.5 py-1.5 sm:py-2 transition-all duration-100 flex items-center font-bold tracking-wider text-base sm:text-lg md:text-[19px] lg:text-[20px] rounded-xs cursor-pointer ${
                   isSelected
-                    ? 'bg-[#ff9100] text-black shadow-[0_0_10px_rgba(255,145,0,0.5)] translate-x-1'
-                    : 'text-[#ffbe6b]/80 hover:text-[#ff9100] hover:bg-[#ff9100]/10'
+                    ? 'bg-[#ff9100] text-black shadow-[0_0_14px_rgba(255,145,0,0.6)]'
+                    : 'text-[#ff9100]/80 hover:text-[#ffaa22] hover:bg-[#ff9100]/10'
                 }`}
               >
-                <span className={`text-[10px] ${isSelected ? 'text-black' : 'text-[#ff9100]/60'}`}>
+                <span
+                  className={`w-9 shrink-0 font-bold ${
+                    isSelected ? 'text-black' : 'text-[#ff9100]/70'
+                  }`}
+                >
                   {project.number}
                 </span>
                 <span className="truncate uppercase">{project.title}</span>
@@ -75,49 +75,49 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
           })}
         </div>
 
-        {/* Right Column: Detailed Card Preview Box */}
-        <div className="md:col-span-7 flex flex-col justify-between border border-[#ff9100]/50 rounded-lg bg-[#110e0a]/80 p-3 sm:p-4 shadow-[0_0_15px_rgba(255,145,0,0.15)]">
-          {/* Card Box Header */}
-          <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#ff9100]/25 font-mono text-xs">
-            <span className="font-bold tracking-wider text-[#ff9100] uppercase truncate">
+        {/* Right Column: Detailed Card Preview Box (Reference Image 1) */}
+        <div className="md:col-span-7 flex flex-col justify-between border-[1.5px] border-[#ff9100] bg-black/40 p-4 sm:p-5 shadow-[0_0_18px_rgba(255,145,0,0.18)] min-h-0">
+          {/* Card Box Header: Selected Title + Index with Amber Divider */}
+          <div className="flex items-center justify-between pb-2 mb-2 border-b-[1.5px] border-[#ff9100] font-mono">
+            <span className="text-base sm:text-lg md:text-[20px] lg:text-[22px] font-bold tracking-wider text-[#ff9100] uppercase truncate ph-glow-text">
               {activeProject.title}
             </span>
-            <span className="text-[#ffbe6b]/70 font-bold tracking-widest">
+            <span className="text-sm sm:text-base md:text-[18px] text-[#ffbe6b]/80 font-bold tracking-widest shrink-0 ml-2">
               {String(selectedIndex + 1).padStart(2, '0')}/{String(projects.length).padStart(2, '0')}
             </span>
           </div>
 
           {/* Centered Image Preview Box */}
-          <div className="w-full aspect-[16/9] max-h-[170px] sm:max-h-[190px] rounded overflow-hidden border border-[#ff9100]/30 bg-black/60 my-auto shadow-inner">
+          <div className="w-full flex-1 min-h-[160px] max-h-[220px] rounded-xs overflow-hidden border border-[#ff9100]/40 bg-black/70 my-auto flex items-center justify-center p-2 shadow-inner">
             <OptimizedImage
               src={activeProject.thumbnail}
               alt={activeProject.title}
               aspectRatio="16/9"
-              fit="cover"
+              fit="contain"
             />
           </div>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1.5 pt-2">
+          {/* Metadata & Tag Pills */}
+          <div className="flex flex-wrap gap-2 pt-2.5">
             {activeProject.tags.map((tag, tIdx) => (
               <span
                 key={tIdx}
-                className="text-[10px] font-mono px-2 py-0.5 rounded border border-[#ff9100]/40 bg-[#ff9100]/10 text-[#ffbe6b]"
+                className="text-xs sm:text-[13px] font-mono px-2.5 py-0.5 border border-[#ff9100] bg-[#1a0f05]/60 text-[#ffbe6b] font-medium"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          {/* Short Description */}
-          <p className="text-xs sm:text-[13px] font-mono text-[#ffdfb8]/90 leading-relaxed pt-2 pb-3">
+          {/* Description Text */}
+          <p className="text-xs sm:text-sm md:text-[15px] lg:text-[16px] font-mono text-[#faebda] leading-relaxed pt-2 pb-3">
             {activeProject.tagline}
           </p>
 
-          {/* Open Case Study Button */}
+          {/* Open Case Study Action Button */}
           <button
             onClick={handleOpenStudy}
-            className="w-full sm:w-auto self-start px-4 py-1.5 rounded font-mono text-xs font-bold tracking-wider bg-[#ff9100] hover:bg-[#ffaa22] active:bg-[#e68200] text-black shadow-[0_0_12px_rgba(255,145,0,0.4)] transition-all flex items-center justify-center gap-2 cursor-pointer uppercase"
+            className="self-start px-5 py-1.5 font-mono text-xs sm:text-sm font-bold tracking-wider bg-[#ff9100] hover:bg-[#ffaa22] active:bg-[#e68200] text-black shadow-[0_0_14px_rgba(255,145,0,0.5)] transition-all flex items-center gap-2 cursor-pointer uppercase rounded-xs"
           >
             <span>▶ OPEN CASE STUDY</span>
           </button>
@@ -125,9 +125,9 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
       </div>
 
       {/* Bottom Keyboard Shortcuts Strip */}
-      <div className="pt-3 border-t border-[#ff9100]/20 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-[#ff9100]/70 select-none">
-        <div className="flex flex-wrap items-center gap-2 sm:gap-4">
-          <span>↑↓ SELECT</span>
+      <div className="pt-2 text-[11px] sm:text-xs font-mono text-[#ff9100]/80 select-none">
+        <div className="flex flex-wrap items-center gap-3 sm:gap-5">
+          <span>↑ ↓ SELECT</span>
           <span className="opacity-40">•</span>
           <span>↵ OPEN</span>
           <span className="opacity-40">•</span>

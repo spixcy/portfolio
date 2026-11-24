@@ -14,14 +14,15 @@ export const SystemStatusBar: React.FC<SystemStatusBarProps> = ({
   rightStatus = 'READY',
 }) => {
   return (
-    <div className="w-full flex items-center justify-between text-[11px] sm:text-xs font-mono pb-3 border-b border-[#ff9100]/25 select-none text-[#ff9100]/90">
-      <div className="flex items-center gap-2">
-        <span className="font-bold tracking-wider">{pathText || `${systemCode} ${version}`}</span>
-        <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#ff9100] animate-pulse" />
+    <header className="w-full flex items-center justify-between text-xs sm:text-sm md:text-[16px] lg:text-[17px] font-mono select-none text-[#ff9100] pb-2">
+      <div className="flex items-center">
+        <span className="font-bold tracking-wider uppercase ph-glow-text">
+          {pathText || `${systemCode} ${version}`}
+        </span>
       </div>
-      <div className="tracking-widest uppercase font-bold text-[#ffb042]">
+      <div className="tracking-widest uppercase font-bold text-[#ff9100]/90 ph-glow-text">
         {rightStatus}
       </div>
-    </div>
+    </header>
   );
 };
