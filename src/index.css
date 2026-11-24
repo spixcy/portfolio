@@ -641,7 +641,7 @@ html, body {
 }
 
 /* ==========================================================================
-   CHASSIS FOOTER RAIL (BRAND, RIDGES, PRINT, VENTS)
+   CHASSIS FOOTER RAIL (BRAND, RIDGES, PRINT, VENTS) — REFERENCE IMAGE 1 & 5
    ========================================================================== */
 
 .chassis-rail-footer {
@@ -649,61 +649,62 @@ html, body {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 0 16px;
+  padding: 0 6px;
   height: 24px;
 }
 
 /* Left Brand */
 .chassis-brand-text {
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 800;
   font-style: italic;
-  letter-spacing: 0.22em;
-  color: rgba(30, 22, 14, 0.65);
-  text-shadow: 0 1px 0 rgba(255, 240, 215, 0.35);
+  letter-spacing: 0.24em;
+  color: #3b352a;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35), 0 -1px 1px rgba(0, 0, 0, 0.55);
   white-space: nowrap;
 }
 
-/* Center Ridges / Heat-sink texture */
+/* Center Ridges / Heat-sink line */
 .chassis-heatsink-ridges {
   flex: 1;
-  height: 12px;
-  background: repeating-linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.5) 0 1px,
-    rgba(255, 240, 215, 0.26) 1px 2px,
-    transparent 2px 5px
-  );
+  height: 4px;
+  background: linear-gradient(180deg, #383226 0%, #1f1b15 50%, #4a4234 100%);
   border-radius: 2px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 /* PRINT ALL WORK Button */
 .chassis-print-feed-btn {
+  font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-  color: #241b13;
-  text-shadow: 0 1px 0 rgba(255, 240, 215, 0.35);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: #342e24;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.1s ease;
+  transition: all 0.12s ease;
 }
 
 .chassis-print-feed-btn:hover {
   color: #000;
-  filter: drop-shadow(0 0 4px rgba(255, 138, 31, 0.6));
+  text-shadow: 0 0 6px rgba(255, 138, 31, 0.6);
 }
 
-/* Far Right Slotted Vent */
+/* Far Right Slotted Exhaust Cooling Vent */
 .chassis-cooling-vent {
-  width: 140px;
-  height: 16px;
+  width: 130px;
+  height: 14px;
   background: repeating-linear-gradient(
     90deg,
-    #14110e 0 5px,
-    transparent 5px 14px
+    #100e0b 0 5px,
+    transparent 5px 12px
   );
-  border-radius: 2px;
+  border-radius: 1px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.95);
+  border-top: 1px solid rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* ==========================================================================
