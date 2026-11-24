@@ -10,26 +10,26 @@ export const MetallicCasing: React.FC<MetallicCasingProps> = ({
   systemName = 'PORTFOLIO/OS',
 }) => {
   return (
-    <div className="device-chassis">
+    <div className="computer-chassis-shell">
       {/* Decorative Outer Perimeter Inset Groove Line */}
       <div className="chassis-outer-groove" />
 
       {/* 4 Corner Industrial Screws */}
-      <div className="absolute top-2.5 left-2.5 z-20">
+      <div className="absolute top-3 left-3 z-20">
         <div className="chassis-screw" title="Chassis screw" />
       </div>
-      <div className="absolute top-2.5 right-2.5 z-20">
+      <div className="absolute top-3 right-3 z-20">
         <div className="chassis-screw" title="Chassis screw" />
       </div>
-      <div className="absolute bottom-2.5 left-2.5 z-20">
+      <div className="absolute bottom-3 left-3 z-20">
         <div className="chassis-screw" title="Chassis screw" />
       </div>
-      <div className="absolute bottom-2.5 right-2.5 z-20">
+      <div className="absolute bottom-3 right-3 z-20">
         <div className="chassis-screw" title="Chassis screw" />
       </div>
 
       {/* Top Right Debossed Brand Badge */}
-      <div className="absolute top-2.5 right-10 z-20 select-none">
+      <div className="absolute top-3 right-12 z-20 select-none">
         <div className="debossed-badge-box">
           {systemName}
         </div>

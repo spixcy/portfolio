@@ -8,61 +8,71 @@ interface CartridgeDeckProps {
   onSelectCategory: (category: ProjectCategory) => void;
 }
 
+// Pixel icons crafted to match the closeup photos (media_1795520681788_381a2cc2.png etc.)
 const CARTRIDGES: {
   id: ProjectCategory;
-  lane: number;
   label: string;
   iconSvg: React.ReactNode;
 }[] = [
   {
     id: 'interface',
-    lane: 1,
     label: 'INTERFACE',
     iconSvg: (
-      <svg className="w-4 h-4 text-[#d9660b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="2" y="3" width="20" height="14" rx="2" />
-        <line x1="8" y1="21" x2="16" y2="21" />
-        <line x1="12" y1="17" x2="12" y2="21" />
+      <svg className="w-6 h-6 select-none flex-none" viewBox="0 0 24 24" fill="none">
+        {/* Retro Orange Monitor */}
+        <rect x="3" y="4" width="18" height="13" rx="2" fill="#d97716" stroke="#1c1914" strokeWidth="1.8" />
+        <rect x="5.5" y="6" width="13" height="8" rx="1" fill="#38332b" />
+        <polygon points="6,6 10,6 6,12" fill="#d97716" opacity="0.6" />
+        {/* Base */}
+        <rect x="9" y="17" width="6" height="3" fill="#d97716" stroke="#1c1914" strokeWidth="1.5" />
+        <line x1="7" y1="20" x2="17" y2="20" stroke="#1c1914" strokeWidth="2" strokeLinecap="round" />
       </svg>
     ),
   },
   {
     id: 'systems',
-    lane: 2,
     label: 'SYSTEMS',
     iconSvg: (
-      <svg className="w-4 h-4 text-[#d9660b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="3" y="11" width="18" height="10" rx="2" />
-        <circle cx="12" cy="5" r="2" />
-        <path d="M12 7v4" />
-        <line x1="8" y1="15" x2="8" y2="15.01" strokeWidth="3" />
-        <line x1="16" y1="15" x2="16" y2="15.01" strokeWidth="3" />
+      <svg className="w-6 h-6 select-none flex-none" viewBox="0 0 24 24" fill="none">
+        {/* Antenna */}
+        <circle cx="12" cy="3.5" r="1.5" fill="#d97716" stroke="#1c1914" strokeWidth="1.2" />
+        <line x1="12" y1="5" x2="12" y2="7.5" stroke="#1c1914" strokeWidth="1.8" />
+        {/* Ears */}
+        <rect x="2" y="11" width="2" height="4" rx="0.5" fill="#d97716" stroke="#1c1914" strokeWidth="1.2" />
+        <rect x="20" y="11" width="2" height="4" rx="0.5" fill="#d97716" stroke="#1c1914" strokeWidth="1.2" />
+        {/* Robot Head */}
+        <rect x="4" y="7.5" width="16" height="12" rx="3" fill="#d97716" stroke="#1c1914" strokeWidth="1.8" />
+        {/* Face */}
+        <circle cx="8.5" cy="12.5" r="1.5" fill="#1c1914" />
+        <circle cx="15.5" cy="12.5" r="1.5" fill="#1c1914" />
+        <line x1="9" y1="16" x2="15" y2="16" stroke="#1c1914" strokeWidth="1.8" strokeLinecap="round" />
       </svg>
     ),
   },
   {
     id: 'worlds',
-    lane: 3,
     label: '3D WORLDS',
     iconSvg: (
-      <svg className="w-4 h-4 text-[#d9660b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-        <line x1="12" y1="22.08" x2="12" y2="12" />
+      <svg className="w-6 h-6 select-none flex-none" viewBox="0 0 24 24" fill="none">
+        {/* Isometric 3D Cube */}
+        <path d="M12 2.5 L20.5 7.5 L12 12.5 L3.5 7.5 Z" fill="#f59e0b" stroke="#1c1914" strokeWidth="1.8" strokeLinejoin="round" />
+        <path d="M3.5 7.5 L12 12.5 L12 21.5 L3.5 16.5 Z" fill="#d97716" stroke="#1c1914" strokeWidth="1.8" strokeLinejoin="round" />
+        <path d="M12 12.5 L20.5 7.5 L20.5 16.5 L12 21.5 Z" fill="#b45309" stroke="#1c1914" strokeWidth="1.8" strokeLinejoin="round" />
       </svg>
     ),
   },
   {
     id: 'games',
-    lane: 4,
     label: 'GAMES',
     iconSvg: (
-      <svg className="w-4 h-4 text-[#d9660b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <line x1="6" y1="12" x2="10" y2="12" />
-        <line x1="8" y1="10" x2="8" y2="14" />
-        <line x1="15" y1="13" x2="15.01" y2="13" strokeWidth="3" />
-        <line x1="18" y1="11" x2="18.01" y2="11" strokeWidth="3" />
-        <rect x="2" y="6" width="20" height="12" rx="4" />
+      <svg className="w-6 h-6 select-none flex-none" viewBox="0 0 24 24" fill="none">
+        {/* Gamepad body */}
+        <rect x="3" y="6" width="18" height="12" rx="5" fill="#d97716" stroke="#1c1914" strokeWidth="1.8" />
+        {/* D-Pad */}
+        <path d="M7 10h2v-2h1v2h2v1h-2v2h-1v-2h-2z" fill="#1c1914" />
+        {/* Action Buttons */}
+        <circle cx="15.5" cy="10" r="1" fill="#1c1914" />
+        <circle cx="17.5" cy="12" r="1" fill="#1c1914" />
       </svg>
     ),
   },
@@ -80,44 +90,48 @@ export const CartridgeDeck: React.FC<CartridgeDeckProps> = ({
   };
 
   return (
-    <div className="cartridge-strip-area select-none">
+    <div className="cartridge-strip-deck select-none">
       {CARTRIDGES.map((c) => {
         const isActive = activeCategory === c.id && isPoweredOn;
         return (
           <div
             key={c.id}
-            className={`cartridge-bay ${isActive ? 'ring-2 ring-amber-500/80 shadow-[0_0_20px_rgba(255,145,0,0.6)]' : ''}`}
+            className={`cartridge-outer-well ${
+              isActive ? 'cartridge-active-halo' : ''
+            }`}
           >
             <button
               onClick={() => handleCartridgeClick(c.id)}
               disabled={!isPoweredOn}
               aria-label={`Insert ${c.label} cartridge`}
-              className={`cartridge-module ${isActive ? 'active' : ''} ${
+              className={`cartridge-chunky-unit ${isActive ? 'is-engaged' : ''} ${
                 !isPoweredOn ? 'opacity-40 cursor-not-allowed' : ''
               }`}
             >
-              {/* Cartridge Label Plate */}
-              <div className="bg-[#ede7db] text-[#1c1a17] rounded-[4px] px-2 py-1.5 flex items-center justify-between border border-[#c4beaf] shadow-inner">
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  <span>{c.iconSvg}</span>
-                  <span className="text-[10px] sm:text-[11px] font-bold tracking-wider font-mono uppercase">
+              {/* Inserted Aged Cream Label Plate (matches media_1795520681788_381a2cc2.png) */}
+              <div className="cartridge-label-plate">
+                <div className="flex items-center gap-2">
+                  {c.iconSvg}
+                  <span className="text-[11px] sm:text-[12px] font-bold tracking-wider font-mono text-[#1a1815] uppercase">
                     {c.label}
                   </span>
                 </div>
-                {/* Amber/Orange hazard accent stripes */}
-                <div className="flex items-center gap-0.5">
-                  <div className="w-1.5 h-3 bg-[#d9660b] -skew-x-12" />
-                  <div className="w-1.5 h-3 bg-[#38332b] -skew-x-12" />
-                </div>
+                {/* Two Diagonal Orange Hazard Stripes */}
+                <div className="cartridge-hazard-stripes" />
               </div>
 
-              {/* Lower Section with Ribbed Grips and Inverted Triangle */}
-              <div className="flex flex-col items-center justify-end gap-2 pt-2 pb-1 flex-1">
-                <div className="text-[10px] text-[#706654] font-bold">▼</div>
-                <div className="w-full flex flex-col gap-1.5 px-3">
-                  <div className="h-[2.5px] bg-[#0d0c0a] border-t border-white/10 border-b border-[#474136] rounded-[0.5px]" />
-                  <div className="h-[2.5px] bg-[#0d0c0a] border-t border-white/10 border-b border-[#474136] rounded-[0.5px]" />
-                  <div className="h-[2.5px] bg-[#0d0c0a] border-t border-white/10 border-b border-[#474136] rounded-[0.5px]" />
+              {/* Lower Section: Molded Downward Triangle & Ribbed Finger Grips */}
+              <div className="flex flex-col items-center justify-end pt-2 pb-1 gap-1">
+                {/* Debossed Triangle with 3 Horizontal Inner Ridges */}
+                <div className="debossed-grip-triangle">
+                  <div className="triangle-ridge" />
+                  <div className="triangle-ridge" />
+                  <div className="triangle-ridge" />
+                </div>
+                {/* Lower Horizontal Grip Notches on Left and Right */}
+                <div className="w-full flex justify-between px-2 pt-1">
+                  <div className="w-4 h-[3px] bg-[#12110f] border-t border-white/10 border-b border-[#474238] rounded-sm" />
+                  <div className="w-4 h-[3px] bg-[#12110f] border-t border-white/10 border-b border-[#474238] rounded-sm" />
                 </div>
               </div>
             </button>

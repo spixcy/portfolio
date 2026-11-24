@@ -8,7 +8,7 @@
 :root {
   /* Industrial Beige/Putty Plastic & Metal Chassis */
   --casing-base: #a69f8e;
-  --casing-hi: #c6bfae;
+  --casing-hi: #d4cdbe;
   --casing-lo: #787263;
   --casing-deep: #4d493f;
   --casing-border: #635d50;
@@ -16,15 +16,8 @@
   /* CRT Screen & Phosphor */
   --ph-orange: #ff8a1f;
   --ph-bright: #ffbe6b;
-  --ph-glow: rgba(255, 138, 31, 0.55);
+  --ph-glow: rgba(255, 138, 31, 0.6);
   --ph-text: #faebda;
-
-  /* Keypad Buttons (Dark Bronze / Metallic Gray) */
-  --key-base: #38342c;
-  --key-hi: #544f43;
-  --key-lo: #23201b;
-  --key-text: #ded6c8;
-  --socket-bg: #141311;
 
   /* Indicators */
   --led-amber: #ff9d00;
@@ -44,8 +37,8 @@
 
 html, body {
   width: 100%;
-  height: 100%;
-  background-color: #0c0b0a;
+  min-height: 100vh;
+  background-color: #070605;
   color: var(--ph-text);
   font-family: var(--font-mono);
   overflow-x: hidden;
@@ -53,14 +46,14 @@ html, body {
 }
 
 /* ==========================================================================
-   FULL VIEWPORT HARDWARE CHASSIS (CSS Grid matching finktheartist.tech)
+   WEATHERED CAST-METAL / MOLDED PLASTIC CHASSIS
    ========================================================================== */
 
-.device-chassis {
+.computer-chassis-shell {
   width: 100%;
-  height: 100vh;
-  height: 100svh;
-  min-height: 600px;
+  min-height: 94vh;
+  max-width: 1540px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) clamp(160px, min(18vw, 26vh), 240px);
   grid-template-rows: minmax(0, 1fr) auto 24px;
@@ -68,45 +61,56 @@ html, body {
     "screen keys"
     "strip strip"
     "rail rail";
-  padding: clamp(14px, 2vw, 24px);
-  gap: clamp(12px, 1.5vh, 18px);
+  padding: clamp(16px, 2.2vw, 28px);
+  gap: clamp(14px, 1.8vh, 22px);
+  
+  /* Textured weathered metallic chassis with edge chips and grime */
   background: 
-    linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(0, 0, 0, 0.1) 100%),
-    repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0, 0, 0, 0.02) 3px, rgba(0, 0, 0, 0.02) 6px),
-    #a29b8a;
-  border-radius: 24px;
-  border: 3px solid #5a5446;
+    /* Top edge metallic chipped highlight */
+    linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 3px),
+    /* Corner grime and wear */
+    radial-gradient(circle at 10% 10%, rgba(0, 0, 0, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(0, 0, 0, 0.25) 0%, transparent 50%),
+    /* Micro-noise texture */
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.025) 2px, rgba(0, 0, 0, 0.025) 5px),
+    /* Base putty metal */
+    linear-gradient(180deg, #aba493 0%, #9c9584 60%, #8c8574 100%);
+  border-radius: 30px;
+  border-top: 3px solid #d9d3c5;
+  border-left: 2.5px solid #d9d3c5;
+  border-bottom: 3.5px solid #4a4537;
+  border-right: 3px solid #4a4537;
   box-shadow: 
-    0 25px 70px rgba(0, 0, 0, 0.95),
+    0 35px 90px rgba(0, 0, 0, 0.98),
+    0 10px 30px rgba(0, 0, 0, 0.8),
     inset 2px 2px 4px rgba(255, 255, 255, 0.4),
     inset -3px -3px 6px rgba(0, 0, 0, 0.55);
   position: relative;
   isolation: isolate;
-  overflow: hidden;
 }
 
 /* Outer Perimeter Inset Groove Line */
 .chassis-outer-groove {
   position: absolute;
-  inset: 8px;
-  border-radius: 18px;
-  border-top: 1.5px solid #4a4539;
-  border-left: 1.5px solid #4a4539;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.35);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.35);
+  inset: 10px;
+  border-radius: 22px;
+  border-top: 1.5px solid #454033;
+  border-left: 1.5px solid #454033;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.4);
   pointer-events: none;
   z-index: 5;
 }
 
 /* 4 Corner Screws */
 .chassis-screw {
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #948e80 0%, #47433a 65%, #24221d 100%);
+  background: radial-gradient(circle at 35% 35%, #9e9788 0%, #474338 65%, #211f19 100%);
   box-shadow: 
-    inset 1px 1px 2px rgba(255, 255, 255, 0.45),
-    inset -1px -1px 2px rgba(0, 0, 0, 0.9),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.5),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.95),
     0 1px 2px rgba(0, 0, 0, 0.6);
   position: relative;
   display: flex;
@@ -117,9 +121,9 @@ html, body {
 .chassis-screw::before {
   content: '';
   position: absolute;
-  width: 8px;
+  width: 9px;
   height: 1.5px;
-  background: #1c1b18;
+  background: #171512;
   box-shadow: 0 0.5px 0.5px rgba(255, 255, 255, 0.25);
 }
 
@@ -127,44 +131,46 @@ html, body {
   content: '';
   position: absolute;
   width: 1.5px;
-  height: 8px;
-  background: #1c1b18;
+  height: 9px;
+  background: #171512;
   box-shadow: 0.5px 0 0.5px rgba(255, 255, 255, 0.25);
 }
 
 /* Debossed Brand Badge */
 .debossed-badge-box {
-  background: #8e8777;
+  background: #878070;
   border-radius: 6px;
-  border-top: 1.5px solid #4a4539;
-  border-left: 1.5px solid #4a4539;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-  border-right: 1px solid rgba(255, 255, 255, 0.35);
-  color: #3b372e;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.35), 0 -1px 1px rgba(0, 0, 0, 0.5);
+  border-top: 1.5px solid #454033;
+  border-left: 1.5px solid #454033;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.4);
+  color: #38342a;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.35), 0 -1px 1px rgba(0, 0, 0, 0.6);
   font-weight: 700;
   letter-spacing: 0.18em;
-  padding: 2px 7px;
+  padding: 3px 9px;
   font-size: 11px;
 }
 
 /* ==========================================================================
-   CRT MONITOR & SCREEN AREA
+   MOLDED 3D RETRO TV BEZEL (CIRCLED IN RED IN REFERENCE)
    ========================================================================== */
 
-.crt-monitor-area {
+.molded-tv-bezel {
   grid-area: screen;
-  background: linear-gradient(135deg, #383530 0%, #201e1a 45%, #151412 100%);
-  border-radius: 32px;
-  padding: clamp(14px, 2vw, 24px);
-  border-top: 2.5px solid #575248;
-  border-left: 2px solid #575248;
-  border-bottom: 3px solid #0e0d0b;
-  border-right: 2.5px solid #0e0d0b;
+  /* Thick vintage molded bezel that curves inwards */
+  background: 
+    linear-gradient(135deg, #bcb5a4 0%, #9e9786 35%, #7a7363 70%, #575143 100%);
+  border-radius: 36px;
+  padding: clamp(16px, 2.4vw, 28px);
+  border-top: 3.5px solid #ded7c7;
+  border-left: 3px solid #ded7c7;
+  border-bottom: 4px solid #3d392e;
+  border-right: 3.5px solid #3d392e;
   box-shadow: 
-    inset 4px 4px 10px rgba(0, 0, 0, 0.95),
-    inset -3px -3px 8px rgba(255, 255, 255, 0.08),
-    0 6px 14px rgba(0, 0, 0, 0.6);
+    inset 6px 6px 14px rgba(0, 0, 0, 0.9),
+    inset -4px -4px 10px rgba(255, 255, 255, 0.15),
+    0 8px 18px rgba(0, 0, 0, 0.6);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -172,17 +178,34 @@ html, body {
   overflow: hidden;
 }
 
+/* Deep Sunken Rubberized Gasket Ring */
+.sunken-gasket-well {
+  background: #0f0e0c;
+  border-radius: 26px;
+  padding: 6px;
+  border-top: 2.5px solid #1a1815;
+  border-left: 2px solid #1a1815;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    inset 0 0 25px rgba(0, 0, 0, 0.98),
+    0 2px 5px rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
 /* Inner CRT Tube Glass Cavity */
 .crt-tube-glass {
-  background: radial-gradient(ellipse at 50% 38%, #24120a 0%, #0d0705 60%, #050302 100%);
+  background: radial-gradient(ellipse at 50% 38%, #2b1408 0%, #110703 60%, #050201 100%);
   border-radius: 20px;
   position: relative;
   overflow: hidden;
-  border: 3px solid #080706;
+  border: 2px solid #080706;
   box-shadow: 
     inset 0 0 65px rgba(0, 0, 0, 0.98),
-    inset 0 0 25px rgba(0, 0, 0, 0.95),
-    0 1px 2px rgba(255, 255, 255, 0.1);
+    inset 0 0 25px rgba(0, 0, 0, 0.95);
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -240,8 +263,8 @@ html, body {
 .ph-glow-hero {
   text-shadow: 
     0 0 6px var(--ph-orange),
-    0 0 16px var(--ph-glow),
-    0 0 32px rgba(255, 138, 31, 0.4);
+    0 0 18px var(--ph-glow),
+    0 0 34px rgba(255, 138, 31, 0.45);
 }
 
 .ph-glow-text {
@@ -250,60 +273,46 @@ html, body {
     0 0 8px var(--ph-glow);
 }
 
-/* Screen Flicker */
-@keyframes crtFlickerAnim {
-  0% { opacity: 0.99; }
-  45% { opacity: 1; }
-  50% { opacity: 0.978; }
-  55% { opacity: 1; }
-  85% { opacity: 0.992; }
-  100% { opacity: 0.99; }
-}
-
-.screen-flicker {
-  animation: crtFlickerAnim 0.12s infinite;
-}
-
 /* ==========================================================================
-   RIGHT CONTROL PANEL (WORK, ABOUT, CONTACT, POWER)
+   RIGHT CONTROL KEYPAD (WORK, ABOUT, CONTACT, POWER)
    ========================================================================== */
 
 .keys-panel-area {
   grid-area: keys;
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.2vh, 12px);
+  gap: clamp(8px, 1.4vh, 14px);
   padding: 0;
   min-height: 0;
   align-items: stretch;
 }
 
-/* Socket Well for Keycaps */
+/* Recessed Deep Socket Well for Keycaps */
 .key-socket-well {
-  background: #141311;
+  background: #12110f;
   border-radius: 12px;
-  padding: 4px;
-  border-top: 2px solid #23211d;
-  border-left: 2px solid #23211d;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.15);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.15);
+  padding: 5px;
+  border-top: 2px solid #24221d;
+  border-left: 2px solid #24221d;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.18);
   box-shadow: 
     inset 3px 3px 6px rgba(0, 0, 0, 0.98),
     inset -1px -1px 3px rgba(255, 255, 255, 0.08);
   width: 100%;
 }
 
-/* Chunky Push Buttons (Aspect ratio ~ 520 / 288 = ~1.8) */
+/* Chunky 3D Push Button (Aspect ratio ~ 520 / 288 = ~1.8) */
 .key-cap-btn {
   width: 100%;
   aspect-ratio: 520 / 288;
-  max-height: 96px;
-  background: linear-gradient(180deg, #443f36 0%, #332f27 50%, #25221c 100%);
+  max-height: 98px;
+  background: linear-gradient(180deg, #474238 0%, #353128 50%, #24211a 100%);
   border-radius: 8px;
-  border-top: 2px solid #635d50;
-  border-left: 1.5px solid #635d50;
-  border-bottom: 3px solid #141310;
-  border-right: 2px solid #141310;
+  border-top: 2.5px solid #6b6454;
+  border-left: 2px solid #6b6454;
+  border-bottom: 3.5px solid #141310;
+  border-right: 2.5px solid #141310;
   box-shadow: 
     0 5px 8px rgba(0, 0, 0, 0.65),
     0 2px 3px rgba(0, 0, 0, 0.4);
@@ -316,7 +325,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 clamp(10px, 1.2vw, 16px);
+  padding: 0 clamp(12px, 1.4vw, 18px);
   transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.1s ease;
 }
 
@@ -327,7 +336,7 @@ html, body {
 .key-cap-btn:active,
 .key-cap-btn.is-active {
   transform: translateY(2.5px);
-  border-top: 1px solid #1c1a17;
+  border-top: 1.5px solid #1c1a17;
   border-bottom: 1.5px solid #544e43;
   box-shadow: 
     0 1px 2px rgba(0, 0, 0, 0.8),
@@ -358,13 +367,13 @@ html, body {
 .power-rocker-wrapper {
   margin-top: auto;
   align-self: center;
-  width: 78%;
+  width: 80%;
 }
 
 .power-rocker-btn {
   width: 100%;
   aspect-ratio: 440 / 293;
-  max-height: 90px;
+  max-height: 94px;
   background: linear-gradient(135deg, #d41c1c, #9e0e0e 55%, #660808);
   border-radius: 10px;
   border: 2px solid #3b0a0a;
@@ -396,43 +405,53 @@ html, body {
 }
 
 /* ==========================================================================
-   CARTRIDGE STRIP DECK (.strip matching finktheartist.tech)
+   AUTHENTIC 3D CARTRIDGES (MATCHES CLOSEUP PHOTOS IN REFERENCE)
    ========================================================================== */
 
-.cartridge-strip-area {
+.cartridge-strip-deck {
   grid-area: strip;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   gap: clamp(10px, 2vw, 24px);
-  padding: 4px 10px;
-  border-top: 1.5px solid #4a4539;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.25);
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 14px;
+  padding: 6px 12px;
+  border-top: 1.5px solid #454033;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
 }
 
-/* Chunky Cartridge Bay & Unit (Aspect ratio ~ 420 / 305 = ~1.377) */
-.cartridge-bay {
-  background: #141311;
-  border-radius: 10px;
-  padding: 4px;
-  border-top: 2px solid #23201b;
-  border-left: 2px solid #23201b;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.15);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.15);
-  box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.95);
-  width: clamp(120px, 18vw, 200px);
+/* Deep Outer Well Socket around each Cartridge */
+.cartridge-outer-well {
+  background: #12110f;
+  border-radius: 12px;
+  padding: 5px;
+  border-top: 2px solid #211f1a;
+  border-left: 2px solid #211f1a;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.98);
+  width: clamp(130px, 19vw, 215px);
+  transition: all 0.2s ease;
 }
 
-.cartridge-module {
+/* Active Orange Radiant Backlight Halo */
+.cartridge-active-halo {
+  filter: drop-shadow(0 0 5px #ff8a1f) drop-shadow(0 0 18px rgba(255, 138, 31, 0.85));
+  border-color: #ff8a1f;
+}
+
+/* Chunky Cartridge Unit (Aspect ratio ~ 420 / 305 = ~1.377) */
+.cartridge-chunky-unit {
   width: 100%;
   aspect-ratio: 420 / 305;
-  background: linear-gradient(180deg, #332f29 0%, #24211d 60%, #171513 100%);
-  border-radius: 7px;
-  border: 1.5px solid #4a443a;
-  border-top: 2px solid #635c4f;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
+  background: 
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 4px),
+    linear-gradient(180deg, #3d3931 0%, #292620 50%, #1c1a17 100%);
+  border-radius: 8px;
+  border: 1.5px solid #4a4438;
+  border-top: 2px solid #6b6454;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.75);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -442,27 +461,69 @@ html, body {
   user-select: none;
 }
 
-.cartridge-module:hover {
+.cartridge-chunky-unit:hover {
   filter: brightness(1.1);
 }
 
-.cartridge-module.active {
+.cartridge-chunky-unit.is-engaged {
   transform: translateY(-4px);
-  box-shadow: 
-    0 0 22px rgba(255, 138, 31, 0.8),
-    0 8px 14px rgba(0, 0, 0, 0.85);
   border-color: #ff8a1f;
 }
 
-/* Cartridge Grip Ridges */
-.cart-grip-line {
-  height: 2px;
-  background: #100f0e;
-  border-bottom: 1px solid #454038;
+/* Inset Aged Ivory Paper Label Plate */
+.cartridge-label-plate {
+  background: #ede5d3;
+  border-radius: 4px;
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1.5px solid #211f1a;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Two Diagonal Orange Hazard Stripes on Bottom-Right */
+.cartridge-hazard-stripes {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  background: repeating-linear-gradient(
+    135deg,
+    #d97716 0 4px,
+    #ede5d3 4px 7px
+  );
+  border-top: 1.5px solid #211f1a;
+  border-left: 1.5px solid #211f1a;
+}
+
+/* Debossed Grip Triangle with 3 Inner Ridges */
+.debossed-grip-triangle {
+  width: 24px;
+  height: 14px;
+  background: #141310;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5px;
+  padding-top: 1px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+
+.triangle-ridge {
+  width: 70%;
+  height: 1.5px;
+  background: #2e2b24;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
 }
 
 /* ==========================================================================
-   CHASSIS FOOTER RAIL (.rail matching finktheartist.tech)
+   CHASSIS FOOTER RAIL (BRAND, RIDGES, PRINT, VENTS)
    ========================================================================== */
 
 .chassis-rail-footer {
@@ -531,12 +592,6 @@ html, body {
    DOT-MATRIX TRACTOR-FEED CONTINUOUS PAPER (PRINT ALL WORK)
    ========================================================================== */
 
-.tractor-paper-container {
-  background-color: #f7f5ed;
-  box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.98);
-  color: #171614;
-}
-
 .greenbar-row-even {
   background-color: #e3ecd8;
 }
@@ -549,13 +604,13 @@ html, body {
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: #1c1a17;
+  background: #141311;
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.9);
 }
 
 /* Responsive Overrides for Mobile Viewports */
 @media (max-width: 768px) {
-  .device-chassis {
+  .computer-chassis-shell {
     height: auto;
     min-height: 100vh;
     display: flex;
@@ -580,11 +635,11 @@ html, body {
     height: 44px;
     width: 64px;
   }
-  .cartridge-strip-area {
+  .cartridge-strip-deck {
     flex-wrap: wrap;
     gap: 8px;
   }
-  .cartridge-bay {
+  .cartridge-outer-well {
     width: calc(50% - 6px);
   }
 }

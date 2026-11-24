@@ -29,8 +29,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-mono font-bold tracking-tight text-[#ff8a1f] ph-glow-hero uppercase">
           {name}
         </h1>
-        <p className="mt-2 text-xs sm:text-sm lg:text-base text-[#faebda]/95 font-mono max-w-3xl leading-relaxed">
-          {tagline}
+        <p className="mt-2 text-xs sm:text-sm lg:text-base text-[#faebda]/95 font-mono max-w-3xl leading-relaxed flex items-center flex-wrap gap-1">
+          <span>{tagline}</span>
+          <span className="inline-block w-2.5 h-4.5 bg-[#ff8a1f] shadow-[0_0_8px_#ff8a1f] animate-pulse" />
         </p>
       </div>
 
