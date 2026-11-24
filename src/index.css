@@ -76,13 +76,13 @@ html, body {
     radial-gradient(circle at 5% 5%, rgba(255, 255, 255, 0.15) 0%, transparent 35%),
     radial-gradient(circle at 95% 95%, rgba(0, 0, 0, 0.28) 0%, transparent 45%),
     radial-gradient(circle at 5% 95%, rgba(0, 0, 0, 0.18) 0%, transparent 35%),
-    /* Base putty/bronze weathered metal */
-    linear-gradient(145deg, #a8a191 0%, #9c9585 35%, #8f8878 70%, #827b6b 100%);
+    /* Base putty/bronze weathered metal — warm aged brass/bronze */
+    linear-gradient(145deg, #b2a98e 0%, #a09680 30%, #917f6b 65%, #7c6e58 100%);
   border-radius: 34px;
-  border-top: 3.5px solid #ded6c6;
-  border-left: 3px solid #d4ccbc;
-  border-bottom: 4.5px solid #383328;
-  border-right: 3.5px solid #484234;
+  border-top: 3.5px solid #e8dfc8;
+  border-left: 3px solid #dfd5be;
+  border-bottom: 4.5px solid #2e2920;
+  border-right: 3.5px solid #3e3828;
   box-shadow: 
     0 35px 85px rgba(0, 0, 0, 0.96),
     0 12px 30px rgba(0, 0, 0, 0.75),
@@ -245,19 +245,7 @@ html, body {
   z-index: 24;
 }
 
-/* CRT Vignette */
-.crt-vignette-layer {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at 50% 50%,
-    transparent 65%,
-    rgba(0, 0, 0, 0.4) 85%,
-    rgba(0, 0, 0, 0.8) 100%
-  );
-  pointer-events: none;
-  z-index: 23;
-}
+/* CRT Vignette — single definition */
 .crt-vignette-layer {
   position: absolute;
   inset: 0;
@@ -265,7 +253,7 @@ html, body {
     ellipse at 50% 50%,
     transparent 55%,
     rgba(0, 0, 0, 0.5) 85%,
-    rgba(0, 0, 0, 0.85) 100%
+    rgba(0, 0, 0, 0.88) 100%
   );
   pointer-events: none;
   z-index: 23;
@@ -317,18 +305,19 @@ html, body {
 /* Chunky 3D Push Button with Brushed Grain (Reference Image 4) */
 .key-cap-btn {
   width: 100%;
-  height: clamp(54px, 7.2vh, 64px);
+  height: clamp(60px, 8vh, 72px);
   background: 
     url('/textures/switch-brushed.svg') repeat,
-    linear-gradient(175deg, #544c3e 0%, #3a3429 45%, #242018 100%);
-  border-radius: 8px;
-  border-top: 2.5px solid #7c725d;
-  border-left: 2px solid #6e6552;
-  border-bottom: 3.5px solid #14120d;
-  border-right: 2.5px solid #14120d;
+    linear-gradient(175deg, #615848 0%, #42392a 40%, #2a2419 100%);
+  border-radius: 10px;
+  border-top: 3px solid #8a7d65;
+  border-left: 2.5px solid #7a6e58;
+  border-bottom: 4px solid #100e0a;
+  border-right: 3px solid #100e0a;
   box-shadow: 
-    0 5px 9px rgba(0, 0, 0, 0.75),
-    0 2px 3px rgba(0, 0, 0, 0.5);
+    0 6px 12px rgba(0, 0, 0, 0.8),
+    0 3px 5px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255,255,255,0.08);
   user-select: none;
   cursor: pointer;
   display: flex;
@@ -355,10 +344,10 @@ html, body {
 .key-cap-label {
   font-family: var(--font-mono);
   font-weight: 800;
-  font-size: 17px;
-  letter-spacing: 0.2em;
-  color: #ded6c8;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  font-size: 19px;
+  letter-spacing: 0.22em;
+  color: #e8dcc8;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 -1px 0 rgba(0,0,0,0.5);
   transition: color 0.15s ease, text-shadow 0.15s ease;
 }
 
@@ -371,10 +360,10 @@ html, body {
 
 /* Amber Jewel LED (Reference Image 4) */
 .amber-led-jewel {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  border: 1.5px solid #1a160e;
+  border: 2px solid #0f0d09;
   transition: all 0.15s ease;
   flex-shrink: 0;
 }
@@ -398,15 +387,15 @@ html, body {
 .power-rocker-wrapper {
   margin-top: auto;
   align-self: center;
-  width: 84%;
+  width: 88%;
 }
 
 .power-rocker-btn {
   width: 100%;
-  aspect-ratio: 440 / 265;
-  max-height: 88px;
-  border-radius: 9px;
-  padding: 4px;
+  aspect-ratio: 440 / 270;
+  max-height: 92px;
+  border-radius: 10px;
+  padding: 5px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -510,19 +499,20 @@ html, body {
 /* Chunky Cartridge Unit (Reference Image 3) */
 .cartridge-chunky-unit {
   width: 100%;
-  aspect-ratio: 400 / 235;
-  max-height: 104px;
+  aspect-ratio: 400 / 215;
+  max-height: 96px;
   background: 
     url('/textures/cartridge-grain.svg') repeat,
-    linear-gradient(180deg, #464036 0%, #302b24 45%, #1c1a16 100%);
+    linear-gradient(180deg, #524a3c 0%, #3a3429 40%, #242018 85%, #181410 100%);
   border-radius: 8px;
-  border-top: 2.5px solid #6e6553;
-  border-left: 2px solid #5a5242;
-  border-bottom: 3.5px solid #14120e;
-  border-right: 2.5px solid #14120e;
+  border-top: 2.5px solid #7a7060;
+  border-left: 2px solid #645a4a;
+  border-bottom: 4px solid #100e0a;
+  border-right: 3px solid #100e0a;
   box-shadow: 
-    0 5px 10px rgba(0, 0, 0, 0.8),
-    0 2px 3px rgba(0, 0, 0, 0.5);
+    0 6px 12px rgba(0, 0, 0, 0.85),
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255,255,255,0.06);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -546,15 +536,16 @@ html, body {
 .cartridge-label-plate {
   background: 
     url('/textures/paper-grain.svg') repeat,
-    #ede5d3;
+    linear-gradient(180deg, #f2e8d2 0%, #ede0c5 100%);
   border-radius: 5px;
-  padding: 4px 10px;
-  height: 46px;
+  padding: 5px 10px;
+  min-height: 50px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 2px solid #1c1914;
-  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
+  border: 2px solid #18160e;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(255, 255, 255, 0.25);
   position: relative;
   overflow: hidden;
 }

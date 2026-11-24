@@ -18,7 +18,7 @@ const CARTRIDGES: {
     id: 'interface',
     label: 'INTERFACE',
     iconSvg: (
-      <svg className="w-6 h-6 select-none flex-none" viewBox="0 0 24 24" fill="none">
+      <svg className="w-7 h-7 select-none flex-none" viewBox="0 0 24 24" fill="none">
         {/* Retro Orange Monitor */}
         <rect x="3" y="4" width="18" height="13" rx="2" fill="#d97716" stroke="#1c1914" strokeWidth="1.8" />
         <rect x="5.5" y="6" width="13" height="8" rx="1" fill="#38332b" />
@@ -33,7 +33,7 @@ const CARTRIDGES: {
     id: 'systems',
     label: 'SYSTEMS',
     iconSvg: (
-      <svg className="w-6 h-6 select-none flex-none" viewBox="0 0 24 24" fill="none">
+      <svg className="w-7 h-7 select-none flex-none" viewBox="0 0 24 24" fill="none">
         {/* Antenna */}
         <circle cx="12" cy="3.5" r="1.5" fill="#d97716" stroke="#1c1914" strokeWidth="1.2" />
         <line x1="12" y1="5" x2="12" y2="7.5" stroke="#1c1914" strokeWidth="1.8" />
@@ -53,7 +53,7 @@ const CARTRIDGES: {
     id: 'worlds',
     label: '3D WORLDS',
     iconSvg: (
-      <svg className="w-6 h-6 select-none flex-none" viewBox="0 0 24 24" fill="none">
+      <svg className="w-7 h-7 select-none flex-none" viewBox="0 0 24 24" fill="none">
         {/* Isometric 3D Cube */}
         <path d="M12 2.5 L20.5 7.5 L12 12.5 L3.5 7.5 Z" fill="#f59e0b" stroke="#1c1914" strokeWidth="1.8" strokeLinejoin="round" />
         <path d="M3.5 7.5 L12 12.5 L12 21.5 L3.5 16.5 Z" fill="#d97716" stroke="#1c1914" strokeWidth="1.8" strokeLinejoin="round" />
@@ -65,7 +65,7 @@ const CARTRIDGES: {
     id: 'games',
     label: 'GAMES',
     iconSvg: (
-      <svg className="w-6 h-6 select-none flex-none" viewBox="0 0 24 24" fill="none">
+      <svg className="w-7 h-7 select-none flex-none" viewBox="0 0 24 24" fill="none">
         {/* Gamepad body */}
         <rect x="3" y="6" width="18" height="12" rx="5" fill="#d97716" stroke="#1c1914" strokeWidth="1.8" />
         {/* D-Pad */}
@@ -111,10 +111,10 @@ export const CartridgeDeck: React.FC<CartridgeDeckProps> = ({
               {/* Inset Aged Ivory Paper Label Plate (Reference Image 3) */}
               <div className="cartridge-label-plate">
                 <div className="flex items-center gap-2.5">
-                  <div className="shrink-0 w-6 h-6 flex items-center justify-center">
+                  <div className="shrink-0 w-7 h-7 flex items-center justify-center">
                     {c.iconSvg}
                   </div>
-                  <span className="text-xs sm:text-[13px] font-bold tracking-wider font-mono text-[#181510] uppercase">
+                  <span className="text-[13px] sm:text-[14px] font-bold tracking-widest font-mono text-[#181510] uppercase leading-none">
                     {c.label}
                   </span>
                 </div>

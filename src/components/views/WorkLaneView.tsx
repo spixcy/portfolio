@@ -46,13 +46,13 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
 
   return (
     <div
-      className="flex flex-col flex-1 justify-between pt-1 h-full min-h-0"
+      className="flex flex-col flex-1 justify-between gap-2 h-full min-h-0"
       aria-label={`Work lane: ${categoryTitle}`}
     >
       {/* Split Work View: Left Project List (35%) + Right Detail Box (65%) */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-7 flex-1 items-stretch my-auto min-h-0">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-5 flex-1 items-stretch min-h-0">
         {/* Left Column: Numbered Project Index List (Reference Image 1) */}
-        <div className="md:col-span-5 flex flex-col justify-start gap-3 sm:gap-4 font-mono select-none pt-1">
+        <div className="md:col-span-5 flex flex-col justify-between gap-1 font-mono select-none py-1">
           {projects.map((project, idx) => {
             const isSelected = idx === selectedIndex;
             return (
@@ -91,7 +91,7 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
           </div>
 
           {/* Centered Image Preview Box */}
-          <div className="w-full flex-1 min-h-[160px] max-h-[210px] rounded-xs overflow-hidden border border-[#ff9100]/40 bg-black/50 my-auto flex items-center justify-center p-1.5 shadow-inner">
+          <div className="w-full flex-1 min-h-[180px] max-h-[260px] rounded-xs overflow-hidden border border-[#ff9100]/40 bg-black/50 my-2 flex items-center justify-center p-1.5 shadow-inner">
             <OptimizedImage
               src={activeProject.thumbnail}
               alt={activeProject.title}
