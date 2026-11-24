@@ -212,7 +212,7 @@ export function App() {
     <div className="w-full min-h-screen bg-[#070605] flex flex-col items-center p-2 sm:p-4 overflow-x-hidden">
       {/* 1. SECTION 1: PHYSICAL RETRO WORKSTATION (Occupies the viewport) */}
       <div className="w-full flex items-center justify-center min-h-[94vh]">
-        <MetallicCasing systemName={portfolioData.system.name}>
+        <MetallicCasing>
           {/* Main CRT Monitor (grid-area: screen) */}
           <CRTDisplay
             isPoweredOn={isPoweredOn}
@@ -290,6 +290,7 @@ export function App() {
 
           {/* Right-Side Physical Navigation Control Panel (grid-area: keys) */}
           <SideControls
+            systemName={portfolioData.system.name}
             currentView={currentRoute}
             isPoweredOn={isPoweredOn}
             onNavigate={(view) => navigateTo(view)}

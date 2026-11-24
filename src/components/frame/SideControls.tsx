@@ -2,6 +2,7 @@ import React from 'react';
 import { soundEffects } from '../../utils/soundEffects';
 
 interface SideControlsProps {
+  systemName?: string;
   currentView: string;
   isPoweredOn: boolean;
   onNavigate: (view: string) => void;
@@ -9,6 +10,7 @@ interface SideControlsProps {
 }
 
 export const SideControls: React.FC<SideControlsProps> = ({
+  systemName = 'PORTFOLIO/OS',
   currentView,
   isPoweredOn,
   onNavigate,
@@ -34,7 +36,14 @@ export const SideControls: React.FC<SideControlsProps> = ({
   };
 
   return (
-    <div className="keys-panel-area">
+    <div className="keys-panel-area select-none">
+      {/* Debossed System Badge stamped into chassis metal (Reference Image 4) */}
+      <div className="debossed-badge-wrapper">
+        <div className="debossed-badge-box">
+          {systemName}
+        </div>
+      </div>
+
       {/* 1. WORK Button */}
       <div className="key-socket-well">
         <button
