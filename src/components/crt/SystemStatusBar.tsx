@@ -14,13 +14,13 @@ export const SystemStatusBar: React.FC<SystemStatusBarProps> = ({
   rightStatus = 'READY',
 }) => {
   return (
-    <header className="w-full flex items-center justify-between text-sm sm:text-base md:text-[18px] font-mono select-none text-[#ff9900] pb-3 mb-1">
+    <header className="w-full flex items-center justify-between text-xs sm:text-[13px] font-mono select-none text-[#ff9100]/80 pb-2 mb-0.5 shrink-0">
       <div className="flex items-center">
-        <span className="font-bold tracking-wider uppercase ph-glow-text text-[#ff9900]">
+        <span className="font-bold tracking-[0.18em] uppercase ph-glow-text">
           {pathText || `${systemCode} ${version}`}
         </span>
       </div>
-      <div className="tracking-widest uppercase font-bold text-[#ff9900]/90 ph-glow-text">
+      <div className="tracking-[0.2em] uppercase font-bold text-[#ff9100]/80 ph-glow-text">
         {rightStatus}
       </div>
     </header>

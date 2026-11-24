@@ -2,16 +2,16 @@
 
 /* ==========================================================================
    PORTFOLIO/OS — VINTAGE INDUSTRIAL COMPUTER DESIGN SYSTEM
-   Faithful diegetic recreation of physical vintage microcomputer hardware
+   Photorealistic cast-metal chassis, CRT display & physical switches
    ========================================================================== */
 
 :root {
-  /* Industrial Beige/Putty Plastic & Metal Chassis */
-  --casing-base: #a69f8e;
-  --casing-hi: #d4cdbe;
-  --casing-lo: #787263;
-  --casing-deep: #4d493f;
-  --casing-border: #635d50;
+  /* Industrial Taupe/Bronze Cast Metal Chassis */
+  --casing-base: #948272;
+  --casing-hi: #c8b8a6;
+  --casing-lo: #6c5b4c;
+  --casing-deep: #463a2f;
+  --casing-border: #5a4c3e;
 
   /* CRT Screen & Phosphor */
   --ph-orange: #ff8a1f;
@@ -19,20 +19,14 @@
   --ph-glow: rgba(255, 138, 31, 0.6);
   --ph-text: #faebda;
 
-  /* Indicators */
-  --led-amber: #ff9d00;
-  --led-amber-glow: 0 0 10px #ff9d00, 0 0 22px rgba(255, 157, 0, 0.85);
-  --power-red: #ff2525;
-  --power-red-glow: 0 0 14px #ff2525, 0 0 30px rgba(255, 37, 37, 0.8);
-
   /* Typography */
   --font-mono: 'Space Mono', 'Share Tech Mono', ui-monospace, Menlo, Consolas, monospace;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
 }
 
 html, body {
@@ -46,133 +40,117 @@ html, body {
 }
 
 /* ==========================================================================
-   WEATHERED CAST-METAL / MOLDED RETRO INDUSTRIAL CHASSIS
+   WEATHERED CAST-METAL CHASSIS WITH REAL PHOTOGRAPHIC TEXTURES & CHIPPED RIM
    ========================================================================== */
 
 .computer-chassis-shell {
   width: 100%;
-  height: calc(100vh - 20px);
-  min-height: 720px;
+  height: calc(100vh - 16px);
+  min-height: 700px;
   max-height: none;
   max-width: 100%;
   margin: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(210px, 18vw, 290px);
+  grid-template-columns: minmax(0, 1fr) clamp(185px, 16vw, 235px);
   grid-template-rows: minmax(0, 1fr) auto 28px;
-  grid-template-areas: 
+  grid-template-areas:
     "screen keys"
     "strip strip"
     "rail rail";
-  padding: 18px 22px 14px 22px;
-  gap: 14px 20px;
-  
-  /* Textured weathered metallic chassis with edge chips and metallic grain */
-  background: 
-    /* Repeating fine metallic micro-grain */
-    url('/textures/chassis-grain.svg') repeat,
-    /* Specular highlight on top edge */
-    linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 4px),
-    /* Corner grime and wear */
-    radial-gradient(circle at 5% 5%, rgba(255, 255, 255, 0.15) 0%, transparent 35%),
-    radial-gradient(circle at 95% 95%, rgba(0, 0, 0, 0.28) 0%, transparent 45%),
-    radial-gradient(circle at 5% 95%, rgba(0, 0, 0, 0.18) 0%, transparent 35%),
-    /* Base putty/bronze weathered metal — warm aged brass/bronze */
-    linear-gradient(145deg, #b2a98e 0%, #a09680 30%, #917f6b 65%, #7c6e58 100%);
-  border-radius: 34px;
-  border-top: 3.5px solid #e8dfc8;
-  border-left: 3px solid #dfd5be;
-  border-bottom: 4.5px solid #2e2920;
-  border-right: 3.5px solid #3e3828;
-  box-shadow: 
+  padding: 16px 20px 12px 20px;
+  gap: 16px 18px;
+
+  /* Real photographic weathered cast-metal grain + subtle tonal vignette */
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(255, 245, 232, 0.06) 0%, rgba(0, 0, 0, 0.16) 100%),
+    radial-gradient(circle at 3% 97%, rgba(0, 0, 0, 0.18) 0%, transparent 28%),
+    radial-gradient(circle at 97% 97%, rgba(0, 0, 0, 0.2) 0%, transparent 28%),
+    url('/textures/real-metal-tile.jpg') repeat;
+  background-size: 100% 100%, 100% 100%, 100% 100%, 420px 420px;
+  background-color: #948272;
+  border-radius: 26px;
+  box-shadow:
     0 35px 85px rgba(0, 0, 0, 0.96),
-    0 12px 30px rgba(0, 0, 0, 0.75),
-    inset 2px 2px 4px rgba(255, 255, 255, 0.5),
-    inset -2.5px -2.5px 5px rgba(0, 0, 0, 0.6);
+    0 12px 30px rgba(0, 0, 0, 0.78),
+    inset 0 2px 3px rgba(255, 245, 230, 0.35),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.55);
   position: relative;
   isolation: isolate;
+  overflow: hidden;
 }
 
-/* Outer Perimeter Inset Groove Line */
-.chassis-outer-groove {
-  position: absolute;
-  inset: 11px;
-  border-radius: 24px;
-  border-top: 1.5px solid #423b2f;
-  border-left: 1.5px solid #423b2f;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.35);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.35);
-  pointer-events: none;
-  z-index: 3;
-}
-
-/* Weathered Chipped Paint Layer along Outer Perimeter */
-.chassis-edge-wear {
+/* Real Photographic Chipped & Weathered Outer Perimeter Frame */
+.chassis-rim-overlay {
   position: absolute;
   inset: 0;
-  border-radius: 34px;
+  border-radius: 26px;
+  border: 18px solid transparent;
+  border-image-source: url('/textures/chassis-outer-rim.png');
+  border-image-slice: 24;
+  border-image-repeat: stretch;
   pointer-events: none;
-  z-index: 4;
-  box-shadow: 
-    inset 1px 0 0 rgba(60, 52, 40, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  background: 
-    radial-gradient(circle at 3px 5px, #423b2f 0%, #423b2f 2.5px, transparent 3.5px),
-    radial-gradient(circle at calc(100% - 5px) 14px, #3a3429 0%, #3a3429 3px, transparent 4.5px),
-    radial-gradient(circle at 6px 36px, #4a4235 0%, #4a4235 2px, transparent 3px),
-    radial-gradient(circle at calc(100% - 3px) calc(100% - 24px), #363025 0%, #363025 2px, transparent 3px),
-    radial-gradient(circle at 24px calc(100% - 4px), #423b2f 0%, #423b2f 2px, transparent 3.5px);
+  z-index: 12;
+  opacity: 0.96;
 }
 
-/* Debossed Brand Badge on Top Right */
+/* Subtle Outer Machined Perimeter Seam */
+.chassis-outer-groove {
+  position: absolute;
+  inset: 12px;
+  border-radius: 18px;
+  border-top: 1px solid rgba(40, 32, 24, 0.45);
+  border-left: 1px solid rgba(40, 32, 24, 0.4);
+  border-bottom: 1px solid rgba(255, 248, 238, 0.2);
+  border-right: 1px solid rgba(255, 248, 238, 0.18);
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Debossed System Badge on Top Right */
 .debossed-badge-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2px 0 4px 0;
+  padding: 2px 0 2px 0;
   width: 100%;
 }
 
 .debossed-badge-box {
-  background: linear-gradient(180deg, #7c7565 0%, #8a8373 100%);
-  border-radius: 7px;
-  border-top: 1.5px solid #3a342a;
-  border-left: 1.5px solid #3a342a;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.32);
-  border-right: 1px solid rgba(255, 255, 255, 0.32);
-  box-shadow: 
-    inset 2px 2px 4px rgba(0, 0, 0, 0.65),
-    inset -1px -1px 2px rgba(255, 255, 255, 0.2),
-    0 1px 1px rgba(255, 255, 255, 0.25);
-  color: #3b352a;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.28), 0 -1px 1px rgba(0, 0, 0, 0.6);
+  background: rgba(88, 76, 65, 0.28);
+  border-radius: 6px;
+  border-top: 1.5px solid rgba(35, 28, 22, 0.55);
+  border-left: 1.5px solid rgba(35, 28, 22, 0.45);
+  border-bottom: 1px solid rgba(255, 245, 232, 0.3);
+  border-right: 1px solid rgba(255, 245, 232, 0.25);
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.35);
+  color: #3f362c;
+  text-shadow: 0 1px 0 rgba(255, 245, 232, 0.35), 0 -1px 1px rgba(0, 0, 0, 0.45);
   font-family: var(--font-mono);
   font-weight: 800;
   font-style: italic;
-  letter-spacing: 0.2em;
-  padding: 3px 16px;
-  font-size: 13px;
+  letter-spacing: 0.16em;
+  padding: 3px 12px;
+  font-size: 12px;
   user-select: none;
+  white-space: nowrap;
 }
 
 /* ==========================================================================
-   MOLDED 3D RETRO TV BEZEL (CIRCLED IN RED IN REFERENCE)
+   MOLDED 3D RETRO TV BEZEL (REAL PHOTOGRAPHIC CHIPS + BEVEL)
    ========================================================================== */
 
 .molded-tv-bezel {
   grid-area: screen;
-  /* Thick vintage molded bezel that curves inwards with directional lighting */
-  background: 
-    linear-gradient(145deg, #bcb5a4 0%, #9e9786 35%, #7a7363 70%, #575143 100%);
-  border-radius: 34px;
-  padding: 13px 16px 15px 16px;
-  border-top: 3.5px solid #ded7c7;
-  border-left: 3px solid #ded7c7;
-  border-bottom: 4px solid #3c362b;
-  border-right: 3.5px solid #484133;
-  box-shadow: 
-    inset 8px 8px 18px rgba(0, 0, 0, 0.94),
-    inset -5px -5px 14px rgba(255, 255, 255, 0.18),
-    0 10px 24px rgba(0, 0, 0, 0.7);
+  background:
+    url('/textures/real-metal-tile.jpg') repeat,
+    linear-gradient(145deg, #a68c74 0%, #866e59 50%, #5e4c3c 100%);
+  background-size: 360px 360px, 100% 100%;
+  border-radius: 28px;
+  padding: 23px 26px 24px 26px;
+  box-shadow:
+    inset 6px 8px 18px rgba(0, 0, 0, 0.78),
+    inset -4px -4px 12px rgba(255, 235, 210, 0.14),
+    0 8px 20px rgba(0, 0, 0, 0.55);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -180,80 +158,104 @@ html, body {
   overflow: hidden;
 }
 
-/* Deep Sunken Rubberized Gasket Ring */
+/* Real Photographic Molded Bezel Frame Overlay (9-slice preserves corners & worn edges) */
+.molded-bezel-photo-frame {
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 24px 27px 25px 27px;
+  border-image-source: url('/textures/crt-bezel-frame.png');
+  border-image-slice: 32;
+  border-image-repeat: stretch;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Deep Recessed TV Housing Cavity around the Curved CRT Tube */
 .sunken-gasket-well {
-  background: #080706;
-  border-radius: 26px;
-  padding: 4px;
-  border-top: 2px solid #14120f;
-  border-left: 1.5px solid #14120f;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.14);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 
-    inset 0 0 16px rgba(0, 0, 0, 0.98),
-    0 1px 3px rgba(255, 255, 255, 0.15);
+  background: radial-gradient(ellipse at 50% 50%, #0b0907 0%, #020101 100%);
+  border-radius: 40px / 32px;
+  padding: 10px 14px 11px 14px;
+  border: 2px solid #090705;
+  box-shadow:
+    inset 0 10px 26px rgba(0, 0, 0, 1),
+    inset 10px 0 22px rgba(0, 0, 0, 0.98),
+    inset -10px 0 22px rgba(0, 0, 0, 0.98),
+    inset 0 -8px 18px rgba(0, 0, 0, 0.98),
+    0 1px 2px rgba(255, 240, 220, 0.14);
   display: flex;
   flex-direction: column;
   flex: 1;
   min-height: 0;
 }
 
-/* Inner CRT Tube Glass Cavity */
+/* Convex Curved CRT Tube Glass Lens Embedded Inside the Cavity */
 .crt-tube-glass {
-  background: radial-gradient(ellipse at 50% 40%, #1f1107 0%, #0d0603 55%, #050201 100%);
-  border-radius: 22px;
+  background: radial-gradient(ellipse at 50% 45%, #231308 0%, #110803 55%, #050201 92%, #020100 100%);
+  border-radius: 54px / 44px;
   position: relative;
   overflow: hidden;
-  border: 1.5px solid #000000;
-  box-shadow: 
-    inset 0 0 50px rgba(0, 0, 0, 0.98),
-    inset 0 0 20px rgba(0, 0, 0, 0.95);
+  border: 1px solid rgba(255, 248, 238, 0.1);
+  box-shadow:
+    0 0 22px rgba(0, 0, 0, 0.98),
+    0 2px 8px rgba(0, 0, 0, 0.95),
+    inset 0 2px 6px rgba(255, 248, 235, 0.18),
+    inset 0 -2px 5px rgba(255, 240, 220, 0.08),
+    inset 0 0 68px rgba(0, 0, 0, 0.92);
   display: flex;
   flex-direction: column;
   flex: 1;
   min-height: 0;
+}
+
+/* Curved Glass Bevel & Top-Left Specular Arc Overlay */
+.crt-glass-arc-glare {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 26;
 }
 
 /* Curved Spherical Glass Reflection Glare */
 .crt-reflection-glare {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 48%;
-  background: 
-    linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 20%, transparent 50%),
-    radial-gradient(ellipse at 50% 0%, rgba(255, 245, 230, 0.16) 0%, transparent 65%);
-  border-top-left-radius: 22px;
-  border-top-right-radius: 22px;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 22% 14%, rgba(255, 250, 240, 0.15) 0%, rgba(255, 245, 230, 0.04) 24%, transparent 52%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 16%, transparent 34%);
+  border-radius: 54px / 44px;
   pointer-events: none;
   z-index: 25;
 }
 
-/* High-Readability Fine Scanlines */
+/* Fine Horizontal Scanlines (subtle so phosphor text stays razor-sharp) */
 .crt-scanlines-pattern {
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0px,
-    rgba(0, 0, 0, 0) 1.5px,
-    rgba(0, 0, 0, 0.18) 1.5px,
-    rgba(0, 0, 0, 0.18) 3px
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 3.5px
   );
   pointer-events: none;
   z-index: 24;
 }
 
-/* CRT Vignette — single definition */
+/* CRT Vignette */
 .crt-vignette-layer {
   position: absolute;
   inset: 0;
   background: radial-gradient(
     ellipse at 50% 50%,
-    transparent 68%,
-    rgba(0, 0, 0, 0.3) 90%,
-    rgba(0, 0, 0, 0.65) 100%
+    transparent 73%,
+    rgba(0, 0, 0, 0.26) 91%,
+    rgba(0, 0, 0, 0.55) 100%
   );
   pointer-events: none;
   z-index: 23;
@@ -261,271 +263,438 @@ html, body {
 
 /* Phosphor Glows */
 .ph-glow-hero {
-  text-shadow: 
+  text-shadow:
     0 0 6px var(--ph-orange),
     0 0 18px var(--ph-glow),
     0 0 34px rgba(255, 138, 31, 0.45);
 }
 
 .ph-glow-text {
-  text-shadow: 
+  text-shadow:
     0 0 3px var(--ph-orange),
     0 0 8px var(--ph-glow);
 }
 
 /* ==========================================================================
-   RIGHT CONTROL KEYPAD (WORK, ABOUT, CONTACT, POWER) — REFERENCE IMAGE 4
+   CRT TV CHANNEL-SWITCH, POWER ON/OFF & PROJECT SNAP ANIMATIONS
+   ========================================================================== */
+
+@keyframes crtScreenHum {
+  0%, 100% { opacity: 0.995; }
+  50% { opacity: 1; }
+  72% { opacity: 0.985; }
+}
+
+.screen-flicker {
+  animation: crtScreenHum 4s infinite ease-in-out;
+}
+
+/* Channel Switch Static Burst + Rolling Sync Bar */
+.crt-channel-switch-fx {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  overflow: hidden;
+  animation: crtStaticFade 320ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.crt-static-snow {
+  position: absolute;
+  inset: -20%;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 165, 60, 0.22) 0px,
+      rgba(255, 230, 190, 0.14) 2px,
+      rgba(0, 0, 0, 0.55) 3px,
+      rgba(255, 120, 20, 0.08) 5px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 190, 110, 0.08) 0px,
+      transparent 4px,
+      rgba(0, 0, 0, 0.3) 8px
+    );
+  animation: crtStaticJitter 90ms steps(3) infinite;
+}
+
+.crt-sync-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 22%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 165, 50, 0.35) 35%,
+    rgba(255, 240, 210, 0.65) 50%,
+    rgba(255, 145, 0, 0.35) 65%,
+    transparent 100%
+  );
+  animation: crtSyncSweep 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes crtStaticFade {
+  0% { opacity: 0.95; }
+  35% { opacity: 0.72; }
+  100% { opacity: 0; }
+}
+
+@keyframes crtStaticJitter {
+  0% { transform: translate(0, 0); }
+  33% { transform: translate(-6px, 4px); }
+  66% { transform: translate(5px, -3px); }
+  100% { transform: translate(-2px, 2px); }
+}
+
+@keyframes crtSyncSweep {
+  0% { top: -25%; opacity: 1; }
+  100% { top: 110%; opacity: 0.15; }
+}
+
+@keyframes crtChannelContentSnap {
+  0% {
+    opacity: 0.25;
+    transform: scaleY(0.06) scaleX(1.06);
+    filter: brightness(2.2) contrast(1.4);
+  }
+  40% {
+    opacity: 0.85;
+    transform: scaleY(1.02) scaleX(0.99);
+    filter: brightness(1.35) contrast(1.15);
+  }
+  70% {
+    transform: translateX(2px) scaleY(1);
+    filter: brightness(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: brightness(1) contrast(1);
+  }
+}
+
+.crt-channel-content-snap {
+  animation: crtChannelContentSnap 300ms cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+
+@keyframes crtPreviewSnap {
+  0% {
+    opacity: 0.45;
+    transform: translateY(2px) scaleY(0.96);
+    filter: brightness(1.45);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+    filter: brightness(1);
+  }
+}
+
+.crt-preview-snap {
+  animation: crtPreviewSnap 140ms ease-out forwards;
+}
+
+/* Hover-to-Twitch TV Micro-Glitch Animation */
+@keyframes crtHoverTwitch {
+  0% {
+    opacity: 0.55;
+    transform: translateX(-4px) scaleY(0.97);
+    filter: brightness(1.55) contrast(1.2);
+  }
+  35% {
+    opacity: 0.92;
+    transform: translateX(3px) scaleY(1.01);
+    filter: brightness(1.22);
+  }
+  70% {
+    transform: translateX(-1px) scaleY(1);
+    filter: brightness(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scaleY(1);
+    filter: brightness(1) contrast(1);
+  }
+}
+
+.crt-hover-twitch {
+  animation: crtHoverTwitch 150ms cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+
+/* Custom Glowing Amber CRT Scrollbar for scrollable interior views */
+.crt-tube-glass *::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.crt-tube-glass *::-webkit-scrollbar-track {
+  background: rgba(255, 138, 31, 0.08);
+  border-radius: 999px;
+}
+
+.crt-tube-glass *::-webkit-scrollbar-thumb {
+  background: rgba(255, 138, 31, 0.55);
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(255, 138, 31, 0.65);
+}
+
+.crt-tube-glass *::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 155, 45, 0.85);
+}
+
+/* Power ON CRT Warmup Beam */
+@keyframes crtPowerOnWarmup {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.02) scaleY(0.01);
+    filter: brightness(3);
+  }
+  35% {
+    opacity: 1;
+    transform: scaleX(1) scaleY(0.015);
+    filter: brightness(2.4);
+  }
+  75% {
+    opacity: 1;
+    transform: scaleX(1) scaleY(1.02);
+    filter: brightness(1.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1) scaleY(1);
+    filter: brightness(1);
+  }
+}
+
+.crt-powered-on-anim {
+  animation: crtPowerOnWarmup 450ms cubic-bezier(0.18, 0.9, 0.25, 1) forwards;
+}
+
+/* Power OFF CRT Beam Collapse */
+@keyframes crtPowerOffBeam {
+  0% {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1);
+    background: rgba(255, 195, 110, 0.65);
+  }
+  45% {
+    opacity: 1;
+    transform: scaleY(0.012) scaleX(0.95);
+    background: #fff1d6;
+    box-shadow: 0 0 24px #ff9d2e;
+  }
+  85% {
+    opacity: 0.9;
+    transform: scaleY(0.012) scaleX(0.04);
+    background: #ffffff;
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0) scaleX(0);
+  }
+}
+
+.crt-collapse-beam {
+  position: absolute;
+  inset: 0;
+  z-index: 35;
+  pointer-events: none;
+  animation: crtPowerOffBeam 420ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ==========================================================================
+   RIGHT CONTROL KEYPAD — REAL PHOTOGRAPHIC WORK / ABOUT / CONTACT & POWER
    ========================================================================== */
 
 .keys-panel-area {
   grid-area: keys;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 0;
+  gap: 10px;
+  padding: 2px 2px 0 2px;
   min-height: 0;
-  align-items: stretch;
+  align-items: center;
 }
 
-/* Recessed Deep Socket Well for Keycaps */
+.keys-stack-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Recessed Socket Well for Keycaps */
 .key-socket-well {
-  background: #14120e;
+  background: #120f0b;
   border-radius: 12px;
   padding: 5px;
-  border-top: 2.5px solid #29241b;
-  border-left: 2px solid #29241b;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.22);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 
+  border-top: 2px solid #29221a;
+  border-left: 2px solid #251f17;
+  border-bottom: 1.5px solid rgba(255, 245, 232, 0.25);
+  border-right: 1.5px solid rgba(255, 245, 232, 0.22);
+  box-shadow:
     inset 3px 3px 8px rgba(0, 0, 0, 0.98),
-    0 1px 2px rgba(255, 255, 255, 0.2);
+    0 1px 2px rgba(255, 245, 232, 0.16);
   width: 100%;
 }
 
-/* Chunky 3D Push Button with Brushed Grain (Reference Image 4) */
-.key-cap-btn {
+/* Real Photographic WORK / ABOUT / CONTACT Button */
+.key-photo-btn {
   width: 100%;
-  height: clamp(62px, 8.2vh, 76px);
-  background: 
-    url('/textures/switch-brushed.svg') repeat,
-    linear-gradient(175deg, #645a49 0%, #463d2e 40%, #2a2419 100%);
-  border-radius: 9px;
-  border-top: 3px solid #8e8067;
-  border-left: 2.5px solid #7c7059;
-  border-bottom: 4.5px solid #0f0d09;
-  border-right: 3px solid #0f0d09;
-  box-shadow: 
-    0 7px 14px rgba(0, 0, 0, 0.85),
-    0 3px 5px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  aspect-ratio: 462 / 217;
+  display: block;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.85);
+  transition: transform 0.08s ease, filter 0.12s ease, box-shadow 0.12s ease;
   user-select: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.1s ease;
 }
 
-.key-cap-btn:hover {
-  filter: brightness(1.12);
-}
-
-.key-cap-btn:active,
-.key-cap-btn.is-active {
-  transform: translateY(2px);
-  border-top: 1.5px solid #1c1a16;
-  border-bottom: 2.5px solid #5a5142;
-  box-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.85),
-    inset 0 2px 5px rgba(0, 0, 0, 0.65);
-}
-
-.key-cap-label {
-  font-family: var(--font-mono);
-  font-weight: 900;
-  font-size: clamp(17px, 1.3vw, 21px);
-  letter-spacing: 0.22em;
-  color: #eedec8;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 -1px 0 rgba(0, 0, 0, 0.5);
-  transition: color 0.15s ease, text-shadow 0.15s ease;
-}
-
-.key-cap-label.is-active-label {
-  color: #fff0c7;
-  text-shadow: 
-    0 0 8px rgba(255, 170, 0, 0.9),
-    0 0 18px rgba(255, 145, 0, 0.6);
-}
-
-/* Amber Jewel LED (Reference Image 4) */
-.amber-led-jewel {
-  width: 17px;
-  height: 17px;
-  border-radius: 50%;
-  border: 2px solid #0d0b08;
-  transition: all 0.15s ease;
-  flex-shrink: 0;
-}
-
-.amber-led-jewel.active {
-  background: radial-gradient(circle at 45% 40%, #ffffff 0%, #ffe07a 22%, #ff9900 60%, #c85a00 100%);
-  box-shadow: 
-    0 0 10px #ffaa00,
-    0 0 24px rgba(255, 160, 0, 1),
-    0 0 38px rgba(255, 140, 0, 0.8);
-}
-
-.amber-led-jewel.inactive {
-  background: radial-gradient(circle at 40% 35%, #462c0e 0%, #261605 70%, #140b02 100%);
-  box-shadow: 
-    inset 1px 1px 2px rgba(0, 0, 0, 0.95),
-    0 0.5px 1px rgba(255, 255, 255, 0.15);
-}
-
-/* Red Illuminated Rocker Power Switch (Reference Image 4) */
-.power-rocker-wrapper {
-  margin-top: auto;
-  align-self: center;
-  width: 90%;
-  background: #100e0b;
-  border-radius: 12px;
-  padding: 5px;
-  border-top: 2.5px solid #221c16;
-  border-left: 2px solid #221c16;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.22);
-  border-right: 2px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 
-    inset 3px 3px 8px rgba(0, 0, 0, 0.98),
-    0 1px 2px rgba(255, 255, 255, 0.2);
-}
-
-.power-rocker-btn {
-  width: 100%;
-  aspect-ratio: 440 / 270;
-  max-height: 94px;
-  border-radius: 9px;
-  padding: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s ease;
-}
-
-.power-rocker-lens {
+.key-photo-img {
   width: 100%;
   height: 100%;
-  border-radius: 6px;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.key-photo-btn:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.key-photo-btn:active:not(:disabled) {
+  transform: translateY(2px);
+  filter: brightness(0.95);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.key-photo-btn.is-active {
+  transform: translateY(1px);
+  box-shadow:
+    0 0 14px rgba(255, 165, 40, 0.28),
+    0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* Red Illuminated Power Rocker Wrapper */
+.power-rocker-wrapper {
+  margin-top: auto;
+  margin-bottom: 4px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  transition: all 0.15s ease;
+  width: 100%;
 }
 
-.power-rocker-btn.on {
-  background: #181210;
-  border-top: 2.5px solid #281e1a;
-  border-left: 2px solid #281e1a;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-  border-right: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
-    0 0 16px rgba(255, 30, 30, 0.85),
-    0 0 32px rgba(255, 25, 25, 0.55),
-    0 10px 24px rgba(255, 20, 20, 0.4);
+.power-photo-btn {
+  width: clamp(128px, 10.8vw, 158px);
+  aspect-ratio: 418 / 277;
+  display: block;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.1s ease, filter 0.15s ease, box-shadow 0.18s ease;
+  user-select: none;
 }
 
-.power-rocker-btn.on .power-rocker-lens {
-  background: 
-    url('/textures/rocker-grid.svg') repeat,
-    radial-gradient(circle at 65% 75%, #ff5533 0%, #e01212 45%, #8e0808 100%);
-  border-top: 2px solid #ff8888;
-  border-left: 1.5px solid #ff8888;
-  border-bottom: 2.5px solid #540606;
-  border-right: 2px solid #540606;
-  box-shadow: 
-    inset 0 0 12px rgba(255, 120, 120, 0.7),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.5);
+.power-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
 }
 
-.power-rocker-btn.off {
-  background: #141110;
-  border-top: 2.5px solid #221c18;
-  border-left: 2px solid #221c18;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.12);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.12);
+.power-photo-btn.is-on {
+  box-shadow:
+    0 0 22px rgba(255, 45, 20, 0.55),
+    0 0 42px rgba(255, 30, 15, 0.28),
+    0 8px 18px rgba(0, 0, 0, 0.85);
 }
 
-.power-rocker-btn.off .power-rocker-lens {
-  background: 
-    url('/textures/rocker-grid.svg') repeat,
-    linear-gradient(135deg, #3d0c0c 0%, #220606 100%);
-  opacity: 0.65;
-  border: 1.5px solid #1f0606;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.95);
+.power-photo-btn.is-off {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.85);
+}
+
+.power-photo-btn:hover {
+  filter: brightness(1.07);
+  transform: translateY(-1px);
+}
+
+.power-photo-btn:active {
+  transform: translateY(2px) scale(0.985);
 }
 
 /* ==========================================================================
-   AUTHENTIC 3D CARTRIDGES (MATCHING REFERENCE IMAGE 1)
+   BOTTOM CARTRIDGE STRIP — PROPORTIONAL COMPACT MECHANICAL BUTTONS
    ========================================================================== */
 
 .cartridge-strip-deck {
   grid-area: strip;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 6px clamp(8px, 1.5vw, 24px);
+  justify-content: space-between;
+  padding: 18px clamp(36px, 6.5vw, 110px) 10px clamp(36px, 6.5vw, 110px);
   background: transparent;
   border: none;
   box-shadow: none;
   position: relative;
   width: 100%;
-  gap: clamp(6px, 1vw, 16px);
+  gap: clamp(12px, 2vw, 32px);
 }
 
-/* Horizontal Engraved Chassis Seam above Cartridges (Reference Image 4) */
+/* Horizontal Engraved Chassis Seam above Cartridges */
 .cartridge-strip-deck::before {
   content: '';
   position: absolute;
-  top: -8px;
-  left: 0;
-  right: 0;
+  top: -2px;
+  left: -4px;
+  right: -4px;
   height: 2px;
-  background: #3a3328;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(38, 30, 22, 0.72);
+  border-bottom: 1px solid rgba(255, 245, 232, 0.24);
   pointer-events: none;
 }
 
-/* Deep Outer Well Socket around each Cartridge */
+/* Compact Recessed Socket Well matching Reference Proportions */
 .cartridge-outer-well {
-  flex: 1;
-  min-width: 0;
-  max-width: 280px;
+  flex: 0 0 auto;
+  width: clamp(122px, 10.6vw, 162px);
   background: #0e0c0a;
-  border-radius: 14px;
-  padding: 6px;
-  border-top: 2.5px solid #201a14;
+  border-radius: 12px;
+  padding: 5px;
+  border-top: 2px solid #201a14;
   border-left: 2px solid #201a14;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.22);
-  border-right: 2px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 
+  border-bottom: 1.5px solid rgba(255, 245, 232, 0.22);
+  border-right: 1.5px solid rgba(255, 245, 232, 0.22);
+  box-shadow:
     inset 4px 4px 10px rgba(0, 0, 0, 0.98),
-    0 1px 2px rgba(255, 255, 255, 0.2);
+    0 1px 2px rgba(255, 245, 232, 0.16);
   transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
 }
 
-/* Active Orange Radiant Backlight Halo (Reference Image 4) */
+/* Active Orange Radiant Backlight Halo */
 .cartridge-outer-well.cartridge-active-halo {
   border-color: #ff8a1f !important;
-  box-shadow: 
-    0 0 24px rgba(255, 145, 0, 0.9),
-    0 0 48px rgba(255, 138, 31, 0.65),
-    inset 0 0 12px rgba(255, 145, 0, 0.5) !important;
+  box-shadow:
+    0 0 20px rgba(255, 145, 0, 0.92),
+    0 0 42px rgba(255, 138, 31, 0.62),
+    inset 0 0 10px rgba(255, 145, 0, 0.45) !important;
 }
 
-/* ── PHOTOGRAPHIC CARTRIDGE BUTTON (uses real cropped button image) ── */
+/* Photographic Cartridge Button */
 .cartridge-photo-unit {
   width: 100%;
   aspect-ratio: 391 / 258;
@@ -533,13 +702,13 @@ html, body {
   padding: 0;
   border: none;
   background: transparent;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   overflow: hidden;
   outline: none;
   box-shadow:
-    0 6px 20px rgba(0, 0, 0, 0.9),
-    0 2px 6px rgba(0, 0, 0, 0.7);
+    0 4px 14px rgba(0, 0, 0, 0.9),
+    0 2px 5px rgba(0, 0, 0, 0.7);
   transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.12s ease, filter 0.12s ease;
   user-select: none;
   -webkit-user-select: none;
@@ -549,37 +718,37 @@ html, body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 8px;
   display: block;
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
 }
 
-.cartridge-photo-unit:hover {
+.cartridge-photo-unit:hover:not(:disabled) {
   filter: brightness(1.08) saturate(1.1);
   transform: translateY(-2px);
   box-shadow:
-    0 10px 28px rgba(0, 0, 0, 0.95),
-    0 4px 10px rgba(0, 0, 0, 0.7);
+    0 8px 22px rgba(0, 0, 0, 0.95),
+    0 3px 8px rgba(0, 0, 0, 0.7);
 }
 
-.cartridge-photo-unit:active {
+.cartridge-photo-unit:active:not(:disabled) {
   transform: translateY(1px);
   filter: brightness(0.95);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), inset 0 1px 4px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9), inset 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .cartridge-photo-unit.is-engaged {
-  transform: translateY(-2px);
+  transform: translateY(-1.5px);
   filter: brightness(1.05) saturate(1.15);
   box-shadow:
-    0 0 20px rgba(255, 148, 0, 0.75),
-    0 10px 28px rgba(0, 0, 0, 0.95);
+    0 0 16px rgba(255, 148, 0, 0.72),
+    0 6px 20px rgba(0, 0, 0, 0.95);
 }
 
 /* ==========================================================================
-   CHASSIS FOOTER RAIL (BRAND, RIDGES, PRINT, VENTS) — REFERENCE IMAGE 1 & 5
+   CHASSIS FOOTER RAIL (BRAND, GROOVE, PRINT, REAL PHOTO VENTS)
    ========================================================================== */
 
 .chassis-rail-footer {
@@ -587,62 +756,68 @@ html, body {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 0 6px;
+  padding: 0 10px;
   height: 24px;
 }
 
-/* Left Brand */
 .chassis-brand-text {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
   font-style: italic;
   letter-spacing: 0.24em;
-  color: #3b352a;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35), 0 -1px 1px rgba(0, 0, 0, 0.55);
+  color: #2b241c;
+  text-shadow: 0 1px 0 rgba(255, 245, 232, 0.35);
   white-space: nowrap;
 }
 
-/* Center Ridges / Heat-sink line */
 .chassis-heatsink-ridges {
   flex: 1;
-  height: 4px;
-  background: linear-gradient(180deg, #383226 0%, #1f1b15 50%, #4a4234 100%);
+  height: 3px;
+  background: linear-gradient(180deg, rgba(35, 28, 22, 0.65) 0%, rgba(25, 20, 15, 0.4) 55%, rgba(255, 245, 232, 0.25) 100%);
   border-radius: 2px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-/* PRINT ALL WORK Button */
+.chassis-audio-btn {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: #262018;
+  text-shadow: 0 1px 0 rgba(255, 245, 232, 0.3);
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 2px 6px;
+  transition: color 0.12s ease;
+}
+
+.chassis-audio-btn:hover {
+  color: #0d0a07;
+}
+
 .chassis-print-feed-btn {
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.18em;
-  color: #342e24;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  color: #211b14;
+  text-shadow: 0 1px 0 rgba(255, 245, 232, 0.35);
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.12s ease;
 }
 
-.chassis-print-feed-btn:hover {
-  color: #000;
-  text-shadow: 0 0 6px rgba(255, 138, 31, 0.6);
+.chassis-print-feed-btn:hover:not(:disabled) {
+  color: #000000;
+  text-shadow: 0 0 6px rgba(255, 138, 31, 0.55);
 }
 
-/* Far Right Slotted Exhaust Cooling Vent */
 .chassis-cooling-vent {
-  width: 130px;
-  height: 14px;
-  background: repeating-linear-gradient(
-    90deg,
-    #100e0b 0 5px,
-    transparent 5px 12px
-  );
-  border-radius: 1px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.95);
-  border-top: 1px solid rgba(0, 0, 0, 0.6);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  width: 122px;
+  height: 17px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 
 /* ==========================================================================
@@ -672,31 +847,36 @@ html, body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 12px;
+    padding: 14px;
   }
   .keys-panel-area {
+    width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  .key-cap-btn {
-    aspect-ratio: auto;
-    height: 44px;
+  .keys-stack-group {
+    flex-direction: row;
+    flex: 1;
+    gap: 8px;
+  }
+  .key-socket-well {
+    flex: 1;
   }
   .power-rocker-wrapper {
-    margin-top: 0;
+    margin: 0;
     width: auto;
   }
-  .power-rocker-btn {
-    aspect-ratio: auto;
-    height: 44px;
-    width: 64px;
+  .power-photo-btn {
+    width: 74px;
   }
   .cartridge-strip-deck {
     flex-wrap: wrap;
-    gap: 8px;
+    justify-content: center;
+    padding: 12px 8px;
+    gap: 10px;
   }
   .cartridge-outer-well {
-    width: calc(50% - 6px);
+    width: calc(50% - 8px);
   }
 }

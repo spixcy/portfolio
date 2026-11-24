@@ -30,21 +30,21 @@ export const SystemFooter: React.FC<SystemFooterProps> = ({
 
   return (
     <footer className="chassis-rail-footer select-none">
-      {/* 1. Left Debossed Brand */}
+      {/* 1. Left Stamped Brand */}
       <div className="chassis-brand-text">
         {manufacturer}
       </div>
 
-      {/* 2. Center Ridges / Heat-sink Grooved Line */}
+      {/* 2. Center Engraved Seam Line */}
       <div className="chassis-heatsink-ridges" />
 
       {/* 3. Audio Toggle */}
       <button
         onClick={handleToggleSound}
-        className="text-[10px] tracking-wider text-[#3d362c] hover:text-[#000] font-mono px-1.5 py-0.5 rounded cursor-pointer transition-all"
+        className="chassis-audio-btn"
         title={isMuted ? 'Audio Muted — Click to unmute' : 'Audio Active — Click to mute'}
       >
-        {isMuted ? '🔇 AUDIO' : '🔊 AUDIO'}
+        {isMuted ? '✕ AUDIO' : '♪ AUDIO'}
       </button>
 
       {/* 4. PRINT ALL WORK Button */}
@@ -59,8 +59,15 @@ export const SystemFooter: React.FC<SystemFooterProps> = ({
         ▼ PRINT ALL WORK
       </button>
 
-      {/* 5. Far Right Slotted Exhaust Vent */}
-      <div className="chassis-cooling-vent" title="Cooling vent" />
+      {/* 5. Far Right Slotted Exhaust Vent (Real Photographic Vent) */}
+      <div className="chassis-cooling-vent" title="Cooling vent">
+        <img
+          src="/textures/cooling-vents.png"
+          alt="Cooling vents"
+          className="w-full h-full object-contain pointer-events-none select-none"
+          draggable={false}
+        />
+      </div>
     </footer>
   );
 };

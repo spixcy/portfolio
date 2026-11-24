@@ -24,6 +24,19 @@ export function App() {
   // Hardware State
   const [isPoweredOn, setIsPoweredOn] = useState<boolean>(true);
   const [powerTransitioning, setPowerTransitioning] = useState<boolean>(false);
+  const [channelSwitching, setChannelSwitching] = useState<boolean>(false);
+  const [switchKey, setSwitchKey] = useState<number>(0);
+
+  const triggerChannelSwitch = useCallback(() => {
+    setSwitchKey((k) => k + 1);
+    setChannelSwitching(true);
+  }, []);
+
+  useEffect(() => {
+    if (!channelSwitching) return;
+    const timer = setTimeout(() => setChannelSwitching(false), 320);
+    return () => clearTimeout(timer);
+  }, [channelSwitching, switchKey]);
 
   // Sync hash routing on mount and hash changes (Browser Back/Forward support)
   const parseHash = useCallback(() => {
@@ -53,10 +66,11 @@ export function App() {
     return () => window.removeEventListener('hashchange', parseHash);
   }, [parseHash]);
 
-  // Navigate helper with history push
+  // Navigate helper with history push + CRT channel switch
   const navigateTo = useCallback((route: string) => {
+    triggerChannelSwitch();
     window.location.hash = `#${route}`;
-  }, []);
+  }, [triggerChannelSwitch]);
 
   // Filter projects by active category
   const laneProjects = useMemo(() => {
@@ -217,6 +231,8 @@ export function App() {
           <CRTDisplay
             isPoweredOn={isPoweredOn}
             powerTransitioning={powerTransitioning}
+            channelSwitching={channelSwitching}
+            switchKey={switchKey}
           >
             {/* CRT Header Bar */}
             <SystemStatusBar

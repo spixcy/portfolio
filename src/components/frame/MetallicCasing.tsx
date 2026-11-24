@@ -9,11 +9,11 @@ export const MetallicCasing: React.FC<MetallicCasingProps> = ({
 }) => {
   return (
     <div className="computer-chassis-shell">
-      {/* Precision Machined Perimeter Groove */}
-      <div className="chassis-outer-groove" />
+      {/* Real Photographic Weathered & Chipped Perimeter Rim */}
+      <div className="chassis-rim-overlay" aria-hidden="true" />
 
-      {/* Weathered Chipped Paint Layer along Perimeter */}
-      <div className="chassis-edge-wear" />
+      {/* Precision Machined Perimeter Groove */}
+      <div className="chassis-outer-groove" aria-hidden="true" />
 
       {/* Direct Children render into CSS Grid areas: screen, keys, strip, rail */}
       {children}
