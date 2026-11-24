@@ -112,12 +112,12 @@ export const CartridgeDeck: React.FC<CartridgeDeckProps> = ({
               </div>
 
               {/* Lower Section with Ribbed Grips and Inverted Triangle */}
-              <div className="flex flex-col items-center justify-end gap-1.5 pt-1.5 pb-0.5">
-                <div className="text-[9px] text-[#5c5447] font-bold">▼</div>
-                <div className="w-full flex flex-col gap-1 px-2">
-                  <div className="cart-grip-line" />
-                  <div className="cart-grip-line" />
-                  <div className="cart-grip-line" />
+              <div className="flex flex-col items-center justify-end gap-2 pt-2 pb-1 flex-1">
+                <div className="text-[10px] text-[#706654] font-bold">▼</div>
+                <div className="w-full flex flex-col gap-1.5 px-3">
+                  <div className="h-[2.5px] bg-[#0d0c0a] border-t border-white/10 border-b border-[#474136] rounded-[0.5px]" />
+                  <div className="h-[2.5px] bg-[#0d0c0a] border-t border-white/10 border-b border-[#474136] rounded-[0.5px]" />
+                  <div className="h-[2.5px] bg-[#0d0c0a] border-t border-white/10 border-b border-[#474136] rounded-[0.5px]" />
                 </div>
               </div>
             </button>

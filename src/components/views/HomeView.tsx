@@ -23,20 +23,20 @@ export const HomeView: React.FC<HomeViewProps> = ({
   };
 
   return (
-    <div className="flex flex-col flex-1 justify-between h-full py-1">
+    <div className="flex flex-col flex-1 justify-between h-full py-2 select-none">
       {/* Hero Header Section */}
-      <div className="mb-2">
-        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-mono font-bold tracking-tight text-[#ff8a1f] ph-glow-hero uppercase">
+      <div className="pt-1">
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-mono font-bold tracking-tight text-[#ff8a1f] ph-glow-hero uppercase">
           {name}
         </h1>
-        <p className="mt-1.5 text-xs sm:text-sm lg:text-[15px] text-[#faebda]/90 font-mono max-w-3xl leading-relaxed">
+        <p className="mt-2 text-xs sm:text-sm lg:text-base text-[#faebda]/95 font-mono max-w-3xl leading-relaxed">
           {tagline}
         </p>
       </div>
 
       {/* 4-Across Featured Project Cards */}
       <div className="w-full my-auto py-2">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4.5">
           {featuredProjects.slice(0, 4).map((project) => (
             <div
               key={project.id}
