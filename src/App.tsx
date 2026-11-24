@@ -104,12 +104,10 @@ export function App() {
   // Keyboard navigation shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Ignore if inside an input or if powered off
       if (!isPoweredOn || e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
         return;
       }
 
-      // Escape to Home
       if (e.key === 'Escape') {
         soundEffects.playButtonClick();
         if (isPrinterOpen) {
@@ -120,18 +118,15 @@ export function App() {
         return;
       }
 
-      // Number keys 1-4 for cartridge selection
       if (e.key === '1') handleSelectCategory('interface');
       if (e.key === '2') handleSelectCategory('systems');
       if (e.key === '3') handleSelectCategory('worlds');
       if (e.key === '4') handleSelectCategory('games');
 
-      // 'p' or 'P' toggles print all work modal
       if ((e.key === 'p' || e.key === 'P') && !e.ctrlKey && !e.metaKey) {
         setIsPrinterOpen((prev) => !prev);
       }
 
-      // Arrow navigation in Work Lane
       if (currentRoute.startsWith('work/')) {
         const curIdx = laneProjects.findIndex((p) => p.id === selectedProjectId);
         if (e.key === 'ArrowDown') {
@@ -207,103 +202,100 @@ export function App() {
   }, [currentRoute, laneProjects, selectedProjectId]);
 
   return (
-    <main className="min-h-screen w-full flex items-center justify-center p-2 sm:p-5 lg:p-8 bg-[#0e0d0b]">
-      {/* Outer Metallic Computer Enclosure */}
+    <main className="w-screen h-screen min-h-screen bg-[#070605] flex items-center justify-center p-1 sm:p-2.5 overflow-hidden">
+      {/* Outer Metallic Computer Enclosure (CSS Grid container: screen, keys, strip, rail) */}
       <MetallicCasing systemName={portfolioData.system.name}>
-        {/* Upper Deck: CRT Display on Left + Side Physical Controls on Right */}
-        <div className="flex flex-col lg:flex-row gap-4 sm:gap-5 lg:gap-6 items-stretch">
-          {/* Main CRT Glass Monitor */}
-          <CRTDisplay
-            isPoweredOn={isPoweredOn}
-            powerTransitioning={powerTransitioning}
-          >
-            {/* CRT Header Bar */}
-            <SystemStatusBar
-              systemCode={portfolioData.system.code}
-              version={portfolioData.system.version}
-              pathText={statusBarPath}
-              rightStatus={statusBarRight}
-            />
-
-            {/* CRT Dynamic Screen Content */}
-            {currentRoute === 'home' && (
-              <HomeView
-                name={portfolioData.identity.name}
-                tagline={portfolioData.identity.tagline}
-                featuredProjects={featuredProjects}
-                onSelectProject={(pId) => {
-                  setSelectedProjectId(pId);
-                  navigateTo(`project/${pId}`);
-                }}
-                onSelectCategory={handleSelectCategory}
-              />
-            )}
-
-            {currentRoute.startsWith('work/') && (
-              <WorkLaneView
-                category={activeCategory}
-                categoryTitle={
-                  portfolioData.categories.find((c) => c.id === activeCategory)?.title || 'WORK'
-                }
-                projects={laneProjects}
-                selectedProjectId={selectedProjectId}
-                onSelectProjectIndex={(idx) => {
-                  setSelectedProjectId(laneProjects[idx].id);
-                }}
-                onOpenCaseStudy={(pId) => {
-                  setSelectedProjectId(pId);
-                  navigateTo(`project/${pId}`);
-                }}
-              />
-            )}
-
-            {currentRoute.startsWith('project/') && (
-              <ProjectDetailView
-                project={currentProject}
-                onBackToWork={() => {
-                  navigateTo(`work/${currentProject.category}`);
-                }}
-                onPrevProject={handlePrevProject}
-                onNextProject={handleNextProject}
-                hasPrev={hasPrev}
-                hasNext={hasNext}
-              />
-            )}
-
-            {currentRoute === 'about' && (
-              <AboutView
-                aboutData={portfolioData.about}
-                identity={portfolioData.identity}
-                onBackToWork={() => navigateTo('home')}
-              />
-            )}
-
-            {currentRoute === 'contact' && (
-              <ContactView
-                contactData={portfolioData.contact}
-                identity={portfolioData.identity}
-                onExit={() => navigateTo('home')}
-              />
-            )}
-          </CRTDisplay>
-
-          {/* Right-Side Physical Navigation Control Panel */}
-          <SideControls
-            currentView={currentRoute}
-            isPoweredOn={isPoweredOn}
-            onNavigate={(view) => navigateTo(view)}
-            onTogglePower={handleTogglePower}
+        {/* 1. Main CRT Monitor (grid-area: screen) */}
+        <CRTDisplay
+          isPoweredOn={isPoweredOn}
+          powerTransitioning={powerTransitioning}
+        >
+          {/* CRT Header Bar */}
+          <SystemStatusBar
+            systemCode={portfolioData.system.code}
+            version={portfolioData.system.version}
+            pathText={statusBarPath}
+            rightStatus={statusBarRight}
           />
-        </div>
 
-        {/* Lower Mechanical Cartridge Deck */}
+          {/* CRT Dynamic Screen Content */}
+          {currentRoute === 'home' && (
+            <HomeView
+              name={portfolioData.identity.name}
+              tagline={portfolioData.identity.tagline}
+              featuredProjects={featuredProjects}
+              onSelectProject={(pId) => {
+                setSelectedProjectId(pId);
+                navigateTo(`project/${pId}`);
+              }}
+              onSelectCategory={handleSelectCategory}
+            />
+          )}
+
+          {currentRoute.startsWith('work/') && (
+            <WorkLaneView
+              category={activeCategory}
+              categoryTitle={
+                portfolioData.categories.find((c) => c.id === activeCategory)?.title || 'WORK'
+              }
+              projects={laneProjects}
+              selectedProjectId={selectedProjectId}
+              onSelectProjectIndex={(idx) => {
+                setSelectedProjectId(laneProjects[idx].id);
+              }}
+              onOpenCaseStudy={(pId) => {
+                setSelectedProjectId(pId);
+                navigateTo(`project/${pId}`);
+              }}
+            />
+          )}
+
+          {currentRoute.startsWith('project/') && (
+            <ProjectDetailView
+              project={currentProject}
+              onBackToWork={() => {
+                navigateTo(`work/${currentProject.category}`);
+              }}
+              onPrevProject={handlePrevProject}
+              onNextProject={handleNextProject}
+              hasPrev={hasPrev}
+              hasNext={hasNext}
+            />
+          )}
+
+          {currentRoute === 'about' && (
+            <AboutView
+              aboutData={portfolioData.about}
+              identity={portfolioData.identity}
+              onBackToWork={() => navigateTo('home')}
+            />
+          )}
+
+          {currentRoute === 'contact' && (
+            <ContactView
+              contactData={portfolioData.contact}
+              identity={portfolioData.identity}
+              onExit={() => navigateTo('home')}
+            />
+          )}
+        </CRTDisplay>
+
+        {/* 2. Right-Side Physical Navigation Control Panel (grid-area: keys) */}
+        <SideControls
+          currentView={currentRoute}
+          isPoweredOn={isPoweredOn}
+          onNavigate={(view) => navigateTo(view)}
+          onTogglePower={handleTogglePower}
+        />
+
+        {/* 3. Lower Mechanical Cartridge Deck (grid-area: strip) */}
         <CartridgeDeck
           activeCategory={activeCategory}
           isPoweredOn={isPoweredOn}
           onSelectCategory={handleSelectCategory}
         />
 
-        {/* System Footer & Print Slit */}
+        {/* 4. System Footer & Print Slit (grid-area: rail) */}
         <SystemFooter
           manufacturer={portfolioData.system.manufacturer}
           modelNumber={portfolioData.system.modelNumber}

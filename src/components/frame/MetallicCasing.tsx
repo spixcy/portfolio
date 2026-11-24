@@ -10,32 +10,33 @@ export const MetallicCasing: React.FC<MetallicCasingProps> = ({
   systemName = 'PORTFOLIO/OS',
 }) => {
   return (
-    <div className="relative w-full max-w-[1240px] mx-auto p-4 sm:p-7 chassis-outer transition-all duration-300">
-      {/* 4 Corner Industrial Phillips Screws */}
-      <div className="absolute top-3 left-3">
-        <div className="screw-head" title="Chassis screw" />
+    <div className="device-chassis">
+      {/* Decorative Outer Perimeter Inset Groove Line */}
+      <div className="chassis-outer-groove" />
+
+      {/* 4 Corner Industrial Screws */}
+      <div className="absolute top-2.5 left-2.5 z-20">
+        <div className="chassis-screw" title="Chassis screw" />
       </div>
-      <div className="absolute top-3 right-3">
-        <div className="screw-head" title="Chassis screw" />
+      <div className="absolute top-2.5 right-2.5 z-20">
+        <div className="chassis-screw" title="Chassis screw" />
       </div>
-      <div className="absolute bottom-3 left-3">
-        <div className="screw-head" title="Chassis screw" />
+      <div className="absolute bottom-2.5 left-2.5 z-20">
+        <div className="chassis-screw" title="Chassis screw" />
       </div>
-      <div className="absolute bottom-3 right-3">
-        <div className="screw-head" title="Chassis screw" />
+      <div className="absolute bottom-2.5 right-2.5 z-20">
+        <div className="chassis-screw" title="Chassis screw" />
       </div>
 
-      {/* Top Brand Debossed Badge */}
-      <div className="absolute top-3 right-10 flex items-center gap-2 select-none opacity-80 pointer-events-none">
-        <div className="debossed-badge text-[11px] sm:text-[13px] font-bold tracking-widest px-2 py-0.5 border border-[#857f72]/40 rounded">
+      {/* Top Right Debossed Brand Badge */}
+      <div className="absolute top-2.5 right-10 z-20 select-none">
+        <div className="debossed-badge-box">
           {systemName}
         </div>
       </div>
 
-      {/* Main Inner Computer Content */}
-      <div className="relative z-10 flex flex-col gap-5 sm:gap-6 pt-2">
-        {children}
-      </div>
+      {/* Direct Children render into the CSS Grid areas: screen, keys, strip, rail */}
+      {children}
     </div>
   );
 };
