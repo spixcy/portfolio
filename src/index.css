@@ -51,20 +51,20 @@ html, body {
 
 .computer-chassis-shell {
   width: 100%;
-  height: calc(100vh - 36px);
-  max-height: 920px;
-  min-height: 680px;
-  max-width: 1536px;
-  margin: 0 auto;
+  height: calc(100vh - 20px);
+  min-height: 720px;
+  max-height: none;
+  max-width: 100%;
+  margin: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(170px, 18.5vw, 220px);
-  grid-template-rows: minmax(0, 1fr) auto 24px;
+  grid-template-columns: minmax(0, 1fr) clamp(210px, 18vw, 290px);
+  grid-template-rows: minmax(0, 1fr) auto 28px;
   grid-template-areas: 
     "screen keys"
     "strip strip"
     "rail rail";
-  padding: 22px 26px 16px 26px;
-  gap: 16px 20px;
+  padding: 18px 22px 14px 22px;
+  gap: 14px 20px;
   
   /* Textured weathered metallic chassis with edge chips and metallic grain */
   background: 
@@ -251,9 +251,9 @@ html, body {
   inset: 0;
   background: radial-gradient(
     ellipse at 50% 50%,
-    transparent 55%,
-    rgba(0, 0, 0, 0.5) 85%,
-    rgba(0, 0, 0, 0.88) 100%
+    transparent 68%,
+    rgba(0, 0, 0, 0.3) 90%,
+    rgba(0, 0, 0, 0.65) 100%
   );
   pointer-events: none;
   z-index: 23;
@@ -305,25 +305,25 @@ html, body {
 /* Chunky 3D Push Button with Brushed Grain (Reference Image 4) */
 .key-cap-btn {
   width: 100%;
-  height: clamp(60px, 8vh, 72px);
+  height: clamp(62px, 8.2vh, 76px);
   background: 
     url('/textures/switch-brushed.svg') repeat,
-    linear-gradient(175deg, #615848 0%, #42392a 40%, #2a2419 100%);
-  border-radius: 10px;
-  border-top: 3px solid #8a7d65;
-  border-left: 2.5px solid #7a6e58;
-  border-bottom: 4px solid #100e0a;
-  border-right: 3px solid #100e0a;
+    linear-gradient(175deg, #645a49 0%, #463d2e 40%, #2a2419 100%);
+  border-radius: 9px;
+  border-top: 3px solid #8e8067;
+  border-left: 2.5px solid #7c7059;
+  border-bottom: 4.5px solid #0f0d09;
+  border-right: 3px solid #0f0d09;
   box-shadow: 
-    0 6px 12px rgba(0, 0, 0, 0.8),
+    0 7px 14px rgba(0, 0, 0, 0.85),
     0 3px 5px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255,255,255,0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
   user-select: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 18px;
+  padding: 0 20px;
   transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.1s ease;
 }
 
@@ -335,67 +335,77 @@ html, body {
 .key-cap-btn.is-active {
   transform: translateY(2px);
   border-top: 1.5px solid #1c1a16;
-  border-bottom: 2px solid #5a5142;
+  border-bottom: 2.5px solid #5a5142;
   box-shadow: 
     0 1px 2px rgba(0, 0, 0, 0.85),
-    inset 0 2px 5px rgba(0, 0, 0, 0.6);
+    inset 0 2px 5px rgba(0, 0, 0, 0.65);
 }
 
 .key-cap-label {
   font-family: var(--font-mono);
-  font-weight: 800;
-  font-size: 19px;
+  font-weight: 900;
+  font-size: clamp(17px, 1.3vw, 21px);
   letter-spacing: 0.22em;
-  color: #e8dcc8;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 -1px 0 rgba(0,0,0,0.5);
+  color: #eedec8;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 -1px 0 rgba(0, 0, 0, 0.5);
   transition: color 0.15s ease, text-shadow 0.15s ease;
 }
 
 .key-cap-label.is-active-label {
-  color: #ffe6b0;
+  color: #fff0c7;
   text-shadow: 
-    0 0 8px rgba(255, 170, 0, 0.85),
-    0 0 18px rgba(255, 145, 0, 0.5);
+    0 0 8px rgba(255, 170, 0, 0.9),
+    0 0 18px rgba(255, 145, 0, 0.6);
 }
 
 /* Amber Jewel LED (Reference Image 4) */
 .amber-led-jewel {
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   border-radius: 50%;
-  border: 2px solid #0f0d09;
+  border: 2px solid #0d0b08;
   transition: all 0.15s ease;
   flex-shrink: 0;
 }
 
 .amber-led-jewel.active {
-  background: radial-gradient(circle at 45% 40%, #ffffff 0%, #ffe07a 25%, #ff9900 65%, #c85a00 100%);
+  background: radial-gradient(circle at 45% 40%, #ffffff 0%, #ffe07a 22%, #ff9900 60%, #c85a00 100%);
   box-shadow: 
     0 0 10px #ffaa00,
-    0 0 22px rgba(255, 160, 0, 1),
-    0 0 35px rgba(255, 140, 0, 0.75);
+    0 0 24px rgba(255, 160, 0, 1),
+    0 0 38px rgba(255, 140, 0, 0.8);
 }
 
 .amber-led-jewel.inactive {
   background: radial-gradient(circle at 40% 35%, #462c0e 0%, #261605 70%, #140b02 100%);
   box-shadow: 
     inset 1px 1px 2px rgba(0, 0, 0, 0.95),
-    0 0.5px 1px rgba(255, 255, 255, 0.12);
+    0 0.5px 1px rgba(255, 255, 255, 0.15);
 }
 
 /* Red Illuminated Rocker Power Switch (Reference Image 4) */
 .power-rocker-wrapper {
   margin-top: auto;
   align-self: center;
-  width: 88%;
+  width: 90%;
+  background: #100e0b;
+  border-radius: 12px;
+  padding: 5px;
+  border-top: 2.5px solid #221c16;
+  border-left: 2px solid #221c16;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.22);
+  border-right: 2px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 
+    inset 3px 3px 8px rgba(0, 0, 0, 0.98),
+    0 1px 2px rgba(255, 255, 255, 0.2);
 }
 
 .power-rocker-btn {
   width: 100%;
   aspect-ratio: 440 / 270;
-  max-height: 92px;
-  border-radius: 10px;
-  padding: 5px;
+  max-height: 94px;
+  border-radius: 9px;
+  padding: 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -420,20 +430,21 @@ html, body {
   border-bottom: 2px solid rgba(255, 255, 255, 0.2);
   border-right: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 
-    0 0 14px rgba(255, 30, 30, 0.8),
-    0 0 28px rgba(255, 30, 30, 0.5);
+    0 0 16px rgba(255, 30, 30, 0.85),
+    0 0 32px rgba(255, 25, 25, 0.55),
+    0 10px 24px rgba(255, 20, 20, 0.4);
 }
 
 .power-rocker-btn.on .power-rocker-lens {
   background: 
     url('/textures/rocker-grid.svg') repeat,
     radial-gradient(circle at 65% 75%, #ff5533 0%, #e01212 45%, #8e0808 100%);
-  border-top: 2px solid #ff7777;
-  border-left: 1.5px solid #ff7777;
+  border-top: 2px solid #ff8888;
+  border-left: 1.5px solid #ff8888;
   border-bottom: 2.5px solid #540606;
   border-right: 2px solid #540606;
   box-shadow: 
-    inset 0 0 10px rgba(255, 120, 120, 0.65),
+    inset 0 0 12px rgba(255, 120, 120, 0.7),
     inset 0 -2px 6px rgba(0, 0, 0, 0.5);
 }
 
@@ -455,180 +466,116 @@ html, body {
 }
 
 /* ==========================================================================
-   AUTHENTIC 3D CARTRIDGES (REFERENCE IMAGE 1 & CLOSE-UP IMAGE 3)
+   AUTHENTIC 3D CARTRIDGES (MATCHING REFERENCE IMAGE 1)
    ========================================================================== */
 
 .cartridge-strip-deck {
   grid-area: strip;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 8px 14px;
-  border-top: 2px solid #2b251d;
-  border-left: 1.5px solid #2b251d;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.25);
-  background: #181511;
-  border-radius: 16px;
-  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(255, 255, 255, 0.15);
+  justify-content: space-evenly;
+  padding: 6px clamp(8px, 1.5vw, 24px);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  position: relative;
+  width: 100%;
+  gap: clamp(6px, 1vw, 16px);
+}
+
+/* Horizontal Engraved Chassis Seam above Cartridges (Reference Image 4) */
+.cartridge-strip-deck::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #3a3328;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  pointer-events: none;
 }
 
 /* Deep Outer Well Socket around each Cartridge */
 .cartridge-outer-well {
   flex: 1;
-  max-width: 250px;
-  background: #100e0b;
-  border-radius: 12px;
-  padding: 5px;
-  border-top: 2px solid #221d17;
-  border-left: 2px solid #221d17;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.18);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.18);
-  box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.98);
-  transition: all 0.2s ease;
-}
-
-/* Active Orange Radiant Backlight Halo (Reference Image 1) */
-.cartridge-active-halo {
-  filter: drop-shadow(0 0 6px #ff8a1f) drop-shadow(0 0 18px rgba(255, 138, 31, 0.9));
-  border-color: #ff8a1f !important;
-  box-shadow: 0 0 16px rgba(255, 145, 0, 0.8), inset 0 0 8px rgba(255, 145, 0, 0.5) !important;
-}
-
-/* Chunky Cartridge Unit (Reference Image 3) */
-.cartridge-chunky-unit {
-  width: 100%;
-  aspect-ratio: 400 / 215;
-  max-height: 96px;
-  background: 
-    url('/textures/cartridge-grain.svg') repeat,
-    linear-gradient(180deg, #524a3c 0%, #3a3429 40%, #242018 85%, #181410 100%);
-  border-radius: 8px;
-  border-top: 2.5px solid #7a7060;
-  border-left: 2px solid #645a4a;
-  border-bottom: 4px solid #100e0a;
-  border-right: 3px solid #100e0a;
+  min-width: 0;
+  max-width: 280px;
+  background: #0e0c0a;
+  border-radius: 14px;
+  padding: 6px;
+  border-top: 2.5px solid #201a14;
+  border-left: 2px solid #201a14;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.22);
+  border-right: 2px solid rgba(255, 255, 255, 0.22);
   box-shadow: 
-    0 6px 12px rgba(0, 0, 0, 0.85),
-    0 2px 4px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255,255,255,0.06);
+    inset 4px 4px 10px rgba(0, 0, 0, 0.98),
+    0 1px 2px rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Active Orange Radiant Backlight Halo (Reference Image 4) */
+.cartridge-outer-well.cartridge-active-halo {
+  border-color: #ff8a1f !important;
+  box-shadow: 
+    0 0 24px rgba(255, 145, 0, 0.9),
+    0 0 48px rgba(255, 138, 31, 0.65),
+    inset 0 0 12px rgba(255, 145, 0, 0.5) !important;
+}
+
+/* ── PHOTOGRAPHIC CARTRIDGE BUTTON (uses real cropped button image) ── */
+.cartridge-photo-unit {
+  width: 100%;
+  aspect-ratio: 391 / 258;
+  display: block;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 5px;
-  transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.12s ease, filter 0.1s ease;
-  user-select: none;
-}
-
-.cartridge-chunky-unit:hover {
-  filter: brightness(1.1);
-}
-
-.cartridge-chunky-unit.is-engaged {
-  transform: translateY(-2px);
-  border-color: #ff8a1f;
-  box-shadow: 0 0 12px rgba(255, 138, 31, 0.6), 0 6px 12px rgba(0, 0, 0, 0.9);
-}
-
-/* Inset Aged Ivory Paper Label Plate (Reference Image 3) */
-.cartridge-label-plate {
-  background: 
-    url('/textures/paper-grain.svg') repeat,
-    linear-gradient(180deg, #f2e8d2 0%, #ede0c5 100%);
-  border-radius: 5px;
-  padding: 5px 10px;
-  min-height: 50px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 2px solid #18160e;
-  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(255, 255, 255, 0.25);
-  position: relative;
   overflow: hidden;
+  outline: none;
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.9),
+    0 2px 6px rgba(0, 0, 0, 0.7);
+  transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.12s ease, filter 0.12s ease;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-/* Two Diagonal Orange Hazard Stripes on Bottom-Right */
-.cartridge-hazard-stripes {
-  width: 22px;
-  height: 22px;
-  position: absolute;
-  bottom: -3px;
-  right: -3px;
-  background: repeating-linear-gradient(
-    135deg,
-    #d97716 0 4px,
-    #ede5d3 4px 7.5px
-  );
-  border-top: 2px solid #1c1914;
-  border-left: 2px solid #1c1914;
-}
-
-/* Lower Section: Molded Textured Grip */
-.cartridge-lower-grip {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 4px;
-}
-
-.cartridge-molded-seam {
+.cartridge-photo-img {
   width: 100%;
-  height: 1.5px;
-  background: #14120e;
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.12);
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-/* Debossed Grip Triangle with 3 Inner Ridges (Reference Image 3) */
-.debossed-grip-triangle {
-  width: 30px;
-  height: 16px;
-  background: #12100d;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5px;
-  padding-top: 1px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.95);
+.cartridge-photo-unit:hover {
+  filter: brightness(1.08) saturate(1.1);
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.95),
+    0 4px 10px rgba(0, 0, 0, 0.7);
 }
 
-.triangle-ridge {
-  width: 65%;
-  height: 1.5px;
-  background: #3c352a;
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
+.cartridge-photo-unit:active {
+  transform: translateY(1px);
+  filter: brightness(0.95);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), inset 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* Lower Grip Notches */
-.cartridge-notch-row {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 4px 2px 4px;
-}
-
-.cartridge-notch {
-  width: 8px;
-  height: 3px;
-  background: #14120e;
-  border-top: 0.5px solid rgba(255, 255, 255, 0.15);
-  border-bottom: 1px solid #3d362a;
-  border-radius: 1px;
-}
-
-.cartridge-notch-center-line {
-  flex: 1;
-  height: 1px;
-  margin: 0 6px;
-  background: #181511;
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+.cartridge-photo-unit.is-engaged {
+  transform: translateY(-2px);
+  filter: brightness(1.05) saturate(1.15);
+  box-shadow:
+    0 0 20px rgba(255, 148, 0, 0.75),
+    0 10px 28px rgba(0, 0, 0, 0.95);
 }
 
 /* ==========================================================================

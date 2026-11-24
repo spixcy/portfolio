@@ -209,9 +209,9 @@ export function App() {
   }, [currentRoute, laneProjects, selectedProjectId]);
 
   return (
-    <div className="w-full min-h-screen bg-[#070605] flex flex-col items-center p-2 sm:p-4 overflow-x-hidden">
-      {/* 1. SECTION 1: PHYSICAL RETRO WORKSTATION (Occupies the viewport) */}
-      <div className="w-full flex items-center justify-center min-h-[94vh]">
+    <div className="w-full min-h-screen bg-[#070605] flex flex-col items-center p-1 sm:p-2 md:p-2.5 overflow-x-hidden">
+      {/* 1. SECTION 1: PHYSICAL RETRO WORKSTATION (Occupies the full viewport) */}
+      <div className="w-full h-screen min-h-screen flex flex-col items-stretch justify-start">
         <MetallicCasing>
           {/* Main CRT Monitor (grid-area: screen) */}
           <CRTDisplay

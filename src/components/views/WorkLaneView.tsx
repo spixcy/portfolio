@@ -70,7 +70,7 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
                     isSelected ? 'text-black font-extrabold' : 'text-[#ff9100]/80'
                   }`}
                 >
-                  {project.number}
+                  {String(idx + 1).padStart(2, '0')}
                 </span>
                 <span className="truncate uppercase">{project.title}</span>
               </button>

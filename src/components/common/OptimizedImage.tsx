@@ -249,27 +249,36 @@ function ProceduralArtwork({ id, alt }: { id: string; alt: string }) {
     case 'procedural:splat-paintings':
       return (
         <svg viewBox="0 0 400 240" className="w-full h-full select-none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="vortex" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#ffee55" />
-              <stop offset="40%" stopColor="#ff9900" />
-              <stop offset="80%" stopColor="#0a225c" />
-              <stop offset="100%" stopColor="#040b1e" />
-            </radialGradient>
-          </defs>
-          <rect width="400" height="240" fill="url(#vortex)" />
-          {/* Swirling strokes mimicking Starry Night / Gaussian splats */}
-          <g opacity="0.8">
-            <path d="M 40,80 Q 120,30 200,70 T 360,50" fill="none" stroke="#70d6ff" strokeWidth="12" strokeLinecap="round" opacity="0.6" strokeDasharray="14 10" />
-            <path d="M 20,110 Q 100,60 180,100 T 340,90" fill="none" stroke="#ffd166" strokeWidth="10" strokeLinecap="round" opacity="0.7" strokeDasharray="16 12" />
-            <path d="M 60,140 Q 140,90 220,130 T 380,110" fill="none" stroke="#06d6a0" strokeWidth="9" strokeLinecap="round" opacity="0.5" strokeDasharray="12 8" />
+          <rect width="400" height="240" fill="transparent" />
+          {/* Centered Arch / Dome Card matching Reference Image 4 */}
+          <g transform="translate(100, 15)">
+            {/* Dark background capsule */}
+            <rect width="200" height="205" rx="20" fill="#030712" stroke="#1f2937" strokeWidth="1.5" />
+            
+            {/* Semicircular dome */}
+            <path d="M 20,135 A 80,80 0 0 1 180,135 L 180,175 A 10,10 0 0 1 170,185 L 30,185 A 10,10 0 0 1 20,175 Z" fill="#040d28" stroke="#1d4ed8" strokeWidth="1.5" />
+            
+            {/* Deep swirling blue starry night sky */}
+            <g opacity="0.95">
+              {/* Swirls */}
+              <path d="M 40,115 Q 100,65 140,90 T 160,75" fill="none" stroke="#60a5fa" strokeWidth="6" strokeLinecap="round" strokeDasharray="8 6" />
+              <path d="M 50,135 Q 90,90 130,110 T 150,95" fill="none" stroke="#93c5fd" strokeWidth="5" strokeLinecap="round" strokeDasharray="6 4" />
+              <path d="M 70,85 Q 100,55 130,70" fill="none" stroke="#fef08a" strokeWidth="4" strokeLinecap="round" strokeDasharray="5 3" />
+            </g>
+
+            {/* Glowing stars */}
+            <circle cx="80" cy="85" r="10" fill="#fef08a" opacity="0.8" />
+            <circle cx="80" cy="85" r="4" fill="#ffffff" />
+            <circle cx="140" cy="70" r="12" fill="#fde047" opacity="0.85" />
+            <circle cx="140" cy="70" r="5" fill="#ffffff" />
+            <circle cx="110" cy="120" r="7" fill="#fef08a" opacity="0.7" />
+
+            {/* Cypress tree in foreground */}
+            <path d="M 55,170 Q 50,120 65,90 Q 75,125 70,170 Z" fill="#022c22" stroke="#052e16" strokeWidth="1" />
+            
+            {/* Village hills at base */}
+            <path d="M 20,150 Q 60,140 100,155 T 180,145 L 180,185 L 20,185 Z" fill="#0f172a" />
           </g>
-          {/* Golden luminous crescent moon */}
-          <circle cx="320" cy="65" r="28" fill="#ffee55" opacity="0.9" filter="drop-shadow(0 0 10px #ffbb00)" />
-          <circle cx="310" cy="60" r="23" fill="#102554" />
-          {/* Cypress silhouette in foreground */}
-          <path d="M 80,240 C 70,180 85,120 100,70 C 108,120 120,170 125,240 Z" fill="#03191e" />
-          <text x="16" y="222" fontFamily="monospace" fontSize="10" fill="#ffee55">GAUSSIAN SPLAT RADIANCE FIELD</text>
         </svg>
       );
 

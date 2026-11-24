@@ -311,12 +311,12 @@ export const portfolioData: PortfolioData = {
     // --- 3D WORLDS PROJECTS ---
     {
       id: 'splat-paintings',
-      number: '07',
+      number: '01',
       title: 'SPLAT PAINTINGS',
       category: 'worlds',
       categoryLabel: '3D Worlds',
-      tagline: 'Volumetric 3D Gaussian splat environments recreating classic impressionist and post-impressionist masterpieces.',
-      tags: ['Gaussian Splatting', 'Three.js', 'WebGL'],
+      tagline: 'The Great Wave, Starry Night and Water Lilies as Gaussian-splat dioramas you can look around.',
+      tags: ['Gaussian splats'],
       thumbnail: 'procedural:splat-paintings',
       heroImage: 'procedural:splat-paintings',
       featured: true,

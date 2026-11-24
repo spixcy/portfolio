@@ -105,7 +105,7 @@ export const SideControls: React.FC<SideControlsProps> = ({
       </div>
 
       {/* 4. RED POWER ROCKER SWITCH (Reference Image 4) */}
-      <div className="power-rocker-wrapper key-socket-well">
+      <div className="power-rocker-wrapper">
         <button
           onClick={handlePowerClick}
           aria-label={isPoweredOn ? 'Switch computer power OFF' : 'Switch computer power ON'}
