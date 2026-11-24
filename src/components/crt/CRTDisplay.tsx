@@ -29,7 +29,7 @@ export const CRTDisplay: React.FC<CRTDisplayProps> = ({
           {/* Dynamic Display Content */}
           {isPoweredOn ? (
             <div
-              className={`relative z-10 w-full h-full flex flex-col flex-1 p-3.5 sm:p-5 lg:p-6 text-[#faebda] overflow-hidden ${
+              className={`relative z-10 w-full h-full flex flex-col flex-1 p-3 sm:p-4 md:p-5 text-[#ffbe6b] overflow-hidden ${
                 powerTransitioning ? 'crt-powered-on-anim' : 'screen-flicker'
               }`}
             >
@@ -41,7 +41,7 @@ export const CRTDisplay: React.FC<CRTDisplayProps> = ({
                 powerTransitioning ? 'crt-powered-off-anim' : ''
               }`}
             >
-              <div className="text-neutral-800/40 text-xs font-mono tracking-widest uppercase select-none">
+              <div className="text-neutral-800/60 text-xs font-mono tracking-widest uppercase select-none">
                 [SYSTEM STANDBY • SWITCH POWER ON]
               </div>
             </div>
