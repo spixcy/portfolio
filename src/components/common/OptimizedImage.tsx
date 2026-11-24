@@ -18,45 +18,47 @@ function ProceduralArtwork({ id, alt }: { id: string; alt: string }) {
     case 'procedural:kinetic-vfx':
       return (
         <svg viewBox="0 0 400 240" className="w-full h-full select-none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="mangaBg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0f111a" />
-              <stop offset="100%" stopColor="#1a1c2e" />
-            </linearGradient>
-            <radialGradient id="impactGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#ff9d00" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#ff5500" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-          <rect width="400" height="240" fill="url(#mangaBg)" />
-          {/* Action lines */}
-          <g stroke="#ff9d00" strokeWidth="1" opacity="0.35">
-            <line x1="200" y1="120" x2="20" y2="20" strokeWidth="2" />
-            <line x1="200" y1="120" x2="60" y2="10" />
-            <line x1="200" y1="120" x2="360" y2="15" strokeWidth="2.5" />
-            <line x1="200" y1="120" x2="380" y2="70" />
-            <line x1="200" y1="120" x2="390" y2="180" strokeWidth="2" />
-            <line x1="200" y1="120" x2="30" y2="210" strokeWidth="2" />
-            <line x1="200" y1="120" x2="100" y2="230" />
-            <line x1="200" y1="120" x2="280" y2="235" />
+          {/* Subtle canvas */}
+          <rect width="400" height="240" fill="transparent" />
+          
+          {/* Centered White Impact Card matching Reference Image 1 */}
+          <g transform="translate(30, 20)">
+            <rect width="340" height="200" rx="10" fill="#ffffff" stroke="#d4d4d8" strokeWidth="1.5" />
+            
+            {/* Subtle horizontal paper lines */}
+            <line x1="15" y1="36" x2="325" y2="36" stroke="#f0f0f4" strokeWidth="1" />
+            <line x1="15" y1="60" x2="325" y2="60" stroke="#f0f0f4" strokeWidth="1" />
+            <line x1="15" y1="84" x2="325" y2="84" stroke="#f0f0f4" strokeWidth="1" />
+            <line x1="15" y1="108" x2="325" y2="108" stroke="#f0f0f4" strokeWidth="1" />
+            <line x1="15" y1="132" x2="325" y2="132" stroke="#f0f0f4" strokeWidth="1" />
+            <line x1="15" y1="156" x2="325" y2="156" stroke="#f0f0f4" strokeWidth="1" />
+            <line x1="15" y1="180" x2="325" y2="180" stroke="#f0f0f4" strokeWidth="1" />
+
+            {/* Small top label: Primary Button */}
+            <text x="25" y="30" fontFamily="monospace, sans-serif" fontSize="11" fontWeight="bold" fill="#71717a">Primary Button</text>
+
+            {/* Manga Japanese SFX characters: ドン! in black */}
+            <text x="210" y="78" fontFamily="'Impact', 'Arial Black', sans-serif" fontWeight="900" fontSize="44" fill="#09090b" transform="rotate(-6 210 78)">ドン!</text>
+
+            {/* Impact dust clouds */}
+            <g transform="translate(42, 42)">
+              <path d="M10,40 Q-5,15 20,10 Q30,-8 55,2 Q75,-12 95,0 Q118,-15 142,2 Q170,-8 180,12 Q210,8 200,38 Q222,48 208,68 Q222,88 192,92 Q170,112 140,98 Q110,112 80,98 Q50,108 30,88 Q5,82 10,58 Z" 
+                    fill="#f4f4f8" stroke="#3f3f46" strokeWidth="2.5" />
+              
+              {/* Blue-tinted impact shading lines */}
+              <path d="M25,25 Q35,15 50,22" stroke="#818cf8" strokeWidth="2" fill="none" />
+              <path d="M160,25 Q175,18 190,30" stroke="#818cf8" strokeWidth="2" fill="none" />
+              <path d="M175,70 Q188,78 178,90" stroke="#818cf8" strokeWidth="2" fill="none" />
+
+              {/* Bouncy elastic button in center */}
+              <rect x="35" y="32" width="145" height="50" rx="14" fill="#ffffff" stroke="#2563eb" strokeWidth="3.5" />
+              <text x="107" y="63" fontFamily="sans-serif" fontWeight="bold" fontSize="17" fill="#0f172a" textAnchor="middle">Primary</text>
+              
+              {/* Dynamic action speed lines on button */}
+              <line x1="48" y1="40" x2="65" y2="40" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" />
+              <line x1="44" y1="46" x2="56" y2="46" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" />
+            </g>
           </g>
-          {/* Glow center */}
-          <circle cx="200" cy="120" r="90" fill="url(#impactGlow)" />
-          {/* Elastic button in center */}
-          <g transform="translate(100, 75)">
-            {/* Manga impact dust clouds */}
-            <path d="M-10,35 Q-25,10 5,5 Q15,-15 35,-5 Q55,-20 75,-5 Q95,-20 120,-5 Q150,-10 160,10 Q190,5 180,35 Q205,45 190,65 Q205,85 175,90 Q150,110 120,95 Q90,110 60,95 Q30,105 10,85 Q-15,80 -10,55 Z" 
-                  fill="#ffffff" stroke="#222" strokeWidth="2.5" />
-            {/* Manga Japanese SFX characters: ドン! */}
-            <text x="140" y="32" fontFamily="monospace, sans-serif" fontWeight="900" fontSize="38" fill="#111" transform="rotate(8 140 32)">ドン!</text>
-            {/* The bouncy button */}
-            <rect x="25" y="28" width="140" height="46" rx="14" fill="#ffffff" stroke="#2d42ff" strokeWidth="3.5" />
-            <text x="95" y="58" fontFamily="sans-serif" fontWeight="bold" fontSize="16" fill="#111" textAnchor="middle">Primary</text>
-            {/* Speed lines on button */}
-            <line x1="38" y1="36" x2="52" y2="36" stroke="#2d42ff" strokeWidth="2" strokeLinecap="round" />
-            <line x1="34" y1="42" x2="44" y2="42" stroke="#2d42ff" strokeWidth="1.5" strokeLinecap="round" />
-          </g>
-          <text x="16" y="222" fontFamily="monospace" fontSize="11" fill="#ff9d00" opacity="0.8">KINETIC SPRING VFX v1.2</text>
         </svg>
       );
 

@@ -317,8 +317,7 @@ html, body {
 /* Chunky 3D Push Button with Brushed Grain (Reference Image 4) */
 .key-cap-btn {
   width: 100%;
-  aspect-ratio: 520 / 265;
-  max-height: 86px;
+  height: clamp(54px, 7.2vh, 64px);
   background: 
     url('/textures/switch-brushed.svg') repeat,
     linear-gradient(175deg, #544c3e 0%, #3a3429 45%, #242018 100%);
@@ -335,7 +334,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 18px;
   transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.1s ease;
 }
 
@@ -355,9 +354,9 @@ html, body {
 
 .key-cap-label {
   font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 0.18em;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 0.2em;
   color: #ded6c8;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
   transition: color 0.15s ease, text-shadow 0.15s ease;
@@ -366,14 +365,14 @@ html, body {
 .key-cap-label.is-active-label {
   color: #ffe6b0;
   text-shadow: 
-    0 0 8px rgba(255, 170, 0, 0.75),
-    0 0 16px rgba(255, 145, 0, 0.4);
+    0 0 8px rgba(255, 170, 0, 0.85),
+    0 0 18px rgba(255, 145, 0, 0.5);
 }
 
 /* Amber Jewel LED (Reference Image 4) */
 .amber-led-jewel {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   border: 1.5px solid #1a160e;
   transition: all 0.15s ease;
@@ -381,11 +380,11 @@ html, body {
 }
 
 .amber-led-jewel.active {
-  background: radial-gradient(circle at 45% 40%, #ffffff 0%, #ffde70 28%, #ff9500 70%, #d46500 100%);
+  background: radial-gradient(circle at 45% 40%, #ffffff 0%, #ffe07a 25%, #ff9900 65%, #c85a00 100%);
   box-shadow: 
-    0 0 8px #ffaa00,
-    0 0 18px rgba(255, 160, 0, 0.95),
-    0 0 30px rgba(255, 140, 0, 0.7);
+    0 0 10px #ffaa00,
+    0 0 22px rgba(255, 160, 0, 1),
+    0 0 35px rgba(255, 140, 0, 0.75);
 }
 
 .amber-led-jewel.inactive {
@@ -503,15 +502,16 @@ html, body {
 
 /* Active Orange Radiant Backlight Halo (Reference Image 1) */
 .cartridge-active-halo {
-  filter: drop-shadow(0 0 5px #ff8a1f) drop-shadow(0 0 16px rgba(255, 138, 31, 0.85));
+  filter: drop-shadow(0 0 6px #ff8a1f) drop-shadow(0 0 18px rgba(255, 138, 31, 0.9));
   border-color: #ff8a1f !important;
+  box-shadow: 0 0 16px rgba(255, 145, 0, 0.8), inset 0 0 8px rgba(255, 145, 0, 0.5) !important;
 }
 
 /* Chunky Cartridge Unit (Reference Image 3) */
 .cartridge-chunky-unit {
   width: 100%;
-  aspect-ratio: 400 / 250;
-  max-height: 112px;
+  aspect-ratio: 400 / 235;
+  max-height: 104px;
   background: 
     url('/textures/cartridge-grain.svg') repeat,
     linear-gradient(180deg, #464036 0%, #302b24 45%, #1c1a16 100%);
@@ -548,8 +548,8 @@ html, body {
     url('/textures/paper-grain.svg') repeat,
     #ede5d3;
   border-radius: 5px;
-  padding: 4px 8px;
-  height: 44px;
+  padding: 4px 10px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: space-between;

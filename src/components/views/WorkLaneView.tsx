@@ -52,21 +52,21 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
       {/* Split Work View: Left Project List (35%) + Right Detail Box (65%) */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-7 flex-1 items-stretch my-auto min-h-0">
         {/* Left Column: Numbered Project Index List (Reference Image 1) */}
-        <div className="md:col-span-5 flex flex-col justify-start gap-2.5 sm:gap-3.5 font-mono select-none pt-1">
+        <div className="md:col-span-5 flex flex-col justify-start gap-3 sm:gap-4 font-mono select-none pt-1">
           {projects.map((project, idx) => {
             const isSelected = idx === selectedIndex;
             return (
               <button
                 key={project.id}
                 onClick={() => handleItemClick(idx)}
-                className={`w-full text-left px-3.5 py-1.5 sm:py-2 transition-all duration-100 flex items-center font-bold tracking-wider text-base sm:text-lg md:text-[19px] lg:text-[20px] rounded-xs cursor-pointer ${
+                className={`w-full text-left px-3.5 py-2 transition-all duration-100 flex items-center font-bold tracking-wider text-base sm:text-lg md:text-[19px] lg:text-[20px] rounded-xs cursor-pointer ${
                   isSelected
                     ? 'bg-[#ff9100] text-black shadow-[0_0_14px_rgba(255,145,0,0.6)]'
                     : 'text-[#ff9100]/80 hover:text-[#ffaa22] hover:bg-[#ff9100]/10'
                 }`}
               >
                 <span
-                  className={`w-9 shrink-0 font-bold ${
+                  className={`w-10 shrink-0 font-bold ${
                     isSelected ? 'text-black' : 'text-[#ff9100]/70'
                   }`}
                 >
@@ -91,7 +91,7 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
           </div>
 
           {/* Centered Image Preview Box */}
-          <div className="w-full flex-1 min-h-[160px] max-h-[220px] rounded-xs overflow-hidden border border-[#ff9100]/40 bg-black/70 my-auto flex items-center justify-center p-2 shadow-inner">
+          <div className="w-full flex-1 min-h-[160px] max-h-[210px] rounded-xs overflow-hidden border border-[#ff9100]/40 bg-black/50 my-auto flex items-center justify-center p-1.5 shadow-inner">
             <OptimizedImage
               src={activeProject.thumbnail}
               alt={activeProject.title}
