@@ -45,7 +45,10 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
   }
 
   return (
-    <div className="flex flex-col flex-1 justify-between pt-1 h-full min-h-0">
+    <div
+      className="flex flex-col flex-1 justify-between pt-1 h-full min-h-0"
+      aria-label={`Work lane: ${categoryTitle}`}
+    >
       {/* Split Work View: Left Project List (35%) + Right Detail Box (65%) */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-7 flex-1 items-stretch my-auto min-h-0">
         {/* Left Column: Numbered Project Index List (Reference Image 1) */}
