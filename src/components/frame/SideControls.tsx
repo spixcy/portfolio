@@ -44,7 +44,7 @@ export const SideControls: React.FC<SideControlsProps> = ({
         </div>
       </div>
 
-      {/* 1. WORK Button */}
+      {/* 1. WORK Button (Reference Image 4) */}
       <div className="key-socket-well">
         <button
           onClick={() => handleNavClick('work/interface')}
@@ -54,7 +54,9 @@ export const SideControls: React.FC<SideControlsProps> = ({
             !isPoweredOn ? 'opacity-40 cursor-not-allowed' : ''
           }`}
         >
-          <span className="text-xs sm:text-sm font-bold tracking-widest text-[#ded6c8]">WORK</span>
+          <span className={`key-cap-label ${isWorkActive && isPoweredOn ? 'is-active-label' : ''}`}>
+            WORK
+          </span>
           <div
             className={`amber-led-jewel ${isWorkActive && isPoweredOn ? 'active' : 'inactive'}`}
             title={isWorkActive ? 'Work mode active' : 'Work mode inactive'}
@@ -72,7 +74,9 @@ export const SideControls: React.FC<SideControlsProps> = ({
             !isPoweredOn ? 'opacity-40 cursor-not-allowed' : ''
           }`}
         >
-          <span className="text-xs sm:text-sm font-bold tracking-widest text-[#ded6c8]">ABOUT</span>
+          <span className={`key-cap-label ${isAboutActive && isPoweredOn ? 'is-active-label' : ''}`}>
+            ABOUT
+          </span>
           <div
             className={`amber-led-jewel ${isAboutActive && isPoweredOn ? 'active' : 'inactive'}`}
             title={isAboutActive ? 'About mode active' : 'About mode inactive'}
@@ -90,7 +94,9 @@ export const SideControls: React.FC<SideControlsProps> = ({
             !isPoweredOn ? 'opacity-40 cursor-not-allowed' : ''
           }`}
         >
-          <span className="text-xs sm:text-sm font-bold tracking-widest text-[#ded6c8]">CONTACT</span>
+          <span className={`key-cap-label ${isContactActive && isPoweredOn ? 'is-active-label' : ''}`}>
+            CONTACT
+          </span>
           <div
             className={`amber-led-jewel ${isContactActive && isPoweredOn ? 'active' : 'inactive'}`}
             title={isContactActive ? 'Contact mode active' : 'Contact mode inactive'}
@@ -98,7 +104,7 @@ export const SideControls: React.FC<SideControlsProps> = ({
         </button>
       </div>
 
-      {/* 4. RED POWER ROCKER SWITCH */}
+      {/* 4. RED POWER ROCKER SWITCH (Reference Image 4) */}
       <div className="power-rocker-wrapper key-socket-well">
         <button
           onClick={handlePowerClick}
@@ -106,22 +112,24 @@ export const SideControls: React.FC<SideControlsProps> = ({
           title={isPoweredOn ? 'Power OFF' : 'Power ON'}
           className={`power-rocker-btn ${isPoweredOn ? 'on' : 'off'}`}
         >
-          <svg
-            className={`w-7 h-7 transition-all ${
-              isPoweredOn
-                ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.95)] scale-105'
-                : 'text-red-950/70 scale-95'
-            }`}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
-            <line x1="12" y1="2" x2="12" y2="12" />
-          </svg>
+          <div className="power-rocker-lens">
+            <svg
+              className={`w-6 h-6 transition-all ${
+                isPoweredOn
+                  ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.95)] scale-105'
+                  : 'text-red-950/60 scale-95'
+              }`}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+              <line x1="12" y1="2" x2="12" y2="12" />
+            </svg>
+          </div>
         </button>
       </div>
     </div>

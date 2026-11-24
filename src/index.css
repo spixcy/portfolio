@@ -286,14 +286,14 @@ html, body {
 }
 
 /* ==========================================================================
-   RIGHT CONTROL KEYPAD (WORK, ABOUT, CONTACT, POWER)
+   RIGHT CONTROL KEYPAD (WORK, ABOUT, CONTACT, POWER) — REFERENCE IMAGE 4
    ========================================================================== */
 
 .keys-panel-area {
   grid-area: keys;
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.4vh, 14px);
+  gap: 12px;
   padding: 0;
   min-height: 0;
   align-items: stretch;
@@ -301,43 +301,41 @@ html, body {
 
 /* Recessed Deep Socket Well for Keycaps */
 .key-socket-well {
-  background: #12110f;
+  background: #14120e;
   border-radius: 12px;
   padding: 5px;
-  border-top: 2px solid #24221d;
-  border-left: 2px solid #24221d;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.18);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-top: 2.5px solid #29241b;
+  border-left: 2px solid #29241b;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.22);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.22);
   box-shadow: 
-    inset 3px 3px 6px rgba(0, 0, 0, 0.98),
-    inset -1px -1px 3px rgba(255, 255, 255, 0.08);
+    inset 3px 3px 8px rgba(0, 0, 0, 0.98),
+    0 1px 2px rgba(255, 255, 255, 0.2);
   width: 100%;
 }
 
-/* Chunky 3D Push Button (Aspect ratio ~ 520 / 288 = ~1.8) */
+/* Chunky 3D Push Button with Brushed Grain (Reference Image 4) */
 .key-cap-btn {
   width: 100%;
-  aspect-ratio: 520 / 288;
-  max-height: 98px;
-  background: linear-gradient(180deg, #474238 0%, #353128 50%, #24211a 100%);
+  aspect-ratio: 520 / 265;
+  max-height: 86px;
+  background: 
+    url('/textures/switch-brushed.svg') repeat,
+    linear-gradient(175deg, #544c3e 0%, #3a3429 45%, #242018 100%);
   border-radius: 8px;
-  border-top: 2.5px solid #6b6454;
-  border-left: 2px solid #6b6454;
-  border-bottom: 3.5px solid #141310;
-  border-right: 2.5px solid #141310;
+  border-top: 2.5px solid #7c725d;
+  border-left: 2px solid #6e6552;
+  border-bottom: 3.5px solid #14120d;
+  border-right: 2.5px solid #14120d;
   box-shadow: 
-    0 5px 8px rgba(0, 0, 0, 0.65),
-    0 2px 3px rgba(0, 0, 0, 0.4);
-  color: #ded6c8;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  letter-spacing: 0.14em;
+    0 5px 9px rgba(0, 0, 0, 0.75),
+    0 2px 3px rgba(0, 0, 0, 0.5);
   user-select: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 clamp(12px, 1.4vw, 18px);
+  padding: 0 16px;
   transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.1s ease;
 }
 
@@ -347,52 +345,69 @@ html, body {
 
 .key-cap-btn:active,
 .key-cap-btn.is-active {
-  transform: translateY(2.5px);
-  border-top: 1.5px solid #1c1a17;
-  border-bottom: 1.5px solid #544e43;
+  transform: translateY(2px);
+  border-top: 1.5px solid #1c1a16;
+  border-bottom: 2px solid #5a5142;
   box-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.8),
-    inset 0 2px 5px rgba(0, 0, 0, 0.5);
+    0 1px 2px rgba(0, 0, 0, 0.85),
+    inset 0 2px 5px rgba(0, 0, 0, 0.6);
 }
 
-/* Amber Jewel LED */
+.key-cap-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  color: #ded6c8;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  transition: color 0.15s ease, text-shadow 0.15s ease;
+}
+
+.key-cap-label.is-active-label {
+  color: #ffe6b0;
+  text-shadow: 
+    0 0 8px rgba(255, 170, 0, 0.75),
+    0 0 16px rgba(255, 145, 0, 0.4);
+}
+
+/* Amber Jewel LED (Reference Image 4) */
 .amber-led-jewel {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  border: 1px solid #1a160e;
+  border: 1.5px solid #1a160e;
   transition: all 0.15s ease;
   flex-shrink: 0;
 }
 
 .amber-led-jewel.active {
-  background: #ffaa00;
-  box-shadow: var(--led-amber-glow);
+  background: radial-gradient(circle at 45% 40%, #ffffff 0%, #ffde70 28%, #ff9500 70%, #d46500 100%);
+  box-shadow: 
+    0 0 8px #ffaa00,
+    0 0 18px rgba(255, 160, 0, 0.95),
+    0 0 30px rgba(255, 140, 0, 0.7);
 }
 
 .amber-led-jewel.inactive {
-  background: #332512;
-  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.9);
+  background: radial-gradient(circle at 40% 35%, #462c0e 0%, #261605 70%, #140b02 100%);
+  box-shadow: 
+    inset 1px 1px 2px rgba(0, 0, 0, 0.95),
+    0 0.5px 1px rgba(255, 255, 255, 0.12);
 }
 
-/* Red Illuminated Rocker Power Switch */
+/* Red Illuminated Rocker Power Switch (Reference Image 4) */
 .power-rocker-wrapper {
   margin-top: auto;
   align-self: center;
-  width: 80%;
+  width: 84%;
 }
 
 .power-rocker-btn {
   width: 100%;
-  aspect-ratio: 440 / 293;
-  max-height: 94px;
-  background: linear-gradient(135deg, #d41c1c, #9e0e0e 55%, #660808);
-  border-radius: 10px;
-  border: 2px solid #3b0a0a;
-  box-shadow: 
-    inset 0 1px 3px rgba(255, 255, 255, 0.45),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.8),
-    0 4px 8px rgba(0, 0, 0, 0.6);
+  aspect-ratio: 440 / 265;
+  max-height: 88px;
+  border-radius: 9px;
+  padding: 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -400,19 +415,56 @@ html, body {
   transition: all 0.15s ease;
 }
 
+.power-rocker-lens {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
 .power-rocker-btn.on {
-  background: linear-gradient(135deg, #ff3333, #e01212 50%, #9e0808);
+  background: #181210;
+  border-top: 2.5px solid #281e1a;
+  border-left: 2px solid #281e1a;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 
-    inset 0 1px 4px rgba(255, 255, 255, 0.6),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.6),
-    var(--power-red-glow);
+    0 0 14px rgba(255, 30, 30, 0.8),
+    0 0 28px rgba(255, 30, 30, 0.5);
+}
+
+.power-rocker-btn.on .power-rocker-lens {
+  background: 
+    url('/textures/rocker-grid.svg') repeat,
+    radial-gradient(circle at 65% 75%, #ff5533 0%, #e01212 45%, #8e0808 100%);
+  border-top: 2px solid #ff7777;
+  border-left: 1.5px solid #ff7777;
+  border-bottom: 2.5px solid #540606;
+  border-right: 2px solid #540606;
+  box-shadow: 
+    inset 0 0 10px rgba(255, 120, 120, 0.65),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.5);
 }
 
 .power-rocker-btn.off {
-  background: linear-gradient(135deg, #4d1414, #2b0808);
-  opacity: 0.7;
-  box-shadow: 
-    inset 0 2px 4px rgba(0, 0, 0, 0.95),
+  background: #141110;
+  border-top: 2.5px solid #221c18;
+  border-left: 2px solid #221c18;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.12);
+}
+
+.power-rocker-btn.off .power-rocker-lens {
+  background: 
+    url('/textures/rocker-grid.svg') repeat,
+    linear-gradient(135deg, #3d0c0c 0%, #220606 100%);
+  opacity: 0.65;
+  border: 1.5px solid #1f0606;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.95);
+}
     0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
