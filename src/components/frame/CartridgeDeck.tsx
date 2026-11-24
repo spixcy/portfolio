@@ -108,11 +108,13 @@ export const CartridgeDeck: React.FC<CartridgeDeckProps> = ({
                 !isPoweredOn ? 'opacity-40 cursor-not-allowed' : ''
               }`}
             >
-              {/* Inserted Aged Cream Label Plate (matches media_1795520681788_381a2cc2.png) */}
+              {/* Inset Aged Ivory Paper Label Plate (Reference Image 3) */}
               <div className="cartridge-label-plate">
-                <div className="flex items-center gap-2">
-                  {c.iconSvg}
-                  <span className="text-[11px] sm:text-[12px] font-bold tracking-wider font-mono text-[#1a1815] uppercase">
+                <div className="flex items-center gap-2.5">
+                  <div className="shrink-0 w-6 h-6 flex items-center justify-center">
+                    {c.iconSvg}
+                  </div>
+                  <span className="text-xs sm:text-[13px] font-bold tracking-wider font-mono text-[#181510] uppercase">
                     {c.label}
                   </span>
                 </div>
@@ -120,18 +122,23 @@ export const CartridgeDeck: React.FC<CartridgeDeckProps> = ({
                 <div className="cartridge-hazard-stripes" />
               </div>
 
-              {/* Lower Section: Molded Downward Triangle & Ribbed Finger Grips */}
-              <div className="flex flex-col items-center justify-end pt-2 pb-1 gap-1">
-                {/* Debossed Triangle with 3 Horizontal Inner Ridges */}
+              {/* Lower Section: Molded Textured Grip with Debossed Triangle & Ridges */}
+              <div className="cartridge-lower-grip">
+                {/* Upper molded seam line */}
+                <div className="cartridge-molded-seam" />
+
+                {/* Debossed Triangle with 3 Horizontal Inner Ridges (Reference Image 3) */}
                 <div className="debossed-grip-triangle">
                   <div className="triangle-ridge" />
                   <div className="triangle-ridge" />
                   <div className="triangle-ridge" />
                 </div>
+
                 {/* Lower Horizontal Grip Notches on Left and Right */}
-                <div className="w-full flex justify-between px-2 pt-1">
-                  <div className="w-4 h-[3px] bg-[#12110f] border-t border-white/10 border-b border-[#474238] rounded-sm" />
-                  <div className="w-4 h-[3px] bg-[#12110f] border-t border-white/10 border-b border-[#474238] rounded-sm" />
+                <div className="cartridge-notch-row">
+                  <div className="cartridge-notch" />
+                  <div className="cartridge-notch-center-line" />
+                  <div className="cartridge-notch" />
                 </div>
               </div>
             </button>

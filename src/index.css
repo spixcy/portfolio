@@ -465,63 +465,70 @@ html, body {
   border: 1.5px solid #1f0606;
   box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.95);
 }
-    0 1px 2px rgba(0, 0, 0, 0.4);
-}
 
 /* ==========================================================================
-   AUTHENTIC 3D CARTRIDGES (MATCHES CLOSEUP PHOTOS IN REFERENCE)
+   AUTHENTIC 3D CARTRIDGES (REFERENCE IMAGE 1 & CLOSE-UP IMAGE 3)
    ========================================================================== */
 
 .cartridge-strip-deck {
   grid-area: strip;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  gap: clamp(10px, 2vw, 24px);
-  padding: 6px 12px;
-  border-top: 1.5px solid #454033;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.35);
-  background: rgba(0, 0, 0, 0.06);
+  justify-content: space-between;
+  gap: 14px;
+  padding: 8px 14px;
+  border-top: 2px solid #2b251d;
+  border-left: 1.5px solid #2b251d;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.25);
+  background: #181511;
   border-radius: 16px;
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(255, 255, 255, 0.15);
 }
 
 /* Deep Outer Well Socket around each Cartridge */
 .cartridge-outer-well {
-  background: #12110f;
+  flex: 1;
+  max-width: 250px;
+  background: #100e0b;
   border-radius: 12px;
   padding: 5px;
-  border-top: 2px solid #211f1a;
-  border-left: 2px solid #211f1a;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.2);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-top: 2px solid #221d17;
+  border-left: 2px solid #221d17;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.18);
   box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.98);
-  width: clamp(130px, 19vw, 215px);
   transition: all 0.2s ease;
 }
 
-/* Active Orange Radiant Backlight Halo */
+/* Active Orange Radiant Backlight Halo (Reference Image 1) */
 .cartridge-active-halo {
-  filter: drop-shadow(0 0 5px #ff8a1f) drop-shadow(0 0 18px rgba(255, 138, 31, 0.85));
-  border-color: #ff8a1f;
+  filter: drop-shadow(0 0 5px #ff8a1f) drop-shadow(0 0 16px rgba(255, 138, 31, 0.85));
+  border-color: #ff8a1f !important;
 }
 
-/* Chunky Cartridge Unit (Aspect ratio ~ 420 / 305 = ~1.377) */
+/* Chunky Cartridge Unit (Reference Image 3) */
 .cartridge-chunky-unit {
   width: 100%;
-  aspect-ratio: 420 / 305;
+  aspect-ratio: 400 / 250;
+  max-height: 112px;
   background: 
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 4px),
-    linear-gradient(180deg, #3d3931 0%, #292620 50%, #1c1a17 100%);
+    url('/textures/cartridge-grain.svg') repeat,
+    linear-gradient(180deg, #464036 0%, #302b24 45%, #1c1a16 100%);
   border-radius: 8px;
-  border: 1.5px solid #4a4438;
-  border-top: 2px solid #6b6454;
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.75);
+  border-top: 2.5px solid #6e6553;
+  border-left: 2px solid #5a5242;
+  border-bottom: 3.5px solid #14120e;
+  border-right: 2.5px solid #14120e;
+  box-shadow: 
+    0 5px 10px rgba(0, 0, 0, 0.8),
+    0 2px 3px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 6px;
-  transition: transform 0.14s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.14s ease, border-color 0.14s ease;
+  padding: 5px;
+  transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.12s ease, filter 0.1s ease;
   user-select: none;
 }
 
@@ -530,20 +537,24 @@ html, body {
 }
 
 .cartridge-chunky-unit.is-engaged {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   border-color: #ff8a1f;
+  box-shadow: 0 0 12px rgba(255, 138, 31, 0.6), 0 6px 12px rgba(0, 0, 0, 0.9);
 }
 
-/* Inset Aged Ivory Paper Label Plate */
+/* Inset Aged Ivory Paper Label Plate (Reference Image 3) */
 .cartridge-label-plate {
-  background: #ede5d3;
-  border-radius: 4px;
-  padding: 5px 8px;
+  background: 
+    url('/textures/paper-grain.svg') repeat,
+    #ede5d3;
+  border-radius: 5px;
+  padding: 4px 8px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1.5px solid #211f1a;
-  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.35);
+  border: 2px solid #1c1914;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
 }
@@ -553,22 +564,39 @@ html, body {
   width: 22px;
   height: 22px;
   position: absolute;
-  bottom: -4px;
-  right: -4px;
+  bottom: -3px;
+  right: -3px;
   background: repeating-linear-gradient(
     135deg,
     #d97716 0 4px,
-    #ede5d3 4px 7px
+    #ede5d3 4px 7.5px
   );
-  border-top: 1.5px solid #211f1a;
-  border-left: 1.5px solid #211f1a;
+  border-top: 2px solid #1c1914;
+  border-left: 2px solid #1c1914;
 }
 
-/* Debossed Grip Triangle with 3 Inner Ridges */
+/* Lower Section: Molded Textured Grip */
+.cartridge-lower-grip {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4px;
+}
+
+.cartridge-molded-seam {
+  width: 100%;
+  height: 1.5px;
+  background: #14120e;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Debossed Grip Triangle with 3 Inner Ridges (Reference Image 3) */
 .debossed-grip-triangle {
-  width: 24px;
-  height: 14px;
-  background: #141310;
+  width: 30px;
+  height: 16px;
+  background: #12100d;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   display: flex;
   flex-direction: column;
@@ -576,14 +604,40 @@ html, body {
   justify-content: center;
   gap: 1.5px;
   padding-top: 1px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.9);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.95);
 }
 
 .triangle-ridge {
-  width: 70%;
+  width: 65%;
   height: 1.5px;
-  background: #2e2b24;
+  background: #3c352a;
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Lower Grip Notches */
+.cartridge-notch-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px 2px 4px;
+}
+
+.cartridge-notch {
+  width: 8px;
+  height: 3px;
+  background: #14120e;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid #3d362a;
+  border-radius: 1px;
+}
+
+.cartridge-notch-center-line {
+  flex: 1;
+  height: 1px;
+  margin: 0 6px;
+  background: #181511;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
 }
 
 /* ==========================================================================
