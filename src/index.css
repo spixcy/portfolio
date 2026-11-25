@@ -145,7 +145,8 @@ html, body {
 @media (prefers-reduced-motion: reduce) { .autis-gallery-item img, .autis-primary-link, .autis-player-label button, .autis-tech-tile { transition: none; } }
 
 /* BoneVista editorial case study */
-.bonevista-study { color: #e8edf7; font-family: Inter, system-ui, sans-serif; position: relative; isolation: isolate; background: linear-gradient(rgba(3,10,24,.70),rgba(3,10,24,.78)), url('/images/projects/bonevista/full-background.jpg') center / cover fixed; }
+.bonevista-study { color: #e8edf7; font-family: Inter, system-ui, sans-serif; position: relative; isolation: isolate; }
+.bonevista-study::before { position: fixed; z-index: -1; inset: 0; content: ''; pointer-events: none; background: linear-gradient(rgba(3,10,24,.70),rgba(3,10,24,.78)), url('/images/projects/bonevista/full-background.jpg') center / cover no-repeat; }
 .bonevista-study h1, .bonevista-study h2, .bonevista-study h3, .bonevista-study p, .bonevista-study figure, .bonevista-study dl { margin-top: 0; }
 .bv-kicker, .bv-section-label, .bv-meta dt, .bv-feature-copy > .bv-kicker, .bv-stack-grid article > span, .bv-equations > span, .bv-credits > span { color: #91afff; font: 700 10px/1.6 var(--font-mono); letter-spacing: .17em; text-transform: uppercase; }
 .bv-hero { padding: 12px 0 62px; }
