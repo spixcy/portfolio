@@ -1,8 +1,7 @@
 import { useEffect, useState, type CSSProperties } from 'react';
 
 const itchEmbed = {
-  // Replace this empty value with the official iframe src from itch.io's creator dashboard.
-  src: '',
+  src: 'https://itch.io/embed-upload/18985616?color=ffffff',
   title: 'The Autis browser build',
 };
 
