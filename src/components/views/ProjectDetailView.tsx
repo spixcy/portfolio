@@ -2,6 +2,7 @@ import React from 'react';
 import type { Project } from '../../types/portfolio';
 import { OptimizedImage } from '../common/OptimizedImage';
 import { TheAutisCaseStudy } from './TheAutisCaseStudy';
+import { BoneVistaCaseStudy } from './BoneVistaCaseStudy';
 
 interface ProjectDetailViewProps {
   project: Project;
@@ -11,6 +12,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
   project,
 }) => {
   if (project.id === 'the-autis') return <TheAutisCaseStudy />;
+  if (project.id === 'bonevista') return <BoneVistaCaseStudy />;
 
   return (
     <article className="space-y-8 select-text">

@@ -403,7 +403,7 @@ export function App() {
           isClosing={isOverlayClosing}
           originX="56%"
           originY="52%"
-          wide={currentProject.id === 'the-autis'}
+          wide={currentProject.id === 'the-autis' || currentProject.id === 'bonevista'}
           exitLabel={`EXIT TO ${currentProject.categoryLabel.toUpperCase()}`}
           onClose={() => handleCloseOverlay(`work/${currentProject.category}`)}
           rightHeaderSlot={
