@@ -145,11 +145,11 @@ html, body {
 @media (prefers-reduced-motion: reduce) { .autis-gallery-item img, .autis-primary-link, .autis-player-label button, .autis-tech-tile { transition: none; } }
 
 /* BoneVista editorial case study */
-.bonevista-study { color: #e8edf7; font-family: Inter, system-ui, sans-serif; position: relative; isolation: isolate; background: linear-gradient(rgba(3,10,24,.80),rgba(3,10,24,.86)), url('/images/projects/bonevista/citation-background.jpg') center top / cover fixed; }
+.bonevista-study { color: #e8edf7; font-family: Inter, system-ui, sans-serif; position: relative; isolation: isolate; background: linear-gradient(rgba(3,10,24,.70),rgba(3,10,24,.78)), url('/images/projects/bonevista/full-background.jpg') center / cover fixed; }
 .bonevista-study h1, .bonevista-study h2, .bonevista-study h3, .bonevista-study p, .bonevista-study figure, .bonevista-study dl { margin-top: 0; }
 .bv-kicker, .bv-section-label, .bv-meta dt, .bv-feature-copy > .bv-kicker, .bv-stack-grid article > span, .bv-equations > span, .bv-credits > span { color: #91afff; font: 700 10px/1.6 var(--font-mono); letter-spacing: .17em; text-transform: uppercase; }
 .bv-hero { padding: 12px 0 62px; }
-.bv-hero-backdrop { position: relative; isolation: isolate; margin: -20px -24px 38px; padding: 30px 24px 44px; background: linear-gradient(90deg,rgba(4,12,26,.76) 0%,rgba(4,12,26,.58) 48%,rgba(4,12,26,.32) 100%), url('/images/projects/bonevista/citation-background.jpg') center 45% / cover; }
+.bv-hero-backdrop { position: relative; isolation: isolate; margin: -20px -24px 38px; padding: 30px 24px 44px; background: linear-gradient(90deg,rgba(4,12,26,.36),rgba(4,12,26,.20) 48%,rgba(4,12,26,.32)); }
 .bv-hero h1 { margin: 8px 0 6px; color: #f4f6fb; font-size: clamp(48px, 8vw, 88px); line-height: .94; letter-spacing: -.065em; }
 .bv-hero h2 { margin-bottom: 18px; color: #91afff; font-size: clamp(21px, 3vw, 32px); font-weight: 500; letter-spacing: -.035em; }
 .bv-lede { max-width: 800px; margin-bottom: 30px; color: #bac5d8; font-size: clamp(16px, 2vw, 20px); line-height: 1.75; }
@@ -209,7 +209,7 @@ html, body {
 .bv-pipeline b { color: #789aff; font: 700 10px var(--font-mono); }
 .bv-pipeline i { color: #64779e; font-style: normal; }
 .bv-technical-note { color: #8594ad; font-size: 11px; line-height: 1.7; }
-.bv-citation-panel { min-height: 260px; display: flex; align-items: center; margin: 10px 0 54px; padding: clamp(26px,5vw,54px); border: 1px solid rgba(90,167,255,.42); background: linear-gradient(90deg,rgba(3,13,29,.94),rgba(4,18,39,.78) 55%,rgba(4,20,43,.32)), url('/images/projects/bonevista/citation-background.jpg') center 52% / cover; box-shadow: inset 0 0 70px rgba(15,121,213,.13); }
+.bv-citation-panel { min-height: 260px; display: flex; align-items: center; margin: 10px 0 54px; padding: clamp(26px,5vw,54px); border: 1px solid rgba(90,167,255,.42); background: linear-gradient(90deg,rgba(3,13,29,.78),rgba(4,18,39,.58) 55%,rgba(4,20,43,.32)); box-shadow: inset 0 0 70px rgba(15,121,213,.13); }
 .bv-citation-panel > div { max-width: 560px; }
 .bv-citation-panel h2 { margin: 8px 0 10px; color: #edf5ff; font-size: clamp(28px,4vw,42px); letter-spacing: -.045em; }
 .bv-citation-panel p:not(.bv-kicker) { color: #c2d2e4; font-size: 13px; line-height: 1.8; }
