@@ -24,7 +24,7 @@ export function BoneVistaCaseStudy() {
 
   return (
     <article className="bonevista-study select-text">
-      <header className="bv-hero">
+      <header className="bv-hero bv-hero-backdrop">
         <p className="bv-kicker">3D WORKS / PROJECT 01 · LIVE</p>
         <h1>BONEVISTA</h1>
         <h2>3D anatomy, made explorable.</h2>
@@ -82,7 +82,7 @@ export function BoneVistaCaseStudy() {
       </section>
 
       <section className="bv-engineering">
-        <p className="bv-kicker">04 / ENGINEERING THE WORKSPACE</p><h2>A client-side 3D learning environment.</h2>
+        <h2>A client-side 3D learning environment.</h2>
         <p className="bv-engineering-intro">React and TypeScript organize the single-page application; Three.js and React Three Fiber render the anatomical scenes. Shared state keeps structure selection and layer visibility in step as people move between tools.</p>
         <div className="bv-stack-grid">
           <article><span>INTERFACE</span><p>React 19 · TypeScript · Vite · CSS Modules</p></article>
@@ -94,9 +94,8 @@ export function BoneVistaCaseStudy() {
         <p className="bv-technical-note">The viewer uses Draco-compressed 3D assets. Structure selection and layer visibility are coordinated through shared application state; model and document exports run from the browser.</p>
       </section>
 
-      <section className="bv-math">
-        <div><p className="bv-kicker">05 / A CLOSER LOOK AT BIOMECHANICS</p><h2>A small model, made legible.</h2><p>The axial model uses a simplified one-dimensional axial-bar finite-element formulation. It assembles element stiffness matrices, solves the reduced system with Gaussian elimination, and calculates illustrative element stress for the visualization.</p><p className="bv-disclaimer">This is an educational 1D model—not full 3D or patient-specific stress analysis.</p></div>
-        <div className="bv-equations"><span>ELEMENT STIFFNESS</span><code>kₑ = EA / L [ 1  −1 ; −1  1 ]</code><span>REDUCED SYSTEM</span><code>Kff · uf = Ff</code><span>ILLUSTRATIVE STRESS</span><code>σₑ = E (uⱼ − uᵢ) / L</code></div>
+      <section className="bv-citation-panel">
+        <div><p className="bv-kicker">REFERENCES & ATTRIBUTION</p><h2>Sources are cited.</h2><p>Anatomy datasets, licenses, and third-party assets are credited in BoneVista’s project documentation.</p><a href="https://github.com/spixcy/BoneVista/blob/main/LICENSES.md" target="_blank" rel="noreferrer">VIEW CITATIONS & LICENSES ↗</a></div>
       </section>
 
       <section className="bv-responsibility">

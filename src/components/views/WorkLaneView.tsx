@@ -55,10 +55,10 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
       className="flex flex-col flex-1 justify-between gap-2 h-full min-h-0"
       aria-label={`Work lane: ${categoryTitle}`}
     >
-      {/* Split Work View: Left Project List (~40%) + Right Bounded Preview (~60%) */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-7 flex-1 items-center min-h-0 py-1">
+      {/* Split Work View: Left Project List (~42%) + Right Bounded Preview (~58%) */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-6 flex-1 items-center min-h-0 py-1">
         {/* Left Column: Numbered Project Index List with Hover-to-Twitch */}
-        <div className="md:col-span-5 h-full flex flex-col justify-start gap-2.5 sm:gap-3 font-mono select-none md:border-r md:border-[#ff8a1f]/20 pl-2 sm:pl-3 md:pr-6 lg:pr-8 pt-4 pb-3">
+        <div className="md:col-span-5 h-full flex flex-col justify-start gap-2.5 sm:gap-3 font-mono select-none md:border-r md:border-[#ff8a1f]/20 pl-2 sm:pl-3 md:pr-4 lg:pr-6 pt-4 pb-3">
           {projects.map((project, idx) => {
             const isSelected = idx === selectedIndex;
             return (
@@ -85,14 +85,14 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
                 >
                   {String(idx + 1).padStart(2, '0')}
                 </span>
-                <span className="truncate uppercase">{project.title}</span>
+                <span className="uppercase leading-tight min-w-0">{project.title}</span>
               </button>
             );
           })}
         </div>
 
         {/* Right Column: Glowing Rounded Bounded Preview + Metadata + Description */}
-        <div className="md:col-span-7 h-full flex flex-col justify-center min-h-0 md:pl-1 lg:pl-2 md:pr-1 lg:pr-2 py-1">
+        <div className="md:col-span-7 h-full flex flex-col justify-center min-h-0 md:pl-2 lg:pl-3 md:pr-1 lg:pr-2 py-1">
           {/* Glowing Rounded Orange Preview Box */}
           <div
             key={`${activeProject.id}-${twitchTick}`}
@@ -100,7 +100,7 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
           >
             {/* Card Box Header */}
             <div className="flex items-center justify-between px-5 py-2 border-b border-[#ff8a1f]/65 font-mono shrink-0 bg-[#140902]/40">
-              <span className="text-[16px] sm:text-[17.5px] lg:text-[19px] font-bold tracking-[0.12em] text-[#ff9100] uppercase truncate ph-glow-text">
+              <span className="text-[16px] sm:text-[17.5px] lg:text-[19px] font-bold tracking-[0.12em] text-[#ff9100] uppercase ph-glow-text leading-tight min-w-0">
                 {activeProject.title}
               </span>
               <span className="text-sm sm:text-[15.5px] text-[#ff9100]/85 font-bold tracking-widest shrink-0 ml-3">
