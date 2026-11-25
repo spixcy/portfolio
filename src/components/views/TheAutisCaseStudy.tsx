@@ -88,7 +88,17 @@ export function TheAutisCaseStudy() {
         <div className="autis-gallery-rail autis-dev-rail" aria-label="Unity development screenshots; scroll horizontally for more">
           {developmentImages.map((image) => <figure key={image.src} className="autis-dev-slide"><img src={image.src} alt={image.alt} loading="lazy" /><figcaption>{image.caption}</figcaption></figure>)}
         </div>
-        <p className="autis-build-note"><strong>BUILD NOTES</strong> · Unity · C# · HTML5. The captures show scene work, a crafting interface, and active debugging; they do not establish the implementation details or sequence of changes.</p>
+        <div className="autis-build-notes">
+          <div className="autis-notes-heading"><div><p className="autis-kicker">TOOLS & TECHNOLOGY</p><h3>What went into the build.</h3></div><span>DEV / STACK</span></div>
+          <div className="autis-tech-grid">
+            <div className="autis-tech-tile"><span className="autis-tech-icon">◈</span><span className="autis-tech-label">ENGINE</span><strong>Unity</strong></div>
+            <div className="autis-tech-tile"><span className="autis-tech-icon">{ }</span><span className="autis-tech-label">LANGUAGE</span><strong>C#</strong></div>
+            <div className="autis-tech-tile"><span className="autis-tech-icon">&lt;/&gt;</span><span className="autis-tech-label">LANGUAGE</span><strong>C3 · C++</strong></div>
+            <div className="autis-tech-tile"><span className="autis-tech-icon">✳</span><span className="autis-tech-label">RENDERING</span><strong>Shaders</strong></div>
+            <div className="autis-tech-tile"><span className="autis-tech-icon">▣</span><span className="autis-tech-label">PLATFORM</span><strong>HTML5</strong></div>
+          </div>
+          <p className="autis-build-note">The supplied captures show scene composition, a crafting interface, and a Unity debugging snapshot.</p>
+        </div>
       </section>
 
       <section className="autis-section autis-play-section" id="where-to-play">
@@ -102,7 +112,6 @@ export function TheAutisCaseStudy() {
               allow="autoplay; fullscreen; gamepad"
               allowFullScreen
               loading="lazy"
-              onLoad={() => setEmbedMessage('The embed frame loaded. The game may take a moment to start.')}
               onError={() => setEmbedMessage('The browser build could not be loaded. Open the game on itch.io instead.')}
             />
           ) : (
@@ -117,6 +126,15 @@ export function TheAutisCaseStudy() {
         <div className="autis-play-actions">
           <a className="autis-primary-link" href="https://spixcy.itch.io/the-autis" target="_blank" rel="noreferrer">PLAY ON ITCH.IO ↗</a>
           {playing && <button type="button" className="autis-secondary-link" onClick={() => document.querySelector('.autis-player')?.requestFullscreen?.()}>FULLSCREEN ↗</button>}
+        </div>
+        <div className="autis-controls" aria-label="Game controls">
+          <div className="autis-controls-heading"><span className="autis-controls-icon">⌘</span><div><p className="autis-kicker">QUICK REFERENCE</p><h3>How to play</h3></div><span className="autis-controls-tag">KEYBOARD</span></div>
+          <div className="autis-control-grid">
+            <div className="autis-control-item"><div className="autis-wasd" aria-label="W A S D keys"><kbd>W</kbd><span><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span></div><div><strong>Move</strong><small>Walk around</small></div></div>
+            <div className="autis-control-item"><kbd className="autis-key-wide">SPACE</kbd><div><strong>Jump</strong><small>Leap over the terrain</small></div></div>
+            <div className="autis-control-item"><kbd>TAB</kbd><div><strong>Inventory</strong><small>Open your items</small></div></div>
+            <div className="autis-control-item"><kbd>ESC</kbd><div><strong>Menu</strong><small>Open game menu</small></div></div>
+          </div>
         </div>
         <p className="autis-caption">Click to load the browser build. Keyboard and mouse input are directed to the game while its frame is focused.</p>
       </section>
