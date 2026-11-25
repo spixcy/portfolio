@@ -146,7 +146,7 @@ export const WorkLaneView: React.FC<WorkLaneViewProps> = ({
                 onClick={handleOpenStudy}
                 className="px-5 py-2 rounded-[3px] font-mono text-[12.5px] sm:text-[13px] font-extrabold tracking-[0.12em] bg-[#ff9100] hover:bg-[#ffaa22] active:bg-[#e68200] text-black shadow-[0_0_12px_rgba(255,145,0,0.45)] transition-all inline-flex items-center gap-2 cursor-pointer uppercase"
               >
-                <span>▶ OPEN CASE STUDY</span>
+                <span>▶ {activeProject.actionLabel || 'OPEN CASE STUDY'}</span>
               </button>
             </div>
           </div>

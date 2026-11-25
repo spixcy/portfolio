@@ -132,7 +132,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
         </div>
 
         {/* Overview & Problem / Solution Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className={project.details.problem ? 'grid grid-cols-1 md:grid-cols-2 gap-4' : ''}>
           <div className="border border-[#ff9100]/40 rounded-xs p-3.5 bg-[#130f0a]/80">
             <h3 className="text-xs sm:text-sm font-bold text-[#ff9100] tracking-wider uppercase mb-1.5 flex items-center gap-1.5 ph-glow-text">
               <span>●</span> OVERVIEW
@@ -142,14 +142,16 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
             </p>
           </div>
 
+          {project.details.problem && (
           <div className="border border-[#ff9100]/40 rounded-xs p-3.5 bg-[#130f0a]/80">
             <h3 className="text-xs sm:text-sm font-bold text-[#ff9100] tracking-wider uppercase mb-1.5 flex items-center gap-1.5 ph-glow-text">
               <span>●</span> MOTIVATION & PROBLEM
             </h3>
             <p className="text-xs sm:text-sm text-[#faebda] leading-relaxed">
-              {project.details.problem || 'Addressing performance friction and interactive aesthetics in production.'}
+              {project.details.problem}
             </p>
           </div>
+          )}
         </div>
 
         {/* Solution */}
@@ -165,19 +167,21 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
         )}
 
         {/* Key Features */}
-        <div className="border border-[#ff9100]/40 rounded-xs p-3.5 bg-[#130f0a]/80">
-          <h3 className="text-xs sm:text-sm font-bold text-[#ff9100] tracking-wider uppercase mb-2 ph-glow-text">
-            KEY CAPABILITIES & FEATURES
-          </h3>
-          <ul className="space-y-2 text-xs sm:text-sm text-[#faebda]">
-            {project.details.features.map((feature, fIdx) => (
-              <li key={fIdx} className="flex items-start gap-2">
-                <span className="text-[#ff9100] mt-0.5">►</span>
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {project.details.features.length > 0 && (
+          <div className="border border-[#ff9100]/40 rounded-xs p-3.5 bg-[#130f0a]/80">
+            <h3 className="text-xs sm:text-sm font-bold text-[#ff9100] tracking-wider uppercase mb-2 ph-glow-text">
+              KEY CAPABILITIES & FEATURES
+            </h3>
+            <ul className="space-y-2 text-xs sm:text-sm text-[#faebda]">
+              {project.details.features.map((feature, fIdx) => (
+                <li key={fIdx} className="flex items-start gap-2">
+                  <span className="text-[#ff9100] mt-0.5">►</span>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Tech Stack Pills */}
         <div>

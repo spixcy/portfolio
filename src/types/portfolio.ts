@@ -30,6 +30,7 @@ export interface Project {
   heroImage?: string;
   featured?: boolean;
   featuredOrder?: number;
+  actionLabel?: string;
   details: ProjectDetailSection;
 }
 

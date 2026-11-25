@@ -14,7 +14,7 @@ const CARTRIDGES: {
 }[] = [
   { id: 'interface', label: 'INTERFACE' },
   { id: 'systems',   label: 'SYSTEMS'   },
-  { id: 'worlds',    label: '3D WORLDS' },
+  { id: 'worlds',    label: '3D WORKS' },
   { id: 'games',     label: 'GAMES'     },
 ];
 

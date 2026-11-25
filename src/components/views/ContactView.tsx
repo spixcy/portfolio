@@ -94,9 +94,11 @@ export const ContactView: React.FC<ContactViewProps> = ({
         </div>
 
         {/* Disclaimer / Note */}
-        <p className="text-[11px] sm:text-xs text-[#ffdfb8]/60 italic pt-2 leading-relaxed">
-          {contactData.disclaimer}
-        </p>
+        {contactData.disclaimer && (
+          <p className="text-[11px] sm:text-xs text-[#ffdfb8]/60 italic pt-2 leading-relaxed">
+            {contactData.disclaimer}
+          </p>
+        )}
       </div>
 
       {/* Bottom Hint Strip */}

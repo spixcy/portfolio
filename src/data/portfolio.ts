@@ -20,7 +20,7 @@ export const portfolioData: PortfolioData = {
 
   identity: {
     // [EDITABLE]: Replace with your full name
-    name: '[YOUR NAME]',
+    name: 'Swatha',
     // [EDITABLE]: Replace with your professional title
     title: 'Creative Frontend Engineer & Interaction Designer',
     // [EDITABLE]: Replace with your short one-line introduction
@@ -28,7 +28,7 @@ export const portfolioData: PortfolioData = {
     // [EDITABLE]: Replace with your city / base location
     location: 'GLOBAL',
     // [EDITABLE]: Replace with your local timezone
-    timezone: 'UTC+0',
+    timezone: 'UTC+5:30',
     // [EDITABLE]: Replace with your expected response time
     responseWindow: 'REPLIES WITHIN 24-48H',
     // [EDITABLE]: Replace with your availability status
@@ -72,31 +72,31 @@ export const portfolioData: PortfolioData = {
 
   contact: {
     heading: 'Contact',
-    locationMeta: 'GLOBAL • OPEN TIMEZONE • REPLIES WITHIN 48H',
+    locationMeta: 'GLOBAL • UTC+5:30 • REPLIES WITHIN 24-48H',
     subheading: 'Pick a channel. I read everything that lands. The clearer the ask, the faster the reply.',
     links: [
       {
         channel: 'EMAIL',
-        handle: 'your.name@example.com',
-        url: 'mailto:your.name@example.com',
+        handle: 'swathasingh123@gmail.com',
+        url: 'mailto:swathasingh123@gmail.com',
       },
       {
         channel: 'LINKEDIN',
-        handle: 'linkedin.com/in/your-profile',
-        url: 'https://linkedin.com',
+        handle: 'linkedin.com/in/swatha-ba1721385',
+        url: 'https://www.linkedin.com/in/swatha-ba1721385/',
       },
       {
         channel: 'GITHUB',
-        handle: 'github.com/your-username',
-        url: 'https://github.com',
+        handle: 'github.com/spixcy',
+        url: 'https://github.com/spixcy',
       },
       {
-        channel: 'X / TWITTER',
-        handle: '@your_handle',
-        url: 'https://x.com',
+        channel: 'INSTAGRAM',
+        handle: 'instagram.com/____maxin',
+        url: 'https://www.instagram.com/____maxin/',
       },
     ],
-    disclaimer: 'If your message is "let\'s hop on a call to discuss synergy" without context — please send a brief overview first.',
+    disclaimer: '',
   },
 
   categories: [
@@ -119,7 +119,7 @@ export const portfolioData: PortfolioData = {
     {
       id: 'worlds',
       lane: 3,
-      title: '3D WORLDS',
+      title: '3D WORKS',
       code: 'WRLD',
       icon: 'box',
       description: 'Interactive WebGL simulations, 3D generative scenes, and spatial shaders.',
@@ -308,116 +308,57 @@ export const portfolioData: PortfolioData = {
       },
     },
 
-    // --- 3D WORLDS PROJECTS ---
+    // --- 3D WORKS PROJECTS ---
     {
-      id: 'splat-paintings',
+      id: 'bonevista',
       number: '01',
-      title: 'SPLAT PAINTINGS',
+      title: 'BONEVISTA',
       category: 'worlds',
-      categoryLabel: '3D Worlds',
-      tagline: 'The Great Wave, Starry Night and Water Lilies as Gaussian-splat dioramas you can look around.',
-      tags: ['Gaussian splats'],
-      thumbnail: 'procedural:splat-paintings',
-      heroImage: 'procedural:splat-paintings',
+      categoryLabel: '3D Works',
+      tagline: '3D anatomy, made explorable. A browser-based anatomy and biomechanics workspace for learning by seeing, moving, and testing ideas.',
+      tags: ['React', 'Three.js', 'TypeScript'],
+      thumbnail: 'https://raw.githubusercontent.com/spixcy/BoneVista/main/public/branding/bonevista-hero-banner.png',
+      heroImage: 'https://raw.githubusercontent.com/spixcy/BoneVista/main/public/branding/bonevista-hero-banner.png',
       featured: true,
       featuredOrder: 4,
+      actionLabel: 'EXPLORE PROJECT',
       details: {
-        overview: 'An interactive 3D gallery where viewers step directly inside 3D reconstructed paintings, observing paint stroke relief and volumetric brushwork.',
-        problem: 'Volumetric radiance fields typically demand heavy VRAM and create sluggish web experiences.',
-        solution: 'Implemented custom spherical harmonic compression and progressive LOD streaming, reducing memory footprints by 70%.',
+        overview: 'BoneVista brings interactive anatomy models, guided study, physiology revision, radiograph viewing, and an educational biomechanics model into one browser workspace.',
         features: [
-          'Interactive orbit camera and depth-of-field post-processing',
-          'Custom WebGL sorting pipeline maintaining 60fps at 500k splats',
-          'Dynamic virtual lighting interacting with oil-paint specular reflections',
-          'Mobile gyro camera steering support',
+          'Explore and select structures across skeletal, muscle, brain, and nerve atlases.',
+          'Study with guided anatomy paths and animated physiology revision.',
+          'Use browser-based radiograph viewing and an educational axial stress model.',
+          'For education and exploration; not for diagnosis or treatment decisions.',
         ],
-        techStack: ['Three.js', 'WebGL', 'Gaussian Splatting', 'GLSL'],
+        techStack: ['React', 'TypeScript', 'Three.js', 'React Three Fiber', 'Vite'],
         links: [
-          { label: 'Explore 3D World', url: '#', type: 'live' },
-          { label: 'Technical Writeup', url: '#', type: 'case-study' },
-        ],
-      },
-    },
-    {
-      id: 'cyber-diorama',
-      number: '08',
-      title: 'CYBER DIORAMA',
-      category: 'worlds',
-      categoryLabel: '3D Worlds',
-      tagline: 'Isometric miniature city dioramas featuring volumetric fog, rain shaders, and neon reflections.',
-      tags: ['Three.js', 'Shaders', 'Blender'],
-      thumbnail: 'procedural:cyber-diorama',
-      heroImage: 'procedural:cyber-diorama',
-      featured: false,
-      details: {
-        overview: 'A stylized 3D miniature city block rendered in real time, featuring atmospheric day/night transitions, wet pavement raymarching, and ambient city audio.',
-        problem: 'Achieving atmospheric cinematic fidelity inside web viewports without huge 3D asset downloads.',
-        solution: 'Modeled modular low-poly kit pieces in Blender and enhanced them using screen-space reflections, volumetric god-rays, and animated UV noise shaders.',
-        features: [
-          'Dynamic day-to-night lighting cycle with real-time shadow casting',
-          'Puddle ripple simulations and neon marquee lighting',
-          'Interactive points of interest with inspection camera zooms',
-        ],
-        techStack: ['Three.js', 'Blender', 'GLSL', 'Vite'],
-        links: [
-          { label: 'Enter Diorama', url: '#', type: 'live' },
+          { label: 'Open BoneVista', url: 'https://bonevista.vercel.app/', type: 'live' },
+          { label: 'View GitHub repository', url: 'https://github.com/spixcy/BoneVista', type: 'repo' },
+          { label: 'Open Live App', url: 'https://bonevista.vercel.app/', type: 'live' },
         ],
       },
     },
 
     // --- GAMES PROJECTS ---
     {
-      id: 'vector-drift',
+      id: 'the-autis',
       number: '09',
-      title: 'VECTOR DRIFT',
+      title: 'THE AUTIS',
       category: 'games',
       categoryLabel: 'Games',
-      tagline: 'Retro wireframe arcade racing game running on simulated oscilloscope vector beam physics.',
-      tags: ['Arcade', 'Vector Graphics', 'Physics'],
-      thumbnail: 'procedural:vector-drift',
-      heroImage: 'procedural:vector-drift',
+      tagline: 'A Unity game built with C#. Play it on itch.io.',
+      tags: ['Unity', 'C#', 'Game'],
+      thumbnail: '/the-autis.jpeg',
+      heroImage: '/the-autis.jpeg',
       featured: false,
+      actionLabel: 'VIEW GAME',
       details: {
-        overview: 'A fast-paced neon arcade racer inspired by 1980s vector graphics cabinets (Battlezone, Tempest). Features procedural tracks, drift mechanics, and CRT bloom.',
-        problem: 'Standard canvas line drawing lacks the bright phosphor persistence and cathode bloom of authentic arcade CRT monitors.',
-        solution: 'Built a multi-pass glow compositor with simulated beam overdraw and phosphor decay trails.',
-        features: [
-          'Drift physics engine with tire slip angles and momentum conservation',
-          'Procedural infinite track generation with curve banking',
-          'Chiptune synthesizer soundtrack generated via Web Audio',
-          'Global high-score leaderboard and keyboard/gamepad support',
-        ],
-        techStack: ['TypeScript', 'Canvas 2D', 'Web Audio API', 'Gamepad API'],
+        overview: 'The Autis is a game project built with Unity and C#.',
+        features: [],
+        techStack: ['Unity', 'C#'],
         links: [
-          { label: 'Play in Browser', url: '#', type: 'live' },
-          { label: 'Source Code', url: '#', type: 'repo' },
-        ],
-      },
-    },
-    {
-      id: 'dungeon-byte',
-      number: '10',
-      title: 'DUNGEON BYTE',
-      category: 'games',
-      categoryLabel: 'Games',
-      tagline: 'Micro roguelike card crawler rendered inside a simulated monochrome LCD pocket console.',
-      tags: ['Roguelike', 'Turn-Based', 'Pixel Art'],
-      thumbnail: 'procedural:dungeon-byte',
-      heroImage: 'procedural:dungeon-byte',
-      featured: false,
-      details: {
-        overview: 'A minimalist dungeon crawler played on a 3x3 grid where cards represent weapons, monsters, potions, and shields.',
-        problem: 'Designing deep strategic gameplay that feels immediate, bite-sized, and satisfying on both mobile and desktop screens.',
-        solution: 'Streamlined mechanics into single-tap card interactions with deterministic enemy behaviors and procedural item generation.',
-        features: [
-          'Procedural dungeon generation with increasing difficulty depth',
-          'Dot-matrix LCD ghosting effect and authentic button clicks',
-          'Save state persistence via localStorage',
-          'Zero load time — under 40kb total bundle weight',
-        ],
-        techStack: ['React', 'TypeScript', 'Web Audio API'],
-        links: [
-          { label: 'Play Game', url: '#', type: 'live' },
+          { label: 'Play The Autis on itch.io', url: 'https://spixcy.itch.io/the-autis', type: 'live' },
+          { label: 'View source on GitHub', url: 'https://github.com/spixcy/Auti-the-game', type: 'repo' },
         ],
       },
     },
