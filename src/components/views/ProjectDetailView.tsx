@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Project } from '../../types/portfolio';
 import { OptimizedImage } from '../common/OptimizedImage';
+import { TheAutisCaseStudy } from './TheAutisCaseStudy';
 
 interface ProjectDetailViewProps {
   project: Project;
@@ -9,6 +10,8 @@ interface ProjectDetailViewProps {
 export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
   project,
 }) => {
+  if (project.id === 'the-autis') return <TheAutisCaseStudy />;
+
   return (
     <article className="space-y-8 select-text">
       {/* Title & Tagline */}

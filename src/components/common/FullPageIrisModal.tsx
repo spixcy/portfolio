@@ -8,6 +8,7 @@ interface FullPageIrisModalProps {
   exitLabel?: string;
   onClose: () => void;
   rightHeaderSlot?: React.ReactNode;
+  wide?: boolean;
   children: React.ReactNode;
 }
 
@@ -18,6 +19,7 @@ export const FullPageIrisModal: React.FC<FullPageIrisModalProps> = ({
   exitLabel = 'EXIT',
   onClose,
   rightHeaderSlot,
+  wide = false,
   children,
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -76,7 +78,7 @@ export const FullPageIrisModal: React.FC<FullPageIrisModalProps> = ({
       </header>
 
       {/* Main Centered Editorial Container */}
-      <main className="max-w-3xl mx-auto px-6 sm:px-10 pt-4 pb-24">
+      <main className={`${wide ? 'max-w-6xl' : 'max-w-3xl'} mx-auto px-6 sm:px-10 pt-4 pb-24`}>
         {children}
       </main>
     </div>
