@@ -1,234 +1,131 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import type { Project } from '../../types/portfolio';
 import { OptimizedImage } from '../common/OptimizedImage';
-import { soundEffects } from '../../utils/soundEffects';
 
 interface ProjectDetailViewProps {
   project: Project;
-  onBackToWork: () => void;
-  onPrevProject: () => void;
-  onNextProject: () => void;
-  hasPrev: boolean;
-  hasNext: boolean;
 }
 
 export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
   project,
-  onBackToWork,
-  onPrevProject,
-  onNextProject,
-  hasPrev,
-  hasNext,
 }) => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [scrollPercent, setScrollPercent] = useState<number>(0);
-
-  const handleScroll = () => {
-    if (!scrollContainerRef.current) return;
-    const { scrollTop, scrollHeight, clientHeight } = scrollContainerRef.current;
-    if (scrollHeight <= clientHeight) {
-      setScrollPercent(100);
-      return;
-    }
-    const percent = Math.min(100, Math.max(0, Math.round((scrollTop / (scrollHeight - clientHeight)) * 100)));
-    setScrollPercent(percent);
-  };
-
-  useEffect(() => {
-    setScrollPercent(0);
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTop = 0;
-    }
-  }, [project.id]);
-
-  const handleBack = () => {
-    soundEffects.playButtonClick();
-    onBackToWork();
-  };
-
-  const handlePrev = () => {
-    soundEffects.playButtonClick();
-    onPrevProject();
-  };
-
-  const handleNext = () => {
-    soundEffects.playButtonClick();
-    onNextProject();
-  };
-
   return (
-    <div
-      ref={scrollContainerRef}
-      onScroll={handleScroll}
-      className="flex flex-col flex-1 justify-between pt-1 overflow-y-auto pr-1 select-text"
-    >
-      {/* Top Navigation Row */}
-      <div className="flex items-center justify-between pb-2 border-b border-[#ff9100]/25 select-none sticky top-0 bg-[#0e0a07]/90 backdrop-blur z-20">
-        <button
-          onClick={handleBack}
-          className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#ff9100]/60 bg-[#ff9100]/10 hover:bg-[#ff9100]/25 text-[#ffbe6b] font-mono text-xs font-bold tracking-wider transition-all cursor-pointer shadow-sm"
-        >
-          <span>◄ EXIT TO {project.categoryLabel.toUpperCase()}</span>
-        </button>
-
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5">
-            <button
-              onClick={handlePrev}
-              disabled={!hasPrev}
-              className={`px-2 py-1 rounded border font-mono text-xs ${
-                hasPrev
-                  ? 'border-[#ff9100]/40 text-[#ffbe6b] hover:bg-[#ff9100]/20 cursor-pointer'
-                  : 'border-neutral-800 text-neutral-600 cursor-not-allowed'
-              }`}
-              title="Previous project"
-            >
-              ◄ PREV
-            </button>
-            <button
-              onClick={handleNext}
-              disabled={!hasNext}
-              className={`px-2 py-1 rounded border font-mono text-xs ${
-                hasNext
-                  ? 'border-[#ff9100]/40 text-[#ffbe6b] hover:bg-[#ff9100]/20 cursor-pointer'
-                  : 'border-neutral-800 text-neutral-600 cursor-not-allowed'
-              }`}
-              title="Next project"
-            >
-              NEXT ►
-            </button>
-          </div>
-          {/* Scroll progress % */}
-          <span className="text-[11px] font-mono font-bold text-[#ff9100]/80 min-w-[36px] text-right">
-            {scrollPercent}%
-          </span>
+    <article className="space-y-8 select-text">
+      {/* Title & Tagline */}
+      <header className="space-y-3">
+        <div className="font-mono text-xs sm:text-sm text-[#ff8a1f]/75 uppercase tracking-[0.2em] font-bold">
+          {project.categoryLabel.toUpperCase()} • PROJECT {project.number}
         </div>
+        <h1 className="text-4xl sm:text-6xl font-bold text-[#ff8a1f] tracking-tight uppercase">
+          {project.title}
+        </h1>
+        <p className="text-lg sm:text-xl text-[#f5ece0] leading-relaxed">
+          {project.tagline}
+        </p>
+      </header>
+
+      {/* Hero Artwork / Screenshot */}
+      <div className="w-full aspect-video max-h-[420px] rounded-lg overflow-hidden border border-[#ff8a1f]/40 bg-black/75 shadow-2xl p-2">
+        <OptimizedImage
+          src={project.heroImage || project.thumbnail}
+          alt={project.title}
+          aspectRatio="16/9"
+          fit="contain"
+          priority={true}
+        />
       </div>
 
-      {/* Main Case Study Scrollable Content */}
-      <div className="py-4 space-y-5 flex-1 font-mono">
-        {/* Title & Tagline */}
-        <div>
-          <div className="text-xs text-[#ff9100]/80 uppercase tracking-widest font-bold">
-            CATEGORY // {project.categoryLabel.toUpperCase()}
-          </div>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#ff9100] ph-glow-hero tracking-tight mt-1 uppercase">
-            {project.title}
-          </h1>
-          <p className="mt-1 text-sm sm:text-base text-[#ffdfb8] leading-relaxed">
-            {project.tagline}
-          </p>
+      {/* Action Links */}
+      {project.details.links && project.details.links.length > 0 && (
+        <div className="flex flex-wrap gap-3">
+          {project.details.links.map((link, lIdx) => (
+            <a
+              key={lIdx}
+              href={link.url}
+              target="_blank"
+              rel="noreferrer"
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-md font-mono text-xs sm:text-sm font-bold tracking-wider uppercase transition-all ${
+                lIdx === 0
+                  ? 'bg-[#ff8a1f] hover:bg-[#ffa03a] text-[#120b06] shadow-[0_0_18px_rgba(255,138,31,0.35)]'
+                  : 'border border-[#ff8a1f]/45 bg-[#1a1008]/80 hover:bg-[#ff8a1f]/15 text-[#ffbe6b]'
+              }`}
+            >
+              <span>{link.label}</span>
+              <span>↗</span>
+            </a>
+          ))}
         </div>
+      )}
 
-        {/* Hero Artwork / Screenshot */}
-        <div className="w-full aspect-video max-h-[260px] sm:max-h-[300px] rounded-xs overflow-hidden border border-[#ff9100]/50 bg-black/70 shadow-lg p-1">
-          <OptimizedImage
-            src={project.heroImage || project.thumbnail}
-            alt={project.title}
-            aspectRatio="16/9"
-            fit="contain"
-            priority={true}
-          />
-        </div>
+      {/* Overview */}
+      <section className="space-y-3">
+        <h2 className="text-xl sm:text-2xl font-bold text-[#ff8a1f] tracking-tight">
+          Overview
+        </h2>
+        <p className="text-base sm:text-[17px] text-[#e8ddd0] leading-[1.75]">
+          {project.details.overview}
+        </p>
+      </section>
 
-        {/* Overview & Problem / Solution Grid */}
-        <div className={project.details.problem ? 'grid grid-cols-1 md:grid-cols-2 gap-4' : ''}>
-          <div className="border border-[#ff9100]/40 rounded-xs p-3.5 bg-[#130f0a]/80">
-            <h3 className="text-xs sm:text-sm font-bold text-[#ff9100] tracking-wider uppercase mb-1.5 flex items-center gap-1.5 ph-glow-text">
-              <span>●</span> OVERVIEW
-            </h3>
-            <p className="text-xs sm:text-sm text-[#faebda] leading-relaxed">
-              {project.details.overview}
-            </p>
-          </div>
-
+      {/* Problem & Solution if present */}
+      {(project.details.problem || project.details.solution) && (
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {project.details.problem && (
-          <div className="border border-[#ff9100]/40 rounded-xs p-3.5 bg-[#130f0a]/80">
-            <h3 className="text-xs sm:text-sm font-bold text-[#ff9100] tracking-wider uppercase mb-1.5 flex items-center gap-1.5 ph-glow-text">
-              <span>●</span> MOTIVATION & PROBLEM
-            </h3>
-            <p className="text-xs sm:text-sm text-[#faebda] leading-relaxed">
-              {project.details.problem}
-            </p>
-          </div>
+            <div className="border border-[#ff8a1f]/25 rounded-md p-5 bg-[#1a1008]/70 space-y-2">
+              <h3 className="font-mono text-xs sm:text-sm font-bold text-[#ff8a1f] tracking-wider uppercase">
+                ● Motivation & Problem
+              </h3>
+              <p className="text-sm sm:text-base text-[#e8ddd0] leading-relaxed">
+                {project.details.problem}
+              </p>
+            </div>
           )}
-        </div>
+          {project.details.solution && (
+            <div className="border border-[#ff8a1f]/25 rounded-md p-5 bg-[#1a1008]/70 space-y-2">
+              <h3 className="font-mono text-xs sm:text-sm font-bold text-[#ff8a1f] tracking-wider uppercase">
+                ● Architectural Solution
+              </h3>
+              <p className="text-sm sm:text-base text-[#e8ddd0] leading-relaxed">
+                {project.details.solution}
+              </p>
+            </div>
+          )}
+        </section>
+      )}
 
-        {/* Solution */}
-        {project.details.solution && (
-          <div className="border border-[#ff9100]/40 rounded-xs p-3.5 bg-[#130f0a]/80">
-            <h3 className="text-xs sm:text-sm font-bold text-[#ff9100] tracking-wider uppercase mb-1.5 flex items-center gap-1.5 ph-glow-text">
-              <span>●</span> ARCHITECTURAL SOLUTION
-            </h3>
-            <p className="text-xs sm:text-sm text-[#faebda] leading-relaxed">
-              {project.details.solution}
-            </p>
-          </div>
-        )}
-
-        {/* Key Features */}
-        {project.details.features.length > 0 && (
-          <div className="border border-[#ff9100]/40 rounded-xs p-3.5 bg-[#130f0a]/80">
-            <h3 className="text-xs sm:text-sm font-bold text-[#ff9100] tracking-wider uppercase mb-2 ph-glow-text">
-              KEY CAPABILITIES & FEATURES
-            </h3>
-            <ul className="space-y-2 text-xs sm:text-sm text-[#faebda]">
-              {project.details.features.map((feature, fIdx) => (
-                <li key={fIdx} className="flex items-start gap-2">
-                  <span className="text-[#ff9100] mt-0.5">►</span>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* Tech Stack Pills */}
-        <div>
-          <h4 className="text-xs font-bold text-[#ff9100]/90 tracking-widest uppercase mb-2">
-            TECHNOLOGY STACK
-          </h4>
-          <div className="flex flex-wrap gap-2">
-            {project.details.techStack.map((tech, tIdx) => (
-              <span
-                key={tIdx}
-                className="text-xs sm:text-[13px] px-3 py-1 border border-[#ff9100] bg-[#ff9100]/10 text-[#ffbe6b] font-medium rounded-xs"
-              >
-                {tech}
-              </span>
+      {/* Key Features */}
+      {project.details.features.length > 0 && (
+        <section className="space-y-3">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#ff8a1f] tracking-tight">
+            Capabilities & highlights
+          </h2>
+          <ul className="space-y-2.5 text-base text-[#e8ddd0]">
+            {project.details.features.map((feature, fIdx) => (
+              <li key={fIdx} className="flex items-start gap-3">
+                <span className="text-[#ff8a1f] mt-1 font-mono text-sm">►</span>
+                <span className="leading-relaxed">{feature}</span>
+              </li>
             ))}
-          </div>
+          </ul>
+        </section>
+      )}
+
+      {/* Tech Stack Pills */}
+      <section className="space-y-3 pt-2 border-t border-[#ff8a1f]/20">
+        <h3 className="font-mono text-xs font-bold text-[#ff8a1f]/80 tracking-widest uppercase">
+          Technology stack
+        </h3>
+        <div className="flex flex-wrap gap-2">
+          {project.details.techStack.map((tech, tIdx) => (
+            <span
+              key={tIdx}
+              className="font-mono text-xs sm:text-sm px-3.5 py-1 border border-[#ff8a1f]/40 bg-[#ff8a1f]/10 text-[#ffbe6b] font-medium rounded"
+            >
+              {tech}
+            </span>
+          ))}
         </div>
-
-        {/* External Links */}
-        {project.details.links && project.details.links.length > 0 && (
-          <div className="pt-2 border-t border-[#ff9100]/20 flex flex-wrap gap-3">
-            {project.details.links.map((link, lIdx) => (
-              <a
-                key={lIdx}
-                href={link.url}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded font-mono text-xs font-bold bg-[#ff9100] hover:bg-[#ffaa22] text-black shadow-sm transition-all"
-              >
-                <span>{link.label}</span>
-                <span className="text-[10px]">↗</span>
-              </a>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Bottom Footer Action */}
-      <div className="pt-2 border-t border-[#ff9100]/20 flex items-center justify-between text-[11px] font-mono text-[#ff9100]/70 select-none">
-        <span>ESC RETURN HOME</span>
-        <button
-          onClick={handleBack}
-          className="text-[#ffbe6b] hover:text-[#ff9100] font-bold cursor-pointer"
-        >
-          ▲ TOP / RETURN TO LANE
-        </button>
-      </div>
-    </div>
+      </section>
+    </article>
   );
 };

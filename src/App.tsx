@@ -13,13 +13,16 @@ import { ProjectDetailView } from './components/views/ProjectDetailView';
 import { AboutView } from './components/views/AboutView';
 import { ContactView } from './components/views/ContactView';
 import { ContinuousPrinterPaper } from './components/printer/ContinuousPrinterPaper';
+import { FullPageIrisModal } from './components/common/FullPageIrisModal';
 import { soundEffects } from './utils/soundEffects';
 
 export function App() {
   // Navigation & View State
   const [currentRoute, setCurrentRoute] = useState<string>('home');
-  const [activeCategory, setActiveCategory] = useState<ProjectCategory>('interface');
-  const [selectedProjectId, setSelectedProjectId] = useState<string>('kinetic-vfx');
+  const [crtBaseRoute, setCrtBaseRoute] = useState<string>('home');
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>('worlds');
+  const [selectedProjectId, setSelectedProjectId] = useState<string>('bonevista');
+  const [isOverlayClosing, setIsOverlayClosing] = useState<boolean>(false);
 
   // Hardware State
   const [isPoweredOn, setIsPoweredOn] = useState<boolean>(true);
@@ -41,17 +44,25 @@ export function App() {
   // Sync hash routing on mount and hash changes (Browser Back/Forward support)
   const parseHash = useCallback(() => {
     const hash = window.location.hash.replace('#', '') || 'home';
+    setIsOverlayClosing(false);
     if (hash === 'home' || hash === '') {
       setCurrentRoute('home');
+      setCrtBaseRoute('home');
     } else if (hash.startsWith('work/')) {
       const cat = hash.split('/')[1] as ProjectCategory;
       if (['interface', 'systems', 'worlds', 'games'].includes(cat)) {
         setActiveCategory(cat);
-        setCurrentRoute(`work/${cat}`);
+        const route = `work/${cat}`;
+        setCurrentRoute(route);
+        setCrtBaseRoute(route);
       }
     } else if (hash.startsWith('project/')) {
       const pId = hash.split('/')[1];
       setSelectedProjectId(pId);
+      const found = portfolioData.projects.find((p) => p.id === pId);
+      if (found) {
+        setActiveCategory(found.category);
+      }
       setCurrentRoute(`project/${pId}`);
     } else if (hash === 'about') {
       setCurrentRoute('about');
@@ -66,11 +77,38 @@ export function App() {
     return () => window.removeEventListener('hashchange', parseHash);
   }, [parseHash]);
 
-  // Navigate helper with history push + CRT channel switch
-  const navigateTo = useCallback((route: string) => {
-    triggerChannelSwitch();
-    window.location.hash = `#${route}`;
-  }, [triggerChannelSwitch]);
+  const isOverlayOpen =
+    currentRoute === 'about' ||
+    currentRoute === 'contact' ||
+    currentRoute.startsWith('project/');
+
+  // Navigate helper with history push + CRT channel switch (for CRT routes only)
+  const navigateTo = useCallback(
+    (route: string, withStatic = true) => {
+      const isTargetOverlay =
+        route === 'about' || route === 'contact' || route.startsWith('project/');
+      if (withStatic && !isTargetOverlay) {
+        triggerChannelSwitch();
+      }
+      setIsOverlayClosing(false);
+      window.location.hash = `#${route}`;
+    },
+    [triggerChannelSwitch]
+  );
+
+  // Smooth circular shrink-in close for full-page overlays
+  const handleCloseOverlay = useCallback(
+    (fallbackRoute?: string) => {
+      if (isOverlayClosing) return;
+      setIsOverlayClosing(true);
+      const target = fallbackRoute || crtBaseRoute || 'home';
+      setTimeout(() => {
+        setIsOverlayClosing(false);
+        window.location.hash = `#${target}`;
+      }, 400);
+    },
+    [isOverlayClosing, crtBaseRoute]
+  );
 
   // Filter projects by active category
   const laneProjects = useMemo(() => {
@@ -135,8 +173,16 @@ export function App() {
 
       if (e.key === 'Escape') {
         soundEffects.playButtonClick();
-        navigateTo('home');
-        handleScrollToTop();
+        if (isOverlayOpen) {
+          handleCloseOverlay(
+            currentRoute.startsWith('project/')
+              ? `work/${currentProject.category}`
+              : crtBaseRoute
+          );
+        } else {
+          navigateTo('home');
+          handleScrollToTop();
+        }
         return;
       }
 
@@ -149,7 +195,7 @@ export function App() {
         handleScrollToPrinter();
       }
 
-      if (currentRoute.startsWith('work/')) {
+      if (crtBaseRoute.startsWith('work/') && !isOverlayOpen && laneProjects.length > 0) {
         const curIdx = laneProjects.findIndex((p) => p.id === selectedProjectId);
         if (e.key === 'ArrowDown') {
           e.preventDefault();
@@ -174,9 +220,13 @@ export function App() {
   }, [
     isPoweredOn,
     currentRoute,
+    crtBaseRoute,
+    isOverlayOpen,
+    currentProject,
     laneProjects,
     selectedProjectId,
     handleSelectCategory,
+    handleCloseOverlay,
     navigateTo,
   ]);
 
@@ -203,31 +253,29 @@ export function App() {
     }
   };
 
-  // Derive status bar text
+  // Derive CRT status bar text from the underlying CRT route
   const statusBarPath = useMemo(() => {
-    if (currentRoute === 'home') return `${portfolioData.system.name} ${portfolioData.system.version}`;
-    if (currentRoute.startsWith('work/')) return `/WORK/${activeCategory.toUpperCase()}`;
-    if (currentRoute.startsWith('project/')) return `/WORK/${currentProject.category.toUpperCase()}/${currentProject.id.toUpperCase()}`;
-    if (currentRoute === 'about') return '/SYS/ABOUT';
-    if (currentRoute === 'contact') return '/SYS/CONTACT';
+    if (crtBaseRoute === 'home') return `${portfolioData.system.name} ${portfolioData.system.version}`;
+    if (crtBaseRoute.startsWith('work/')) return `/WORK/${activeCategory.toUpperCase()}`;
     return '/SYS/ROOT';
-  }, [currentRoute, activeCategory, currentProject]);
+  }, [crtBaseRoute, activeCategory]);
 
   const statusBarRight = useMemo(() => {
-    if (currentRoute.startsWith('work/')) {
+    if (crtBaseRoute.startsWith('work/')) {
       const curIdx = laneProjects.findIndex((p) => p.id === selectedProjectId);
       const pos = curIdx >= 0 ? curIdx + 1 : 1;
-      return `${String(pos).padStart(2, '0')}/${String(laneProjects.length).padStart(2, '0')}`;
+      const total = laneProjects.length;
+      return total > 0 ? `${String(pos).padStart(2, '0')}/${String(total).padStart(2, '0')}` : '00/00';
     }
     return portfolioData.system.status;
-  }, [currentRoute, laneProjects, selectedProjectId]);
+  }, [crtBaseRoute, laneProjects, selectedProjectId]);
 
   return (
     <div className="w-full min-h-screen bg-[#070605] flex flex-col items-center p-1 sm:p-2 md:p-2.5 overflow-x-hidden">
       {/* 1. SECTION 1: PHYSICAL RETRO WORKSTATION (Occupies the full viewport) */}
       <div className="w-full h-screen min-h-screen flex flex-col items-stretch justify-start">
         <MetallicCasing>
-          {/* Main CRT Monitor (grid-area: screen) */}
+          {/* Main CRT Monitor (grid-area: screen) — always renders Work/Home underneath */}
           <CRTDisplay
             isPoweredOn={isPoweredOn}
             powerTransitioning={powerTransitioning}
@@ -242,8 +290,8 @@ export function App() {
               rightStatus={statusBarRight}
             />
 
-            {/* CRT Dynamic Screen Content */}
-            {currentRoute === 'home' && (
+            {/* CRT Dynamic Screen Content (Home + Work Lanes stay on TV) */}
+            {crtBaseRoute === 'home' && (
               <HomeView
                 name={portfolioData.identity.name}
                 tagline={portfolioData.identity.tagline}
@@ -256,7 +304,7 @@ export function App() {
               />
             )}
 
-            {currentRoute.startsWith('work/') && (
+            {crtBaseRoute.startsWith('work/') && (
               <WorkLaneView
                 category={activeCategory}
                 categoryTitle={
@@ -273,35 +321,6 @@ export function App() {
                 }}
               />
             )}
-
-            {currentRoute.startsWith('project/') && (
-              <ProjectDetailView
-                project={currentProject}
-                onBackToWork={() => {
-                  navigateTo(`work/${currentProject.category}`);
-                }}
-                onPrevProject={handlePrevProject}
-                onNextProject={handleNextProject}
-                hasPrev={hasPrev}
-                hasNext={hasNext}
-              />
-            )}
-
-            {currentRoute === 'about' && (
-              <AboutView
-                aboutData={portfolioData.about}
-                identity={portfolioData.identity}
-                onBackToWork={() => navigateTo('home')}
-              />
-            )}
-
-            {currentRoute === 'contact' && (
-              <ContactView
-                contactData={portfolioData.contact}
-                identity={portfolioData.identity}
-                onExit={() => navigateTo('home')}
-              />
-            )}
           </CRTDisplay>
 
           {/* Right-Side Physical Navigation Control Panel (grid-area: keys) */}
@@ -309,7 +328,13 @@ export function App() {
             systemName={portfolioData.system.name}
             currentView={currentRoute}
             isPoweredOn={isPoweredOn}
-            onNavigate={(view) => navigateTo(view)}
+            onNavigate={(view) => {
+              if (view === 'home' && isOverlayOpen) {
+                handleCloseOverlay('home');
+              } else {
+                navigateTo(view);
+              }
+            }}
             onTogglePower={handleTogglePower}
           />
 
@@ -341,6 +366,83 @@ export function App() {
         }}
         onScrollToTop={handleScrollToTop}
       />
+
+      {/* 3. FULL-PAGE CIRCULAR IRIS OVERLAYS (About, Contact, Project Case Studies) */}
+      {currentRoute === 'about' && (
+        <FullPageIrisModal
+          isClosing={isOverlayClosing}
+          originX="92%"
+          originY="22%"
+          exitLabel="EXIT"
+          onClose={() => handleCloseOverlay()}
+        >
+          <AboutView
+            aboutData={portfolioData.about}
+            identity={portfolioData.identity}
+          />
+        </FullPageIrisModal>
+      )}
+
+      {currentRoute === 'contact' && (
+        <FullPageIrisModal
+          isClosing={isOverlayClosing}
+          originX="92%"
+          originY="44%"
+          exitLabel="EXIT"
+          onClose={() => handleCloseOverlay()}
+        >
+          <ContactView
+            contactData={portfolioData.contact}
+            identity={portfolioData.identity}
+          />
+        </FullPageIrisModal>
+      )}
+
+      {currentRoute.startsWith('project/') && currentProject && (
+        <FullPageIrisModal
+          isClosing={isOverlayClosing}
+          originX="56%"
+          originY="52%"
+          exitLabel={`EXIT TO ${currentProject.categoryLabel.toUpperCase()}`}
+          onClose={() => handleCloseOverlay(`work/${currentProject.category}`)}
+          rightHeaderSlot={
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  soundEffects.playButtonClick();
+                  handlePrevProject();
+                }}
+                disabled={!hasPrev}
+                className={`px-2.5 py-1 rounded border font-mono text-[11px] ${
+                  hasPrev
+                    ? 'border-[#ff8a1f]/40 text-[#ffbe6b] hover:bg-[#ff8a1f]/15 cursor-pointer'
+                    : 'border-neutral-800 text-neutral-600 cursor-not-allowed'
+                }`}
+              >
+                ◄ PREV
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  soundEffects.playButtonClick();
+                  handleNextProject();
+                }}
+                disabled={!hasNext}
+                className={`px-2.5 py-1 rounded border font-mono text-[11px] ${
+                  hasNext
+                    ? 'border-[#ff8a1f]/40 text-[#ffbe6b] hover:bg-[#ff8a1f]/15 cursor-pointer'
+                    : 'border-neutral-800 text-neutral-600 cursor-not-allowed'
+                }`}
+              >
+                NEXT ►
+              </button>
+            </div>
+          }
+        >
+          <ProjectDetailView project={currentProject} />
+        </FullPageIrisModal>
+      )}
     </div>
   );
 }
